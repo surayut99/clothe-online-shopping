@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PagesController::class, 'index']);
-Route::get('/register', [PagesController::class, 'register']);
-Route::get('/login', [PagesController::class, 'login']);
+// Route::get('/', [PagesController::class, 'index']);
+// Route::get('/register', [PagesController::class, 'register']);
+// Route::get('/login', [PagesController::class, 'login']);
+Route::resource('pages', ProfileController::class);
