@@ -1,20 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-light "
-     style="background: linear-gradient(to left, #f5b90f 0%, #ff5252 100%);">
+<nav class="navbar navbar-expand-lg navbar-light nav-deco">
     <a id="home" class="navbar-brand" href="#">SHOPPOO</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <style>
-        #home{
-            color: white !important;
-            font-size: larger;
-        }
-        #account-content {
-            color: black !important;
-            font-size: larger;
-            font-weight: bold;
-        }
-    </style>
     <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
             <div class="d-flex">
                 <ul class="navbar-nav mr-auto ">
