@@ -1,7 +1,7 @@
 @extends('layouts.main_profile')
 
 @section('content')
-    <div style="background-color: #fffaf3; min-height: 100vh;">
+    <div style="background-color: #fffaf3; min-height: 100vh;font-family: 'Bai Jamjuree', sans-serif;">
         <div style="padding-top: 30px;" class="container">
             <div class="text-right">
                 <button class="btn" style="background-color:RGB(242,137,108)">เปิดร้านค้า!</button>
@@ -27,7 +27,7 @@
                 <button class="btn btn-primary">เพิ่มที่อยู่สำหรับจัดส่ง</button>
             </div>
             <hr>
-            <div class="d-flex" id="myproductbtn">
+            <div class="d-flex" id="between-content">
                 <button class="btn btn-primary">ตะกร้าของฉัน</button>
                 <button class="btn btn-primary">รายการที่ต้องชำระ</button>
                 <button class="btn btn-primary">รายการที่ต้องได้รับ</button>
