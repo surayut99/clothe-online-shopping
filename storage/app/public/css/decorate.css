@@ -1,0 +1,41 @@
+div#between-content > *{
+    color: white !important;
+    margin-right: 10px;
+}
+#account-content {
+    color: black !important;
+    font-size: larger;
+    font-weight: bold;
+}
+.nav-deco{
+    background: linear-gradient(to left, #f5b90f 0%, #ff5252 100%);
+}
+.bg-home{
+    font-family: 'Bai Jamjuree', sans-serif;
+    background-image: url("../pictures/bg-home.jpg");
+    min-height: 100vh;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.lock-navbar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+.bg-lr{
+    font-family: 'Bai Jamjuree', sans-serif;
+    background-image: url("../pictures/bg-lr.jpg");
+    min-height: 100vh;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#home{
+    font-size: larger;
+    font-weight: bold;
+}
