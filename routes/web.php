@@ -23,3 +23,6 @@ Route::get('/login', [PagesController::class, 'login'])->name('pages.login');
 Route::get('/profile', function () {
     return view('profile');
 });
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return Inertia\Inertia::render('Dashboard');
+})->name('dashboard');
