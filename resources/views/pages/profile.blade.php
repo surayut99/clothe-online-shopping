@@ -2,21 +2,32 @@
 
 @section('content')
     <div style="background-color: #fffaf3; min-height: 100vh;font-family: 'Bai Jamjuree', sans-serif;">
-        <div style="padding-top: 30px;" class="container">
-            <div class="text-right">
+        <div style="padding-top: 30px;" class="container d-flex justify-content-between" >
+            <div class="d-flex">
+                <a  class="btn btn-warning mr-3" href="/">กลับไปหน้าหลัก</a>
                 <button class="btn" style="background-color:RGB(242,137,108)">เปิดร้านค้า!</button>
             </div>
-            <hr>
-            <h1 style="border: 2px ">Profile</h1>
+
+
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="btn btn-danger ">ออกจากระบบ</button>
+            </form>
+
+        </div>
+
+        <hr class="container">
+
+        <div class="container">
+            <h1 style="border: 2px ">ข้อมูลส่วนตัว</h1>
             <div class="d-flex bd-highlight">
                 <div class="p-2 bd-highlight mx-3">
                     <img src="https://www.flaticon.com/svg/static/icons/svg/2922/2922510.svg" width="100" height="100">
                 </div>
                 <div class="p-2 bd-highlight mx-3">
-                    <h4>ชื่อ-สกุล : สุรุยุทธ์ บุญคล้าย</h4>
-                    <h4>Display Name : Puen Cruft</h4>
-                    <h4>Email: puencruft@gmail.com</h4>
-                    <h4>Telephone: 12345567</h4>
+                    <h4>ชื่อ: {{Auth::user()->name}}</h4>
+                    <h4>อีเมล์: {{Auth::user()->email}}</h4>
+                    <h4>เบอร์โทร: {{Auth::user()->telephone}}</h4>
                 </div>
             </div>
             <div>

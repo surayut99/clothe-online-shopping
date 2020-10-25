@@ -15,13 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', [PagesController::class, 'index'])->name('pages.home');
-// Route::get('/register', [PagesController::class, 'register'])->name('pages.register');
-// Route::get('/login', [PagesController::class, 'login'])->name('pages.login');
-
+Route::get('/', [PagesController::class, 'index'])->name('pages.home');
 
 Route::get('/profile', function () {
-    return view('profile');
+    return view('pages.profile');
 });
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia\Inertia::render('Dashboard');
