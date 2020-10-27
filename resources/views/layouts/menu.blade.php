@@ -25,11 +25,11 @@
                             <a class="nav-link" href="{{ url('/profile') }}">{{ Auth::user()->name }}</a>
                         </li>
                     @else
-                        <li class="nav-item">
+                        <li class="nav-item {{ \Route::currentRouteName() === 'register' ? 'active' : '' }}" >
                             <a class="nav-link" href="{{ route('register') }}">ลงทะเบียน</a>
                         </li>
                         @if (Route::has('register'))
-                            <li class="nav-item">
+                            <li class="nav-item {{ \Route::currentRouteName() === 'login' ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ route('login') }}">เข้าสู่ระบบ</a>
                             </li>
                         @endif
