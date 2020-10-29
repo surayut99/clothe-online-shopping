@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\PagesController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PagesController::class, 'index'])->name('pages.home');
+Route::resource('product_list', ProductsController::class);
 
 Route::get('/profile', function () {
     return view('pages.profile');
