@@ -26,7 +26,7 @@
                 </div>
                 <div class="p-2 bd-highlight mx-3">
                     <h4>ชื่อ: {{Auth::user()->name}}</h4>
-                    <h4>อีเมล์: {{Auth::user()->email}}</h4>
+                    <h4>อีเมล: {{Auth::user()->email}}</h4>
                     <h4>เบอร์โทร: {{Auth::user()->telephone}}</h4>
                 </div>
             </div>

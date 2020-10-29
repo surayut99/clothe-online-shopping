@@ -17,7 +17,7 @@
 
                 <div class="form-group" >
                     <div class="form-inline">
-                        <label for="exampleInputEmail1">อีเมลล์ &nbsp;</label>
+                        <label for="exampleInputEmail1">อีเมล &nbsp;</label>
                         <small id="email" class="form-text text-warning">***</small>
                     </div>
                     <input required type="email" class="form-control" name="email" aria-describedby="emailHelp">

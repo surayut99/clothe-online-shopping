@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.main_profile')
 
 @section('content')
 <div class="bg-lr" style="padding-top: 120px">
@@ -7,24 +7,25 @@
             <form>
                 <div class="form-group" >
                     <div class="form-inline">
-                        <label for="exampleInputEmail1">อีเมลล์ &nbsp;</label>
+                        <label for="exampleInputEmail1">อีเมล &nbsp;</label>
                         <small id="email" class="form-text text-muted">***</small>
                     </div>
                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                 </div>
                 <div class="form-group">
                     <div class="form-inline">
-                        <label for="exampleInputUserName">ชื่อร้านค้า &nbsp;</label>
-                        <small id="email" class="form-text text-muted">***</small>
+                        <label for="exampleInputShopName">ชื่อร้านค้า &nbsp;</label>
+                        <small id="text" class="form-text text-muted">***</small>
                     </div>
-                    <input type="text" class="form-control" id="exampleInputUserName" aria-describedby="emailHelp">
+                    <input type="text" class="form-control" id="exampleInputShopName" aria-describedby="emailHelp">
                 </div>
-                <div class="form-group" style="margin-top: 20px">
-                    <div>
-                        <label for="exampleInputTel">เบอร์โทรศัพท์</label>
+                {{-- <div class="form-group" style="margin-top: 20px">
+                    <div class="form-inline">
+                        <label for="exampleInputTel">เบอร์โทรศัพท์ &nbsp;</label>
+                        <small id="email" class="form-text text-warning">***</small>
                     </div>
-                    <input type="text" class="form-control" id="exampleInputTel">
-                </div>
+                    <input required type="text" class="form-control" name="tel">
+                </div> --}}
                 <div style="text-align: center">
                     <a href="{{route('pages.login')}}" class="btn" style="background-color: cornflowerblue;">ลงทะเบียน</a>
                 </div>

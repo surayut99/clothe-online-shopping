@@ -7,8 +7,8 @@
             <h1 style="text-align: center; padding-top: 30px">เข้าสู่ระบบ</h1>
             <form>
                 <div class="form-group" style="margin-top: 10px">
-                    <label for="email">อีเมลล์</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="อีเมลล์">
+                    <label for="email">อีเมล</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="อีเมล">
                     <small id="email" class="form-text text-muted"></small>
                 </div>
                 <div class="form-group" style="margin-top: 20px">
