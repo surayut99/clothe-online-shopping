@@ -1,10 +1,9 @@
-@extends('layouts.main_profile')
+@extends('layouts.main')
 
 @section('content')
-    <div style="background-color: #fffaf3; min-height: 100vh;font-family: 'Bai Jamjuree', sans-serif;">
+    <div style="background-color: #fffaf3; min-height: 100vh;font-family: 'Bai Jamjuree', sans-serif; padding-top:70px" >
         <div style="padding-top: 30px;" class="container d-flex justify-content-between" >
             <div class="d-flex">
-                <a  class="btn btn-warning mr-3" href="/">กลับไปหน้าหลัก</a>
                 <a class="btn" style="background-color:RGB(242,137,108)"
                 href="{{ route('product_list.index') }}">เปิดร้านค้า!</a>
             </div>
