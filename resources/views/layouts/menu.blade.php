@@ -2,8 +2,16 @@
     <nav class="navbar navbar-expand-lg navbar-light nav-deco lock-navbar d-flex justify-content-between">
 
         {{-- Home LOGO --}}
-        <a id="home" class="navbar-brand" href="/" >SHOPPOO</a>
-
+        <div class="d-flex">
+        <img src="{{asset('storage/pictures/logo.png')}}" style="height: 50px; filter: drop-shadow(2px 2px 2px black);">
+        <div class= "pt-2 pl-2" style="line-height: 3px">
+        <a id="home" class="navbar-brand logo-font" href="/" style="font-size:30px">
+          SHOPPOOL</a>
+         <br>
+         <a id="home" class="navbar-brand logo-font1" href="/" style="font-size:15px" >
+         fabulous & gorgeous</a>
+         </div>
+         </div>
         {{-- Search Tool --}}
         <div class="d-flex">
             <ul class="navbar-nav">
@@ -18,9 +26,11 @@
 
         {{-- Acccount Tool --}}
         <div class="d-flex" id="account-content">
+            
             @if (Route::has('login'))
                 <ul class="navbar-nav mr-auto ">
                     @auth
+                    <li><a href="{{ route('cart') }}"><img src="{{asset('storage/pictures/cart.png')}}" style="height: 40px;" ></a></li>
                         <li>
                             <a class="nav-link" href="{{ url('/profile') }}">{{ Auth::user()->name }}</a>
                         </li>

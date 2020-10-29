@@ -39,3 +39,22 @@ div#between-content > *{
     font-size: larger;
     font-weight: bold;
 }
+.logo-font {
+    font-weight: bold;
+    text-transform: uppercase;
+    background: linear-gradient(to top, #ffc5ab 20%, yellow 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(3px 3px 1px black);
+    line-height: 0.5em;
+}
+.logo-font1 {
+    font-weight: bold;
+    text-transform: uppercase;
+    background: linear-gradient(to top, gold 5%, orange 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(2px 2px 0.5px black);
+    line-height: 0.5em;
+}
+
