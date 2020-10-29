@@ -11,11 +11,14 @@
                 </div>
             </div>
         </div>
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-primary mr-2">เพิ่มรายการสินค้า</button>
+            <button class="btn btn-primary">ลบรายการสินค้า</button>
+        </div>
         <hr>
 
         <div>
             <h4>รายการสินค้าทั้งหมด</h4>
-{{--            <h4>แสดงรายการ</h4>--}}
             <div id="between-content" class="d-flex d-inline-flex p-1 bd-highlight">
                 <p>what</p>
                 @foreach($products as $product)
@@ -28,6 +31,8 @@
                 @endforeach
             </div>
         </div>
+
+        <hr>
 
     </div>
 @endsection

@@ -38,7 +38,35 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //add new product
+//        $this->authorize('create', Post::class);
+//        $request->validate([
+//            'title'=>'required|min:5|max:100',
+//            'content'=>'required|min:5|max:500'
+//        ]);
+//        $post = new Post;
+//        $post->title = $request->input('title');
+//        $post->content = $request->input('content');
+////        $post->user_id = $request->user()->id;
+////        ตอนเราสร้างโพสต์ก็จะดึงชื่อ  username  เขียนลงดาต้าเบส
+//        $post->user_id = Auth::user()->id;
+//        $post->save();
+//        return redirect()->route('posts.index');
+
+//        $this->authorize('');
+        $product = new Product;
+        $product->product_name = $request->input('product_name');
+        $product->product_description = $request->input('product_description');
+        $product->product_img_path = $request->input('product_img_path');
+        $product->product_primary_type = $request->input('product_primary_type');
+        $product->product_secondary_type = $request->input('product_secondary_type');
+        $product->color = $request->input('color');
+        $product->size = $request->input('size');
+        $product->qty = $request->input('qty');
+        $product->price = $request->input('price');
+        $product->seller_id = $request->input('seller_id');
+//        $product->recommended = $request->input('recommended');
+        return redirect()->route('product.product-list');
     }
 
     /**
