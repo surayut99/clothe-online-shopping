@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PagesController::class, 'index'])->name('pages.home');
-Route::resource('/product_list', ProductsController::class);
+Route::resource('product_list', ProductsController::class);
 
 Route::get('/profile', function () {
     return view('pages.profile');

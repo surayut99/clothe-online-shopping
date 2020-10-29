@@ -24,7 +24,7 @@ class CreateProductsTable extends Migration
             $table->string('size');
             $table->bigInteger('qty');
             $table->double('price');
-            $table->string('seller_id');
+            $table->bigInteger('seller_id')->default(1234);
             $table->boolean('recommended')->default(false);
             $table->timestamps();
         });
