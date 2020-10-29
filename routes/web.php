@@ -26,5 +26,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::get('/profile/register', function () {
-    return view('pages.seller_register');
+    return view('auth.seller_register');
 });

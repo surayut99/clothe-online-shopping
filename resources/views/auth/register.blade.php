@@ -5,8 +5,8 @@
             <h1 style="text-align: center; padding-top: 30px">ลงทะเบียน</h1>
 
             <x-jet-validation-errors class="mb-4" />
-            
-            <form action="{{ route('register') }}" method="POST">
+
+            <form>
                 @csrf
 
                 <div class="form-group">
@@ -19,7 +19,7 @@
 
                 <div class="form-group" >
                     <div class="form-inline">
-                        <label for="email">อีเมลล์ &nbsp;</label>
+                        <label for="email">อีเมล &nbsp;</label>
                         <small class="form-text text-warning">***</small>
                     </div>
                     <input required type="email" class="form-control" name="email">

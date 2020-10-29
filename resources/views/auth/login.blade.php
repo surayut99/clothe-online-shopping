@@ -5,7 +5,7 @@
         <div class="container p-4" style="font-family: 'Bai Jamjuree', sans-serif; width: 50vw; background-color: rgba(0,0,0,.5); color: white; border-radius: 30px">
             <h1 style="text-align: center; padding-top: 30px">เข้าสู่ระบบ</h1>
             <x-jet-validation-errors class="mb-4" />
-            
+
             @if (session('status'))
                 <div class="mb-4 font-medium text-sm text-green-600">
                     {{ session('status') }}
@@ -16,8 +16,8 @@
                 @csrf
 
                 <div class="form-group" style="margin-top: 10px">
-                    <label for="email">อีเมลล์</label>
-                    <input id="email" name="email"  type="email" class="form-control" placeholder="อีเมลล์" :value="old('email')" required autofocus >
+                    <label for="email">อีเมล</label>
+                    <input id="email" name="email"  type="email" class="form-control" placeholder="อีเมล" :value="old('email')" required autofocus >
                     <small class="form-text text-muted"></small>
                 </div>
 
