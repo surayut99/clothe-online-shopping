@@ -23,3 +23,7 @@ Route::get('/login', [PagesController::class, 'login'])->name('pages.login');
 Route::get('/profile', function () {
     return view('profile');
 });
+
+Route::get('/profile/register', function () {
+    return view('pages.seller_register');
+});
