@@ -2,15 +2,14 @@
     <nav class="navbar navbar-expand-lg navbar-light nav-deco lock-navbar d-flex justify-content-between">
 
         {{-- Home LOGO --}}
-        <div class="d-flex">
-        <img src="{{asset('storage/pictures/logo.png')}}" style="height: 50px; filter: drop-shadow(2px 2px 2px black);">
-        <div class= "pt-2 pl-2" style="line-height: 3px">
-        <a id="home" class="navbar-brand logo-font" href="/" style="font-size:30px">
-          SHOPPOOL</a>
-         <br>
-         <a id="home" class="navbar-brand logo-font1" href="/" style="font-size:15px" >
-         fabulous & gorgeous</a>
-         </div>
+        <div class="d-flex" style="max-width:14vw">
+            <img src="{{asset('storage/pictures/logo.png')}}" style="height: 50px; filter: drop-shadow(2px 2px 2px RGB(47,49,54));">
+            <div class= "pt-1 pl-3" >
+                <a id="home" class="navbar-brand logo-font p-2" href="/" style="font-size:25px;">SHOPPOOL</a>
+                <br>
+                <a id="home" class="navbar-brand logo-font1" href="/" style="font-size:15px; line-height: 1em" >fabulous & gorgeous</a>
+                
+            </div>
          </div>
         {{-- Search Tool --}}
         <div class="d-flex">
@@ -30,9 +29,9 @@
             @if (Route::has('login'))
                 <ul class="navbar-nav mr-auto ">
                     @auth
-                    <li><a href="{{ route('cart') }}"><img src="{{asset('storage/pictures/cart.png')}}" style="height: 40px;" ></a></li>
+                    <li><a href="{{ route('cart') }}"><img class="mr-2 mt-1" src="{{asset('storage/pictures/cart.png')}}" style="height: 40px;" ></a></li>
                         <li>
-                            <a class="nav-link" href="{{ url('/profile') }}">{{ Auth::user()->name }}</a>
+                            <a class="nav-link" href="{{ url('/profile') }}" style="color:whitesmoke">{{ Auth::user()->name }}</a>
                         </li>
                     @else
                         <li class="nav-item {{ \Route::currentRouteName() === 'register' ? 'active' : '' }}" >
