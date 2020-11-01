@@ -14,6 +14,8 @@ class CreateProductsTable extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
+            $table->unsignedBigInteger('store_id');
+            $table->foreign('store_id')->references('store_id')->on('stores');
             $table->id('product_id');
             $table->string('product_name');
             $table->string('product_description');
@@ -24,7 +26,6 @@ class CreateProductsTable extends Migration
             $table->string('size');
             $table->bigInteger('qty');
             $table->double('price');
-            $table->bigInteger('seller_id')->default(1234);
             $table->boolean('recommended')->default(false);
             $table->timestamps();
         });
@@ -38,5 +39,10 @@ class CreateProductsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('products');
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+            $table->dropColumn('user_id');
+            Schema::enableForeignKeyConstraints();
+        });
     }
 }

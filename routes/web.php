@@ -4,6 +4,7 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StoresController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -19,8 +20,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PagesController::class, 'index'])->name('pages.home');
-Route::resource('product_list', ProductsController::class);
+Route::resource('/product_list', ProductsController::class);
 
+Route::resource('/create_store',StoresController::class);
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 // Profile Route

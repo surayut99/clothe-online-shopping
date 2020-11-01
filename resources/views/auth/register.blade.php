@@ -6,7 +6,7 @@
 
             <x-jet-validation-errors class="mb-4" />
 
-            <form>
+            <form method='POST' action=" {{ route('register')}}">
                 @csrf
 
                 <div class="form-group">

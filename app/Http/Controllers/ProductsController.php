@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Store;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductsController extends Controller
 {
@@ -14,7 +16,11 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $store = Store::findOrFail(Auth::user()->id);
+
+        $products = Product::findOrFail($store->store_id);
+
+
         return view('product.product-list',[
             'products' => $products
         ]);
