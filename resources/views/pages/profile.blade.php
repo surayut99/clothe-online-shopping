@@ -1,11 +1,11 @@
 @extends('layouts.main_profile')
 
 @section('content')
-    <div style="background-color: #fffaf3; min-height: 100vh;font-family: 'Bai Jamjuree', sans-serif;">
+    <div class="bg-orange" style="min-height: 100vh;font-family: 'Bai Jamjuree', sans-serif;">
         <div style="padding-top: 30px;" class="container d-flex justify-content-between" >
             <div class="d-flex">
                 <a  class="btn btn-warning mr-3" href="/">กลับไปหน้าหลัก</a>
-                <button class="btn" style="background-color:RGB(242,137,108)">เปิดร้านค้า!</button>
+                <a class="btn" style="background-color:RGB(242,137,108)" href="/profile/open-shop">เปิดร้านค้า!</a>
             </div>
 
 

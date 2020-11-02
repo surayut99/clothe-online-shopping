@@ -27,4 +27,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::get('/profile/open-shop', function () {
     return view('auth.seller_register');
-});
+})->name('seller_register');
