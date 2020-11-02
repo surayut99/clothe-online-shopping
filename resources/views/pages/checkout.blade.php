@@ -12,14 +12,14 @@
                 <h5>สินค้าที่สั่งซื้อ</h5>
                 <table class="table">
                     <thead>
-                    <tr>
+                    <tr style="background-color: #AED6F1">
                         <th scope="col"></th>
                         <th scope="col">ชื่อสินค้า</th>
                         <th scope="col">ราคาต่อหน่วย</th>
                         <th scope="col">จำนวน</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody style="background-color: #D1F2EB">
                     <tr>
                         <th scope="row">1</th>
                         <td>Mark</td>
@@ -45,8 +45,10 @@
 
             <div class="bg-light py-md-3 px-md-5 mb-3">
                 <h5>วิธีการชำระเงิน</h5>
-                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#banks" aria-controls="profile-form" aria-expanded="false"  onclick="showform(),checkinfo()">ชำระผ่านบัญชีธนาคาร</button>
-                <button class="btn btn-info" type="button">ชำระเงินปลายทาง</button>
+                <div>
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#banks" aria-controls="profile-form" aria-expanded="false"  onclick="showform(),checkinfo()"><input type="checkbox">ชำระผ่านบัญชีธนาคาร</button>
+                <button class="btn btn-info" type="button"> <input type="checkbox">ชำระเงินปลายทาง</button>
+                </div>
                 <div class="collapse" id="banks">
                     <br>
                     <p>ไทยพาณิชย์ : 111-221100-2</p>
@@ -55,10 +57,10 @@
                     <p>เมื่อชำระเงินแล้วกรุณาแนบหลักฐานการโอน</p>
                 </div>
             </div>
-            <div class="bg-light py-md-3 px-md-5 mb-3 text-right">
+            <div class="py-md-3 px-md-5 mb-3 text-right mb-5" style="background-color: #FADBD8">
                 <p>ยอดรวมสินค้า: </p>
                 <p>รวมการจัดส่ง: </p>
                 <p>การชำระเงินทั้งหมด: </p>
-                <a class="btn btn-primary float-right" href="" >Check out</a>
+                <a class="btn btn-primary float-right" href="" >ยืนยันการชำระเงิน</a>
             </div>
     </div>
