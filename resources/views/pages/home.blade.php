@@ -50,9 +50,10 @@
             <div style="padding-bottom: 20px">
                 <h2 style="margin-bottom: 10px; text-align: center; color: white">ร้านค้าแนะนำ</h2>
                 <div class="d-flex justify-content-center">
-                    <div class="btn" id="between-content">
-                        <div style="background-color: white;" class="p-3" >
-                            <img src="{{asset('storage/pictures/korea_shoe.jpg')}}" style="height: 300px">
+                    <div class="btn" id="between-content" >
+                        <div style="background-color: white;" class="p-3"  >
+                        <a href="{{ route('product_detail') }}">
+                            <img src="{{asset('storage/pictures/korea_shoe.jpg')}}" style="height: 300px"></a>
                             <div style="color: black; padding-top: 20px">
                                 <p style="text-align: center; font-weight: bold; font-size: 20px" >RANKA</p>
                                 <p style="text-align: center">รองเท้านำเข้าจากเกาหลีคุณภาพดี ราคาถูก ใช้ทน ยางคุณภาพดี มีหลายไซซ์หลากสี</p>

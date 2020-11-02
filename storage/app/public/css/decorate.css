@@ -13,7 +13,7 @@ div#between-content > *{
 .bg-home{
     font-family: 'Bai Jamjuree', sans-serif;
     background-image: url("../pictures/bg-home.jpg");
-    min-height: 100vh;
+    min-height: 250vh;
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -41,11 +41,11 @@ div#between-content > *{
 }
 
 .bg-orange{
-    background: #ff9966; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(#ff9966, #ffccdd); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#ff9966, #ffccdd); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#ff9966, #ffccdd); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#ff9966, #ffccdd); /* Standard syntax */
+    background: #f89f9f; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#f89f9f, #ffccdd); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#f89f9f, #ffccdd); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#f89f9f, #ffccdd); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#f89f9f, #ffccdd); /* Standard syntax */
 }
 
 .logo-font {
@@ -68,8 +68,6 @@ div#between-content > *{
     filter: drop-shadow(1px 1px 1px whitesmoke);
     line-height: 0.5em;
 }
-<<<<<<< HEAD
-=======
 .dropdown-menu > a:hover 
 {color: yellow; 
 background: #ff0000;
@@ -78,4 +76,3 @@ background: #ff0000;
     table-layout: fixed;
 }
 
->>>>>>> c6cc51a77d2174d7bb13f09ee0c0f90172d4428e
