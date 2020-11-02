@@ -5,7 +5,7 @@
 
         <div style="padding-top: 30px;" class="container d-flex justify-content-between">
             <div class="d-flex">
-                <a class="btn" style="background-color:RGB(242,137,108)" href="{{ route('product_list.index') }}">เปิดร้านค้า!</a>
+                <a class="btn btn-success" href="{{ route('product_list.index') }}">เปิดร้านค้า!</a>
             </div>
 
         </div>
