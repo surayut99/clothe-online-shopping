@@ -25,7 +25,6 @@ class ProductSeeder extends Seeder
         $product->size = '40';
         $product->price = 550;
         $product->qty = 56;
-        $product->seller_id = 1234;
         $product->save();
 
         Product::factory()->count(10)->create();

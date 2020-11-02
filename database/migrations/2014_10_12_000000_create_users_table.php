@@ -18,12 +18,10 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('telephone')->unique();
             $table->string('password');
+            $table->string('telephone')->unique();
             $table->rememberToken();
-            $table->foreignId('current_team_id')->nullable();
             $table->text('profile_photo_path')->nullable();
-            $table->bigInteger('seller_id')->default(1234);
             $table->timestamps();
         });
     }

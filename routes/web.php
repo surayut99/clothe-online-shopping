@@ -5,6 +5,7 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StoresController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -20,8 +21,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 //resource::
+
 Route::resource('product_list', ProductsController::class);
 Route::resource('address', AddressController::class);
+Route::resource('/product_list', ProductsController::class);
+Route::resource('/create_store',StoresController::class);
 
 //middleware
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
