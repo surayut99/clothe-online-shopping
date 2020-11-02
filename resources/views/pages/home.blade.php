@@ -14,22 +14,13 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: First slide"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#555" dy=".3em"></text></svg>
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>พื้นที่โฆษณาโปรโมชั่น 1</h5>
-                        </div>
+                        <img class="d-block w-100" src="{{asset('storage/pictures/promo1.png')}}" style="height: 400px; width=900" alt="First slide"> 
                     </div>
-                    <div class="carousel-item">
-                        <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: First slide"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#555" dy=".3em"></text></svg>
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>พื้นที่โฆษณาโปรโมชั่น 2</h5>
-                        </div>
+                    <div class="carousel-item ">
+                        <img class="d-block w-100" src="{{asset('storage/pictures/promo2.png')}}" style="height: 400px; width=900" alt="Second slide"> 
                     </div>
-                    <div class="carousel-item">
-                        <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: First slide"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#555" dy=".3em"></text></svg>
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>พื้นที่โฆษณาโปรโมชั่น 3</h5>
-                        </div>
+                    <div class="carousel-item ">
+                        <img class="d-block w-100" src="{{asset('storage/pictures/promo3.png')}}" style="height: 400px; width=900" alt="Third slide"> 
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -59,16 +50,17 @@
             <div style="padding-bottom: 20px">
                 <h2 style="margin-bottom: 10px; text-align: center; color: white">ร้านค้าแนะนำ</h2>
                 <div class="d-flex justify-content-center">
-                    <div id="between-content">
-                        <div style="background-color: white;" class="p-3" >
-                            <img src="{{asset('storage/pictures/korea_shoe.jpg')}}" style="height: 300px">
+                    <div class="btn" id="between-content" >
+                        <div style="background-color: white;" class="p-3"  >
+                        <a href="{{ route('product_detail') }}">
+                            <img src="{{asset('storage/pictures/korea_shoe.jpg')}}" style="height: 300px"></a>
                             <div style="color: black; padding-top: 20px">
                                 <p style="text-align: center; font-weight: bold; font-size: 20px" >RANKA</p>
                                 <p style="text-align: center">รองเท้านำเข้าจากเกาหลีคุณภาพดี ราคาถูก ใช้ทน ยางคุณภาพดี มีหลายไซซ์หลากสี</p>
                             </div>
                         </div>
                     </div>
-                    <div id="between-content">
+                    <div class="btn" id="between-content">
                         <div style="background-color: white;" class="p-3" >
                             <img src="{{asset('storage/pictures/koreashirt.jpeg')}}" style="height: 300px">
                             <div style="color: black; padding-top: 20px">
@@ -77,7 +69,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="between-content">
+                    <div class="btn" id="between-content">
                         <div style="background-color: white;" class="p-3" >
                             <img src="{{asset('storage/pictures/koreatrousers.jpeg')}}" style="height: 300px">
                             <div style="color: black; padding-top: 20px">
@@ -91,3 +83,9 @@
         </div>
     </div>
 @endsection
+<script>
+    import Button from "@/Jetstream/Button";
+    export default {
+        components: {Button}
+    }
+</script>

@@ -32,16 +32,16 @@
         <li>
 
         <li class="nav-item dropdown">
-          <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+          <a id="navbarDropdown" style="color:white" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
             {{ Auth::user()->name }}
           </a>
 
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <a href="{{ route('profile') }}" class="dropdown-item">โปรไฟล์</a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"style="background-color: #b31217;">
+            <a href="{{ route('profile') }}" style="color: yellow;" class="dropdown-item">โปรไฟล์</a>
 
-            <div style="background-color: black; height: 1px"></div>
+            <div style="background-color: white; height: 1px"></div>
 
-            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            <a class="dropdown-item" style="color: yellow;" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
               ออกจากระบบ
             </a>
 
