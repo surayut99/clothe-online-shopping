@@ -20,25 +20,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-<<<<<<< HEAD
-Route::get('/', [PagesController::class, 'index'])->name('pages.home');
-Route::resource('/product_list', ProductsController::class);
-Route::resource('/product_management', ProductsController::class);
 
-Route::resource('/create_store',StoresController::class);
-Route::resource('/stores',StoresController::class);
 
-Route::get('/cart', [CartController::class, 'index'])->name('cart');
-// Profile Route
-Route::get('/profile', [ProfileController::class,'index'])->name('profile');
-
-=======
 //resource::
 Route::resource('product_list', ProductsController::class);
 Route::resource('address', AddressController::class);
+Route::resource('/product_list', ProductsController::class);
+Route::resource('/product_management', ProductsController::class);
+Route::resource('/create_store',StoresController::class);
+Route::resource('/stores',StoresController::class);
 
 //middleware
->>>>>>> master
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia\Inertia::render('Dashboard');
 })->name('dashboard');
@@ -51,6 +43,7 @@ Route::get('/profile/register', function () {
     return view('auth.seller_register');
 });
 Route::get('/address/change_default/{address}', [AddressController::class, 'changeDefaultAddress']);
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
 
 //post
 

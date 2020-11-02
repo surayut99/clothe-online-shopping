@@ -14,20 +14,12 @@ use Illuminate\Support\Facades\DB;
 class ProfileController extends Controller
 {
     public function index() {
-<<<<<<< HEAD
-
         $addresses = DB::table('addresses')->where("user_id", "=", Auth::user()->id)->get();
         $stores = DB::table('stores')->where('user_id', "=", Auth::user()->id)->get();
 
         return view('pages.profile', [
             'addr' =>  $addresses,
             'stores' => $stores,
-=======
-        $addresses = DB::table('addresses')->where("user_id", "=", Auth::user()->id)->get();
-
-        return view('pages.profile', [
-            'addrs' =>  $addresses
->>>>>>> master
         ]);
     }
 
