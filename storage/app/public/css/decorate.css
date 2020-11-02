@@ -29,7 +29,7 @@ div#between-content > *{
 .bg-lr{
     font-family: 'Bai Jamjuree', sans-serif;
     background-image: url("../pictures/bg-lr.jpg");
-    min-height: 100vh;
+    min-height: 150vh;
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
