@@ -4,7 +4,7 @@
     <div class="bg-lr" style="padding: 90px;">
         <div class="container">
             <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
-                <div class="bg-light mr-md-3 pt-3 px-3 py-md-5 px-md-5">
+                <div class="bg-light mr-md-3 pt-3 px-3 py-md-3 px-md-3">
                         <img src="{{ asset('storage/pictures/korea_shoe.jpg')}}" style="height: 300px">
                 </div>
 
