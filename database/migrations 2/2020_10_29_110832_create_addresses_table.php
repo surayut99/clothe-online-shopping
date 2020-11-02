@@ -34,13 +34,6 @@ class CreateAddressesTable extends Migration
      */
     public function down()
     {
-        Schema::table('addresses', function (Blueprint $table) {
-            Schema::disableForeignKeyConstraints();
-            $table->dropForeign(['user_id']);
-            $table->dropColumn('user_id');
-            Schema::enableForeignKeyConstraints();
-        });
-
         Schema::dropIfExists('addresses');
     }
 }

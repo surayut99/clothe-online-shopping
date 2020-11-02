@@ -6,6 +6,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StoresController;
+use App\Http\Controllers\ImageUploadController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -25,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 //resource::
 Route::resource('product_list', ProductsController::class);
 Route::resource('address', AddressController::class);
-Route::resource('/product_list', ProductsController::class);
+Route::resource('product_list', ProductsController::class);
 Route::resource('/product_management', ProductsController::class);
 Route::resource('/create_store',StoresController::class);
 Route::resource('/stores',StoresController::class);
@@ -44,6 +45,4 @@ Route::get('/profile/register', function () {
 });
 Route::get('/address/change_default/{address}', [AddressController::class, 'changeDefaultAddress']);
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
-
-//post
-
+// Route::get('/edit_product/{product_list}', [ProductsController::class,'edit'])->name('edit_product');

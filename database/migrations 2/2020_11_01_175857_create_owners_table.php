@@ -15,8 +15,8 @@ class CreateOwnersTable extends Migration
     {
         Schema::create('owners', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
-
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')
+                ->references('id')->on('users');
         });
     }
 
@@ -27,14 +27,11 @@ class CreateOwnersTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('owners');
         Schema::table('stores', function (Blueprint $table) {
-            Schema::disableForeignKeyConstraints();
             $table->dropForeign(['user_id']);
             $table->dropColumn('user_id');
             Schema::enableForeignKeyConstraints();
         });
-
-        Schema::dropIfExists('owners');
-
     }
 }

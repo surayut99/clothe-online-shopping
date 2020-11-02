@@ -59,4 +59,7 @@ div#between-content > *{
     filter: drop-shadow(1px 1px 1px whitesmoke);
     line-height: 0.5em;
 }
+th,td{
+    vertical-align: middle !important;
+}
 
