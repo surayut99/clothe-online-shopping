@@ -68,3 +68,14 @@ div#between-content > *{
     filter: drop-shadow(1px 1px 1px whitesmoke);
     line-height: 0.5em;
 }
+<<<<<<< HEAD
+=======
+.dropdown-menu > a:hover 
+{color: yellow; 
+background: #ff0000;
+}
+.table {
+    table-layout: fixed;
+}
+
+>>>>>>> c6cc51a77d2174d7bb13f09ee0c0f90172d4428e

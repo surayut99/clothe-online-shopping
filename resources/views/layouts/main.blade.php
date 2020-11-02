@@ -27,5 +27,33 @@
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <script>
+                $(".checkAll1").click(function () {
+                $(".check1").prop('checked', $(this).prop('checked'));
+                });
+                
+                $("#checkAll").click(function () {
+                $(".checkAll1").prop('checked', $(this).prop('checked'));
+                $(".check1").prop('checked', $(this).prop('checked'));
+                });
+        </script>
+        <script>
+                $(document).on('click', '.number-spinner button', function () {    
+                var btn = $(this),
+                    oldValue = btn.closest('.number-spinner').find('input').val().trim(),
+                    newVal = 0;
+                
+                if (btn.attr('data-dir') == 'up') {
+                    newVal = parseInt(oldValue) + 1;
+                } else {
+                    if (oldValue > 1) {
+                        newVal = parseInt(oldValue) - 1;
+                    } else {
+                        newVal = 1;
+                    }
+                }
+                btn.closest('.number-spinner').find('input').val(newVal);
+            });
+        </script>
 </body>
 </html>
