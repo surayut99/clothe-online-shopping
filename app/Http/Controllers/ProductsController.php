@@ -16,14 +16,15 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $store = Store::findOrFail(Auth::user()->id);
+        $store = Store::where('store_id', "=", Auth::user()->id)->get();
+//        if(sizeof($store)!=0){
+            $products = Product::where('store_id', "=", $store[0]->store_id)->get();
 
-        $products = Product::findOrFail($store->store_id);
-
-
-        return view('product.product-list',[
-            'products' => $products
-        ]);
+            return view('product.product-list',[
+                'products' => $products,
+                'stores' => $store
+            ]);
+//        }
     }
 
     /**
@@ -60,19 +61,19 @@ class ProductsController extends Controller
 //        return redirect()->route('posts.index');
 
 //        $this->authorize('');
-        $product = new Product;
-        $product->product_name = $request->input('product_name');
-        $product->product_description = $request->input('product_description');
-        $product->product_img_path = $request->input('product_img_path');
-        $product->product_primary_type = $request->input('product_primary_type');
-        $product->product_secondary_type = $request->input('product_secondary_type');
-        $product->color = $request->input('color');
-        $product->size = $request->input('size');
-        $product->qty = $request->input('qty');
-        $product->price = $request->input('price');
-        $product->seller_id = $request->input('seller_id');
+        // $product = new Product;
+        // $product->product_name = $request->input('product_name');
+        // $product->product_description = $request->input('product_description');
+        // $product->product_img_path = $request->input('product_img_path');
+        // $product->product_primary_type = $request->input('product_primary_type');
+        // $product->product_secondary_type = $request->input('product_secondary_type');
+        // $product->color = $request->input('color');
+        // $product->size = $request->input('size');
+        // $product->qty = $request->input('qty');
+        // $product->price = $request->input('price');
+        // $product->seller_id = $request->input('seller_id');
 //        $product->recommended = $request->input('recommended');
-        return redirect()->route('product.product-list');
+        return redirect()->route('product_list.index');
     }
 
     /**
@@ -83,7 +84,13 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        //
+        $products = Product::where('store_id','=', $id)->get();
+        $store = Store::where('store_id', '=', $id)->get();
+
+        return view('product.product-list',[
+            'products' => $products,
+            'stores' => $store,
+        ]);
     }
 
     /**

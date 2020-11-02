@@ -17,6 +17,7 @@ class ProfileController extends Controller
 
         $addresses = DB::table('addresses')->where("user_id", "=", Auth::user()->id)->get();
         $stores = DB::table('stores')->where('user_id', "=", Auth::user()->id)->get();
+
         return view('pages.profile', [
             'addr' =>  $addresses,
             'stores' => $stores,

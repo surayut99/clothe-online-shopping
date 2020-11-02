@@ -21,8 +21,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PagesController::class, 'index'])->name('pages.home');
 Route::resource('/product_list', ProductsController::class);
+Route::resource('/product_management', ProductsController::class);
 
 Route::resource('/create_store',StoresController::class);
+Route::resource('/stores',StoresController::class);
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 // Profile Route

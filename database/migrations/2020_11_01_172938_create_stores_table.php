@@ -20,6 +20,7 @@ class CreateStoresTable extends Migration
             $table->id('store_id');
             $table->string('store_name');
             $table->string('store_description');
+            $table->string('store_img_path')->default('storage/pictures/store.png');
             $table->string('store_tel')->default(' ');
             $table->string('store_bank')->default(' ');
         });

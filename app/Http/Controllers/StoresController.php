@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Owner;
+use App\Models\Product;
 use App\Models\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,8 +17,10 @@ class StoresController extends Controller
      */
     public function index()
     {
-
-        return view('pages.create-store');
+        $stores = Store::all();
+        return view('pages.show-store',[
+            'stores' => $stores,
+        ]);
     }
 
 
@@ -28,7 +31,7 @@ class StoresController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.create-store');
     }
 
     /**
@@ -59,7 +62,14 @@ class StoresController extends Controller
      */
     public function show($id)
     {
-        //
+        $products = Product::where('store_id','=', $id)->get();
+        $store = Store::where('store_id', '=', $id)->get();
+
+        return view('product.show-product',[
+            'products' => $products,
+            'stores' => $store,
+            'from' => 'customer'
+        ]);
     }
 
     /**

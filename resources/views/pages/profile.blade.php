@@ -3,14 +3,15 @@
 @section('content')
 <div style="background-color: #fffaf3; min-height: 100vh;font-family: 'Bai Jamjuree', sans-serif; padding-top:70px">
 
-  <div style="padding-top: 30px;" class="container d-flex justify-content-between">
+  <div style="padding-top: 30px;" class="container d-flex justify-content-end">
     <div class="d-flex">
-        @if(\PHPUnit\Framework\isEmpty($stores))
-            <a href="{{ route('create_store.index') }}" class="btn" style="background-color:RGB(242,137,108)">เปิดร้านค้า!</a>
+        @if(sizeof($stores)==0)
+            <a href="{{ route('create_store.create') }}" class="btn" style="background-color:RGB(242,137,108)">เปิดร้านค้า!</a>
         @else
-            @foreach($stores as $store)
-                <a href="{{ route('product_list') }}" class="btn" style="background-color:RGB(242,137,108)">{{ $store->store_name }}!</a>
-            @endforeach
+            <h5 class="mr-3 mt-2">ร้านค้าของคุณ</h5>
+{{--            @foreach($stores as $store)--}}
+            <a href="{{ route('product_list.index') }}" class="btn" style="background-color:RGB(242,137,108)"> ไปยังร้านค้าของคุณ!</a>
+{{--            @endforeach--}}
         @endif
     </div>
 
