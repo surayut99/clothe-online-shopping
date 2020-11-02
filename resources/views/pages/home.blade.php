@@ -59,7 +59,7 @@
             <div style="padding-bottom: 20px">
                 <h2 style="margin-bottom: 10px; text-align: center; color: white">ร้านค้าแนะนำ</h2>
                 <div class="d-flex justify-content-center">
-                    <div id="between-content">
+                    <div class="btn" id="between-content">
                         <div style="background-color: white;" class="p-3" >
                             <img src="{{asset('storage/pictures/korea_shoe.jpg')}}" style="height: 300px">
                             <div style="color: black; padding-top: 20px">
@@ -68,7 +68,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="between-content">
+                    <div class="btn" id="between-content">
                         <div style="background-color: white;" class="p-3" >
                             <img src="{{asset('storage/pictures/koreashirt.jpeg')}}" style="height: 300px">
                             <div style="color: black; padding-top: 20px">
@@ -77,7 +77,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="between-content">
+                    <div class="btn" id="between-content">
                         <div style="background-color: white;" class="p-3" >
                             <img src="{{asset('storage/pictures/koreatrousers.jpeg')}}" style="height: 300px">
                             <div style="color: black; padding-top: 20px">
@@ -91,3 +91,9 @@
         </div>
     </div>
 @endsection
+<script>
+    import Button from "@/Jetstream/Button";
+    export default {
+        components: {Button}
+    }
+</script>

@@ -41,7 +41,7 @@ div#between-content > *{
 }
 
 .bg-orange{
-    background: red; /* For browsers that do not support gradients */
+    background: #ff9966; /* For browsers that do not support gradients */
     background: -webkit-linear-gradient(#ff9966, #ffccdd); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(#ff9966, #ffccdd); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(#ff9966, #ffccdd); /* For Firefox 3.6 to 15 */

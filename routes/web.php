@@ -38,4 +38,6 @@ Route::get('/profile/open-shop', function () {
 
 Route::get('/address/change_default/{address}', [AddressController::class, 'changeDefaultAddress']);
 
+Route::get('/product/1', [ProductsController::class,'productDetail'])->name('product_detail');
+
 //post
