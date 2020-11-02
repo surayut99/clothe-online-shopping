@@ -16,6 +16,7 @@ class ProductSeeder extends Seeder
     public function run()
     {
         $product = new Product;
+        $product->store_id = 2;
         $product->product_name = 'รองเท้าแตะสัญชาติเกาหลี';
         $product->product_description = 'รองเท้าแตะยางคุณภาพนำเข้าจากจีน';
         $product->product_img_path = 'storage/pictures/ecommerce.png';
@@ -27,6 +28,6 @@ class ProductSeeder extends Seeder
         $product->qty = 56;
         $product->save();
 
-        Product::factory()->count(10)->create();
+        // Product::factory()->count(10)->create();
     }
 }
