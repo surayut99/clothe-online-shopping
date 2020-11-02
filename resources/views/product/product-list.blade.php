@@ -18,34 +18,34 @@
 
         <div class="collapse" id="collapseExample">
             <hr>
-{{--            <div class="card card-body">--}}
-{{--                <div class="input-group mb-3">--}}
-{{--                    <div class="input-group-prepend">--}}
-{{--                        <span class="input-group-text" id="inputGroupFileAddon01">รูปสินค้า</span>--}}
-{{--                    </div>--}}
-{{--                    <div class="custom-file">--}}
-{{--                        <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">--}}
-{{--                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>--}}
-{{--                    </div>--}}
-{{--                    <br>--}}
-{{--                </div>--}}
-{{--                <div >--}}
-{{--                    <label>ชื่อสินค้า: </label>--}}
-{{--                    <input  class="form-control" id="prodName"></input>--}}
-{{--                </div>--}}
-{{--                <div >--}}
-{{--                    <label>ราคาสินค้า(บาท): </label>--}}
-{{--                    <input  class="form-control" id="prodPrice"></input>--}}
-{{--                </div>--}}
-{{--                <div >--}}
-{{--                    <label>รายละเอียดสินค้า: </label>--}}
-{{--                    <textarea class="form-control" id="ProdDisc"></textarea>--}}
-{{--                </div>--}}
+            {{--            <div class="card card-body">--}}
+            {{--                <div class="input-group mb-3">--}}
+            {{--                    <div class="input-group-prepend">--}}
+            {{--                        <span class="input-group-text" id="inputGroupFileAddon01">รูปสินค้า</span>--}}
+            {{--                    </div>--}}
+            {{--                    <div class="custom-file">--}}
+            {{--                        <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">--}}
+            {{--                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>--}}
+            {{--                    </div>--}}
+            {{--                    <br>--}}
+            {{--                </div>--}}
+            {{--                <div >--}}
+            {{--                    <label>ชื่อสินค้า: </label>--}}
+            {{--                    <input  class="form-control" id="prodName"></input>--}}
+            {{--                </div>--}}
+            {{--                <div >--}}
+            {{--                    <label>ราคาสินค้า(บาท): </label>--}}
+            {{--                    <input  class="form-control" id="prodPrice"></input>--}}
+            {{--                </div>--}}
+            {{--                <div >--}}
+            {{--                    <label>รายละเอียดสินค้า: </label>--}}
+            {{--                    <textarea class="form-control" id="ProdDisc"></textarea>--}}
+            {{--                </div>--}}
             <form>
                 <form action="/action_page.php">
                     <label style="font-weight: bold;" for="myfile">รูปสินค้า:</label>
                     <input type="file" id="myfile" name="myfile"><br><br>
-                    <input type="submit">
+{{--                    <input type="submit">--}}
                 </form>
                 <div class="form-row">
                     <div class="form-group col-md-8">
@@ -76,10 +76,10 @@
                             <option>...</option>
                         </select>
                     </div>
-{{--                    <div class="form-group col-md-2">--}}
-{{--                        <label for="inputZip">ราคา(บาท):</label>--}}
-{{--                        <input type="text" class="form-control" id="inputZip">--}}
-{{--                    </div>--}}
+                    {{--                    <div class="form-group col-md-2">--}}
+                    {{--                        <label for="inputZip">ราคา(บาท):</label>--}}
+                    {{--                        <input type="text" class="form-control" id="inputZip">--}}
+                    {{--                    </div>--}}
                 </div>
                 <div class="form-group">
                     <label for="inputAddress">รายละเอียดสินค้า: </label>
