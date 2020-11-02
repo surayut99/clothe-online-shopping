@@ -14,16 +14,15 @@
                 </tr>
             </thead>
         </table>
-        <div><h5 style="padding-left:20px">ชื่อร้านนะจ้ะ</h5></div>
         <table style="text-align: center;"class="table table-striped">
             <thead>
                 <tr>
                 <th style="width: 10px;" scope="col"><input type="checkbox" class="checkAll1"  ></th>
-                <th style="width: 200px;" scope="col">สินค้า</th>
-                <th style="width: 100px;" scope="col">ราคาต่อชิ้น</th>
-                <th style="width: 100px;" scope="col">จำนวน</th>
-                <th style="width: 100px;"scope="col">ราคารวม</th>
-                <th style="width: 50px;"scope="col">หมายเหตุ</th>
+                <th style="width: 200px;" scope="col">ชื่อร้านนะจ้ะ</th>
+                <th style="width: 100px;" scope="col"></th>
+                <th style="width: 100px;" scope="col"></th>
+                <th style="width: 100px;"scope="col"></th>
+                <th style="width: 50px;"scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -59,5 +58,6 @@
                 </tr>
             </tbody>
         </table>
+        <a class="btn btn-primary float-right" href="{{ route('checkout') }}" >Check out</a>
     </div>
 @endsection

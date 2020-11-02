@@ -31,6 +31,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 // get
 Route::get('/', [PagesController::class, 'index'])->name('pages.home');
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::get('/cart/checkout', function () {
+    return view('pages.checkout');
+})->name('checkout');
 Route::get('/profile', [ProfileController::class,'index'])->name('profile');
 Route::get('/profile/register', function () {
     return view('auth.seller_register');
