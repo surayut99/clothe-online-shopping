@@ -42,5 +42,8 @@ Route::get('/profile/open-shop', function () {
 Route::get('/address/change_default/{address}', [AddressController::class, 'changeDefaultAddress']);
 
 Route::get('/product/1', [ProductsController::class,'productDetail'])->name('product_detail');
+Route::get('/order-details/1', function () {
+    return view('pages.order_details');
+})->name('order_details');
 
 //post

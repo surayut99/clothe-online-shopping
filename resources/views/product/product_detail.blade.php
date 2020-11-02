@@ -12,7 +12,7 @@
                         <h2 class="display-5">ชื่อสินค้า</h2>
                         <h1 class="display-5">ราคา</h1>
                         <p class="lead">รองเท้านำเข้าจากเกาหลีคุณภาพดี ราคาถูก ใช้ทน ยางคุณภาพดี มีหลายไซซ์หลากสี</p>
-                        <a class="btn" style="background-color:RGB(242,137,108)">ซื้อสินค้า</a>
+                        <a class="btn" style="background-color:RGB(242,137,108)">หยิบใส่รถเข็น</a>
                 </div>
             </div>
         </div>
