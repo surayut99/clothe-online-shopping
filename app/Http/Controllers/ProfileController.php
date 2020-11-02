@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 class ProfileController extends Controller
 {
     public function index() {
+<<<<<<< HEAD
 
         $addresses = DB::table('addresses')->where("user_id", "=", Auth::user()->id)->get();
         $stores = DB::table('stores')->where('user_id', "=", Auth::user()->id)->get();
@@ -21,12 +22,16 @@ class ProfileController extends Controller
         return view('pages.profile', [
             'addr' =>  $addresses,
             'stores' => $stores,
+=======
+        $addresses = DB::table('addresses')->where("user_id", "=", Auth::user()->id)->get();
+
+        return view('pages.profile', [
+            'addrs' =>  $addresses
+>>>>>>> master
         ]);
     }
 
     public function editProfile(Request $request) {
-        // wait to edit picture profile
-
         $request->validate([
             'name' => ['required', 'max:30', 'string'],
             'telephone' => ['required', 'max:10', new TelNumber]
@@ -36,15 +41,7 @@ class ProfileController extends Controller
         $user->name = $request->input('new_name');
         $user->tel = $request->input('new_tel');
         $user->save();
-    }
 
-    public function addAddress(Request $request) {
-
-        $request->validate([
-            'address' => ['required']
-        ]);
-
-        $user = User::findOrFail(Auth::user()->id);
-
+        return redirect()->route('profile');
     }
 }

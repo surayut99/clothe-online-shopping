@@ -14,22 +14,13 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: First slide"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#555" dy=".3em"></text></svg>
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>พื้นที่โฆษณาโปรโมชั่น 1</h5>
-                        </div>
+                        <img class="d-block w-100" src="{{asset('storage/pictures/promo1.png')}}" style="height: 400px; width=900" alt="First slide"> 
                     </div>
-                    <div class="carousel-item">
-                        <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: First slide"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#555" dy=".3em"></text></svg>
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>พื้นที่โฆษณาโปรโมชั่น 2</h5>
-                        </div>
+                    <div class="carousel-item ">
+                        <img class="d-block w-100" src="{{asset('storage/pictures/promo2.png')}}" style="height: 400px; width=900" alt="Second slide"> 
                     </div>
-                    <div class="carousel-item">
-                        <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: First slide"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#555" dy=".3em"></text></svg>
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>พื้นที่โฆษณาโปรโมชั่น 3</h5>
-                        </div>
+                    <div class="carousel-item ">
+                        <img class="d-block w-100" src="{{asset('storage/pictures/promo3.png')}}" style="height: 400px; width=900" alt="Third slide"> 
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

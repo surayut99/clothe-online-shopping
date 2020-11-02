@@ -10,10 +10,13 @@
 |        |           |                                  |                                 |                                                                                   | Illuminate\Routing\Middleware\SubstituteBindings        |
 |        |           |                                  |                                 |                                                                                   | Inertia\Middleware                                      |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\ShareInertiaData      |
+<<<<<<< HEAD
 |        | GET|HEAD  | api/user                         |                                 | Closure                                                                           | App\Http\Middleware\Authenticate:sanctum                |
 |        |           |                                  |                                 |                                                                                   | Illuminate\Routing\Middleware\ThrottleRequests:api      |
 |        |           |                                  |                                 |                                                                                   | Illuminate\Routing\Middleware\SubstituteBindings        |
 |        | GET|HEAD  | cart                             | cart                            | App\Http\Controllers\CartController@index                                         | App\Http\Middleware\EncryptCookies                      |
+=======
+|        | POST      | address                          | address.store                   | App\Http\Controllers\AddressController@store                                      | App\Http\Middleware\EncryptCookies                      |
 |        |           |                                  |                                 |                                                                                   | Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse |
 |        |           |                                  |                                 |                                                                                   | Illuminate\Session\Middleware\StartSession              |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\AuthenticateSession   |
@@ -22,7 +25,21 @@
 |        |           |                                  |                                 |                                                                                   | Illuminate\Routing\Middleware\SubstituteBindings        |
 |        |           |                                  |                                 |                                                                                   | Inertia\Middleware                                      |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\ShareInertiaData      |
+|        | GET|HEAD  | address                          | address.index                   | App\Http\Controllers\AddressController@index                                      | App\Http\Middleware\EncryptCookies                      |
+>>>>>>> master
+|        |           |                                  |                                 |                                                                                   | Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse |
+|        |           |                                  |                                 |                                                                                   | Illuminate\Session\Middleware\StartSession              |
+|        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\AuthenticateSession   |
+|        |           |                                  |                                 |                                                                                   | Illuminate\View\Middleware\ShareErrorsFromSession       |
+|        |           |                                  |                                 |                                                                                   | App\Http\Middleware\VerifyCsrfToken                     |
+|        |           |                                  |                                 |                                                                                   | Illuminate\Routing\Middleware\SubstituteBindings        |
+|        |           |                                  |                                 |                                                                                   | Inertia\Middleware                                      |
+|        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\ShareInertiaData      |
+<<<<<<< HEAD
 |        | POST      | create_store                     | create_store.store              | App\Http\Controllers\StoresController@store                                       | App\Http\Middleware\EncryptCookies                      |
+=======
+|        | GET|HEAD  | address/change_default/{address} |                                 | App\Http\Controllers\AddressController@changeDefaultAddress                       | App\Http\Middleware\EncryptCookies                      |
+>>>>>>> master
 |        |           |                                  |                                 |                                                                                   | Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse |
 |        |           |                                  |                                 |                                                                                   | Illuminate\Session\Middleware\StartSession              |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\AuthenticateSession   |
@@ -31,7 +48,11 @@
 |        |           |                                  |                                 |                                                                                   | Illuminate\Routing\Middleware\SubstituteBindings        |
 |        |           |                                  |                                 |                                                                                   | Inertia\Middleware                                      |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\ShareInertiaData      |
+<<<<<<< HEAD
 |        | GET|HEAD  | create_store                     | create_store.index              | App\Http\Controllers\StoresController@index                                       | App\Http\Middleware\EncryptCookies                      |
+=======
+|        | GET|HEAD  | address/create                   | address.create                  | App\Http\Controllers\AddressController@create                                     | App\Http\Middleware\EncryptCookies                      |
+>>>>>>> master
 |        |           |                                  |                                 |                                                                                   | Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse |
 |        |           |                                  |                                 |                                                                                   | Illuminate\Session\Middleware\StartSession              |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\AuthenticateSession   |
@@ -40,7 +61,11 @@
 |        |           |                                  |                                 |                                                                                   | Illuminate\Routing\Middleware\SubstituteBindings        |
 |        |           |                                  |                                 |                                                                                   | Inertia\Middleware                                      |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\ShareInertiaData      |
+<<<<<<< HEAD
 |        | GET|HEAD  | create_store/create              | create_store.create             | App\Http\Controllers\StoresController@create                                      | App\Http\Middleware\EncryptCookies                      |
+=======
+|        | DELETE    | address/{address}                | address.destroy                 | App\Http\Controllers\AddressController@destroy                                    | App\Http\Middleware\EncryptCookies                      |
+>>>>>>> master
 |        |           |                                  |                                 |                                                                                   | Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse |
 |        |           |                                  |                                 |                                                                                   | Illuminate\Session\Middleware\StartSession              |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\AuthenticateSession   |
@@ -49,7 +74,11 @@
 |        |           |                                  |                                 |                                                                                   | Illuminate\Routing\Middleware\SubstituteBindings        |
 |        |           |                                  |                                 |                                                                                   | Inertia\Middleware                                      |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\ShareInertiaData      |
+<<<<<<< HEAD
 |        | DELETE    | create_store/{create_store}      | create_store.destroy            | App\Http\Controllers\StoresController@destroy                                     | App\Http\Middleware\EncryptCookies                      |
+=======
+|        | PUT|PATCH | address/{address}                | address.update                  | App\Http\Controllers\AddressController@update                                     | App\Http\Middleware\EncryptCookies                      |
+>>>>>>> master
 |        |           |                                  |                                 |                                                                                   | Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse |
 |        |           |                                  |                                 |                                                                                   | Illuminate\Session\Middleware\StartSession              |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\AuthenticateSession   |
@@ -58,7 +87,11 @@
 |        |           |                                  |                                 |                                                                                   | Illuminate\Routing\Middleware\SubstituteBindings        |
 |        |           |                                  |                                 |                                                                                   | Inertia\Middleware                                      |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\ShareInertiaData      |
+<<<<<<< HEAD
 |        | PUT|PATCH | create_store/{create_store}      | create_store.update             | App\Http\Controllers\StoresController@update                                      | App\Http\Middleware\EncryptCookies                      |
+=======
+|        | GET|HEAD  | address/{address}                | address.show                    | App\Http\Controllers\AddressController@show                                       | App\Http\Middleware\EncryptCookies                      |
+>>>>>>> master
 |        |           |                                  |                                 |                                                                                   | Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse |
 |        |           |                                  |                                 |                                                                                   | Illuminate\Session\Middleware\StartSession              |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\AuthenticateSession   |
@@ -67,7 +100,11 @@
 |        |           |                                  |                                 |                                                                                   | Illuminate\Routing\Middleware\SubstituteBindings        |
 |        |           |                                  |                                 |                                                                                   | Inertia\Middleware                                      |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\ShareInertiaData      |
+<<<<<<< HEAD
 |        | GET|HEAD  | create_store/{create_store}      | create_store.show               | App\Http\Controllers\StoresController@show                                        | App\Http\Middleware\EncryptCookies                      |
+=======
+|        | GET|HEAD  | address/{address}/edit           | address.edit                    | App\Http\Controllers\AddressController@edit                                       | App\Http\Middleware\EncryptCookies                      |
+>>>>>>> master
 |        |           |                                  |                                 |                                                                                   | Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse |
 |        |           |                                  |                                 |                                                                                   | Illuminate\Session\Middleware\StartSession              |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\AuthenticateSession   |
@@ -76,7 +113,14 @@
 |        |           |                                  |                                 |                                                                                   | Illuminate\Routing\Middleware\SubstituteBindings        |
 |        |           |                                  |                                 |                                                                                   | Inertia\Middleware                                      |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\ShareInertiaData      |
+<<<<<<< HEAD
 |        | GET|HEAD  | create_store/{create_store}/edit | create_store.edit               | App\Http\Controllers\StoresController@edit                                        | App\Http\Middleware\EncryptCookies                      |
+=======
+|        | GET|HEAD  | api/user                         |                                 | Closure                                                                           | App\Http\Middleware\Authenticate:sanctum                |
+|        |           |                                  |                                 |                                                                                   | Illuminate\Routing\Middleware\ThrottleRequests:api      |
+|        |           |                                  |                                 |                                                                                   | Illuminate\Routing\Middleware\SubstituteBindings        |
+|        | GET|HEAD  | cart                             | cart                            | App\Http\Controllers\CartController@index                                         | App\Http\Middleware\EncryptCookies                      |
+>>>>>>> master
 |        |           |                                  |                                 |                                                                                   | Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse |
 |        |           |                                  |                                 |                                                                                   | Illuminate\Session\Middleware\StartSession              |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\AuthenticateSession   |
@@ -116,7 +160,11 @@
 |        |           |                                  |                                 |                                                                                   | Inertia\Middleware                                      |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\ShareInertiaData      |
 |        |           |                                  |                                 |                                                                                   | App\Http\Middleware\RedirectIfAuthenticated             |
+<<<<<<< HEAD
 |        | GET|HEAD  | login                            | login                           | Laravel\Fortify\Http\Controllers\AuthenticatedSessionController@create            | App\Http\Middleware\EncryptCookies                      |
+=======
+|        | POST      | login                            |                                 | Laravel\Fortify\Http\Controllers\AuthenticatedSessionController@store             | App\Http\Middleware\EncryptCookies                      |
+>>>>>>> master
 |        |           |                                  |                                 |                                                                                   | Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse |
 |        |           |                                  |                                 |                                                                                   | Illuminate\Session\Middleware\StartSession              |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\AuthenticateSession   |
@@ -126,7 +174,11 @@
 |        |           |                                  |                                 |                                                                                   | Inertia\Middleware                                      |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\ShareInertiaData      |
 |        |           |                                  |                                 |                                                                                   | App\Http\Middleware\RedirectIfAuthenticated             |
+<<<<<<< HEAD
 |        | POST      | login                            |                                 | Laravel\Fortify\Http\Controllers\AuthenticatedSessionController@store             | App\Http\Middleware\EncryptCookies                      |
+=======
+|        | GET|HEAD  | login                            | login                           | Laravel\Fortify\Http\Controllers\AuthenticatedSessionController@create            | App\Http\Middleware\EncryptCookies                      |
+>>>>>>> master
 |        |           |                                  |                                 |                                                                                   | Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse |
 |        |           |                                  |                                 |                                                                                   | Illuminate\Session\Middleware\StartSession              |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\AuthenticateSession   |
@@ -172,7 +224,11 @@
 |        |           |                                  |                                 |                                                                                   | Illuminate\Routing\Middleware\SubstituteBindings        |
 |        |           |                                  |                                 |                                                                                   | Inertia\Middleware                                      |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\ShareInertiaData      |
+<<<<<<< HEAD
 |        | DELETE    | product_list/{product_list}      | product_list.destroy            | App\Http\Controllers\ProductsController@destroy                                   | App\Http\Middleware\EncryptCookies                      |
+=======
+|        | PUT|PATCH | product_list/{product_list}      | product_list.update             | App\Http\Controllers\ProductsController@update                                    | App\Http\Middleware\EncryptCookies                      |
+>>>>>>> master
 |        |           |                                  |                                 |                                                                                   | Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse |
 |        |           |                                  |                                 |                                                                                   | Illuminate\Session\Middleware\StartSession              |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\AuthenticateSession   |
@@ -181,7 +237,11 @@
 |        |           |                                  |                                 |                                                                                   | Illuminate\Routing\Middleware\SubstituteBindings        |
 |        |           |                                  |                                 |                                                                                   | Inertia\Middleware                                      |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\ShareInertiaData      |
+<<<<<<< HEAD
 |        | PUT|PATCH | product_list/{product_list}      | product_list.update             | App\Http\Controllers\ProductsController@update                                    | App\Http\Middleware\EncryptCookies                      |
+=======
+|        | DELETE    | product_list/{product_list}      | product_list.destroy            | App\Http\Controllers\ProductsController@destroy                                   | App\Http\Middleware\EncryptCookies                      |
+>>>>>>> master
 |        |           |                                  |                                 |                                                                                   | Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse |
 |        |           |                                  |                                 |                                                                                   | Illuminate\Session\Middleware\StartSession              |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\AuthenticateSession   |
@@ -226,7 +286,11 @@
 |        |           |                                  |                                 |                                                                                   | Illuminate\Routing\Middleware\SubstituteBindings        |
 |        |           |                                  |                                 |                                                                                   | Inertia\Middleware                                      |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\ShareInertiaData      |
+<<<<<<< HEAD
 |        | GET|HEAD  | register                         | register                        | Laravel\Fortify\Http\Controllers\RegisteredUserController@create                  | App\Http\Middleware\EncryptCookies                      |
+=======
+|        | POST      | register                         |                                 | Laravel\Fortify\Http\Controllers\RegisteredUserController@store                   | App\Http\Middleware\EncryptCookies                      |
+>>>>>>> master
 |        |           |                                  |                                 |                                                                                   | Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse |
 |        |           |                                  |                                 |                                                                                   | Illuminate\Session\Middleware\StartSession              |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\AuthenticateSession   |
@@ -236,7 +300,11 @@
 |        |           |                                  |                                 |                                                                                   | Inertia\Middleware                                      |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\ShareInertiaData      |
 |        |           |                                  |                                 |                                                                                   | App\Http\Middleware\RedirectIfAuthenticated             |
+<<<<<<< HEAD
 |        | POST      | register                         |                                 | Laravel\Fortify\Http\Controllers\RegisteredUserController@store                   | App\Http\Middleware\EncryptCookies                      |
+=======
+|        | GET|HEAD  | register                         | register                        | Laravel\Fortify\Http\Controllers\RegisteredUserController@create                  | App\Http\Middleware\EncryptCookies                      |
+>>>>>>> master
 |        |           |                                  |                                 |                                                                                   | Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse |
 |        |           |                                  |                                 |                                                                                   | Illuminate\Session\Middleware\StartSession              |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\AuthenticateSession   |
@@ -306,7 +374,11 @@
 |        |           |                                  |                                 |                                                                                   | Inertia\Middleware                                      |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\ShareInertiaData      |
 |        |           |                                  |                                 |                                                                                   | Illuminate\Auth\Middleware\EnsureEmailIsVerified        |
+<<<<<<< HEAD
 |        | GET|HEAD  | user/confirm-password            | password.confirm                | Laravel\Fortify\Http\Controllers\ConfirmablePasswordController@show               | App\Http\Middleware\EncryptCookies                      |
+=======
+|        | POST      | user/confirm-password            |                                 | Laravel\Fortify\Http\Controllers\ConfirmablePasswordController@store              | App\Http\Middleware\EncryptCookies                      |
+>>>>>>> master
 |        |           |                                  |                                 |                                                                                   | Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse |
 |        |           |                                  |                                 |                                                                                   | Illuminate\Session\Middleware\StartSession              |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\AuthenticateSession   |
@@ -316,7 +388,11 @@
 |        |           |                                  |                                 |                                                                                   | Illuminate\Routing\Middleware\SubstituteBindings        |
 |        |           |                                  |                                 |                                                                                   | Inertia\Middleware                                      |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\ShareInertiaData      |
+<<<<<<< HEAD
 |        | POST      | user/confirm-password            |                                 | Laravel\Fortify\Http\Controllers\ConfirmablePasswordController@store              | App\Http\Middleware\EncryptCookies                      |
+=======
+|        | GET|HEAD  | user/confirm-password            | password.confirm                | Laravel\Fortify\Http\Controllers\ConfirmablePasswordController@show               | App\Http\Middleware\EncryptCookies                      |
+>>>>>>> master
 |        |           |                                  |                                 |                                                                                   | Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse |
 |        |           |                                  |                                 |                                                                                   | Illuminate\Session\Middleware\StartSession              |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\AuthenticateSession   |
@@ -422,7 +498,11 @@
 |        |           |                                  |                                 |                                                                                   | Inertia\Middleware                                      |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\ShareInertiaData      |
 |        |           |                                  |                                 |                                                                                   | Illuminate\Auth\Middleware\RequirePassword              |
+<<<<<<< HEAD
 |        | GET|HEAD  | user/two-factor-recovery-codes   |                                 | Laravel\Fortify\Http\Controllers\RecoveryCodeController@index                     | App\Http\Middleware\EncryptCookies                      |
+=======
+|        | POST      | user/two-factor-recovery-codes   |                                 | Laravel\Fortify\Http\Controllers\RecoveryCodeController@store                     | App\Http\Middleware\EncryptCookies                      |
+>>>>>>> master
 |        |           |                                  |                                 |                                                                                   | Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse |
 |        |           |                                  |                                 |                                                                                   | Illuminate\Session\Middleware\StartSession              |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\AuthenticateSession   |
@@ -433,7 +513,11 @@
 |        |           |                                  |                                 |                                                                                   | Inertia\Middleware                                      |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\ShareInertiaData      |
 |        |           |                                  |                                 |                                                                                   | Illuminate\Auth\Middleware\RequirePassword              |
+<<<<<<< HEAD
 |        | POST      | user/two-factor-recovery-codes   |                                 | Laravel\Fortify\Http\Controllers\RecoveryCodeController@store                     | App\Http\Middleware\EncryptCookies                      |
+=======
+|        | GET|HEAD  | user/two-factor-recovery-codes   |                                 | Laravel\Fortify\Http\Controllers\RecoveryCodeController@index                     | App\Http\Middleware\EncryptCookies                      |
+>>>>>>> master
 |        |           |                                  |                                 |                                                                                   | Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse |
 |        |           |                                  |                                 |                                                                                   | Illuminate\Session\Middleware\StartSession              |
 |        |           |                                  |                                 |                                                                                   | Laravel\Jetstream\Http\Middleware\AuthenticateSession   |

@@ -3,8 +3,11 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+<<<<<<< HEAD
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+=======
+>>>>>>> master
 
 class UserSeeder extends Seeder
 {
@@ -15,11 +18,15 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+<<<<<<< HEAD
         $user = new User;
         $user->name = 'pipe14';
         $user->email = 'pipe14@gmail.com';
         $user->tel = '0960927904';
         $user->password = Hash::make('pipe1234');
         $user->save();
+=======
+
+>>>>>>> master
     }
 }
