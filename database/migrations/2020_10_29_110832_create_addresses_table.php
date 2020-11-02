@@ -14,10 +14,16 @@ class CreateAddressesTable extends Migration
     public function up()
     {
         Schema::create('addresses', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->unique();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->string('address')->unique();
+            $table->unsignedBigInteger('user_id');
+            $table->integer('no')->nullable(false);
+            $table->string('receiver')->nullable(false);
+            $table->string('telephone')->nullable(false);
+            $table->string('address');
+            $table->boolean('default')->default(false);
             $table->timestamps();
+
+            $table->primary(array('user_id', 'no'));
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
