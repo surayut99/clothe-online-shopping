@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <div style="background-color: #fffaf3; min-height: 100vh;font-family: 'Bai Jamjuree', sans-serif; padding-top:70px">
+    <div class="bg-orange"  style="min-height: 100vh;font-family: 'Bai Jamjuree', sans-serif; padding-top:70px">
 
         <div style="padding-top: 30px;" class="container d-flex justify-content-between">
             <div class="d-flex">

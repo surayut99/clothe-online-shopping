@@ -19,14 +19,4 @@ class PagesController extends Controller
             'rec_images' => $rec_images,
         ]);
     }
-
-    public function register()
-    {
-        return view('pages.register');
-    }
-
-    public function login()
-    {
-        return view('pages.login');
-    }
 }
