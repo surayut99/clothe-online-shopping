@@ -59,4 +59,11 @@ div#between-content > *{
     filter: drop-shadow(1px 1px 1px whitesmoke);
     line-height: 0.5em;
 }
+.dropdown-menu > a:hover 
+{color: yellow; 
+background: #ff0000;
+}
+.table {
+    table-layout: fixed;
+}
 
