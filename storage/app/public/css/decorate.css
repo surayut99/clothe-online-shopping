@@ -8,7 +8,7 @@ div#between-content > *{
     font-weight: bold;
 }
 .nav-deco{
-    background: linear-gradient(to left, #f5b90f 0%, #ff5252 100%);
+    background: linear-gradient(to right, #e52d27, #b31217);
 }
 .bg-home{
     font-family: 'Bai Jamjuree', sans-serif;
@@ -46,4 +46,25 @@ div#between-content > *{
     background: -o-linear-gradient(#ff9966, #ffccdd); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(#ff9966, #ffccdd); /* For Firefox 3.6 to 15 */
     background: linear-gradient(#ff9966, #ffccdd); /* Standard syntax */
+}
+
+.logo-font {
+    font-weight: bold;
+    font-family: 'Comfortaa', cursive;
+    text-transform: uppercase;
+    background: linear-gradient(to top, #fffffd 20%, rgb(255, 255, 255) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(1px 1px 1px white);
+    line-height: 0.5em;
+}
+.logo-font1 {
+    font-weight: bold;
+    font-family: 'Comfortaa', cursive;
+    text-transform: uppercase;
+    background: linear-gradient(to top, #fffffd 20%, rgb(255, 255, 255) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(1px 1px 1px whitesmoke);
+    line-height: 0.5em;
 }

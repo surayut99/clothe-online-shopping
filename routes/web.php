@@ -1,8 +1,12 @@
 <?php
 
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,16 +19,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PagesController::class, 'index'])->name('pages.home');
+//resource::
+Route::resource('product_list', ProductsController::class);
+Route::resource('address', AddressController::class);
 
-Route::get('/profile', function () {
-    return view('pages.profile');
-});
-
+//middleware
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia\Inertia::render('Dashboard');
 })->name('dashboard');
 
+// get
+Route::get('/', [PagesController::class, 'index'])->name('pages.home');
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::get('/profile', [ProfileController::class,'index'])->name('profile');
 Route::get('/profile/open-shop', function () {
     return view('auth.seller_register');
 })->name('seller_register');
+
+Route::get('/address/change_default/{address}', [AddressController::class, 'changeDefaultAddress']);
+
+//post
