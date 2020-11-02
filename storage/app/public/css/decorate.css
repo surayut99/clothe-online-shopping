@@ -74,5 +74,9 @@ background: #ff0000;
 }
 .table {
     table-layout: fixed;
+    
+}
+th, td {
+    vertical-align: middle !important;
 }
 

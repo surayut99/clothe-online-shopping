@@ -1,8 +1,10 @@
 @extends('layouts.main')
 @section('content')
     <div class="container" style="padding-top: 90px;">
-        <h1>รถเข็นของคุณ</h1>
-        <table style="text-align: center;" class="table table-striped">
+    <div class="d-flex">
+        <h2>รถเข็นของคุณ</h2> <a class="btn btn-success ml-3" style="height:100%" href="/">เลือกสินค้าต่อ</a>
+    </div>
+        <table style="text-align: center; " class="table table-striped">
             <thead>
                 <tr >
                 <th style="width: 10px;" scope="col"><input type="checkbox" class="check" id="checkAll"></th>
@@ -42,7 +44,7 @@
                     </div>
                 </td>
                 <td style="width: 100px;">@mdo</td>
-                <td style=" width: 50px;"><button style="font-size: 10px;" class="btn btn-danger">ลบ</button></td>
+                <td style=" width: 50px;"><button  class="btn btn-danger tr-1 tl-1">ลบ</button></td>
                 </tr>
                 <tr>
                 <th scope="row"><input type="checkbox" class="check1"></th>
