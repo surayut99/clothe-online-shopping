@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 
 //resource::
+
 Route::resource('product_list', ProductsController::class);
 Route::resource('address', AddressController::class);
 Route::resource('product_list', ProductsController::class);
@@ -31,6 +32,8 @@ Route::resource('/product_management', ProductsController::class);
 Route::resource('/create_store',StoresController::class);
 Route::resource('/stores',StoresController::class);
 
+Route::resource('/product_list', ProductsController::class);
+Route::resource('/create_store',StoresController::class);
 
 //middleware
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
