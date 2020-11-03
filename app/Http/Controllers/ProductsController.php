@@ -20,6 +20,14 @@ class ProductsController extends Controller
         ]);
     }
 
+    public function productDetail()
+    {
+        $products = Product::all();
+        return view('product.product_detail',[
+            'products' => $products
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

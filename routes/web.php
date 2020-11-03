@@ -32,11 +32,19 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 // get
 Route::get('/', [PagesController::class, 'index'])->name('pages.home');
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::get('/cart/checkout', function () {
+    return view('pages.checkout');
+})->name('checkout');
 Route::get('/profile', [ProfileController::class,'index'])->name('profile');
-Route::get('/profile/register', function () {
+Route::get('/profile/open-shop', function () {
     return view('auth.seller_register');
-});
+})->name('seller_register');
+
 Route::get('/address/change_default/{address}', [AddressController::class, 'changeDefaultAddress']);
 
-//post
+Route::get('/product/1', [ProductsController::class,'productDetail'])->name('product_detail');
+Route::get('/order-details/1', function () {
+    return view('pages.order_details');
+})->name('order_details');
 
+//post
