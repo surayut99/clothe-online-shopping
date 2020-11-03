@@ -9,11 +9,22 @@
                 </div>
 
                 <div class="bg-light mr-md-3 pt-3 px-3 py-md-5 px-md-5">
-                        <h2 class="display-5">ชื่อสินค้า</h2>
-                        <h1 class="display-5">ราคา</h1>
-                        <p class="lead">รองเท้านำเข้าจากเกาหลีคุณภาพดี ราคาถูก ใช้ทน ยางคุณภาพดี มีหลายไซซ์หลากสี</p>
-                        <a class="btn btn-success">หยิบใส่รถเข็น</a>
-
+                        <h2 class="display-5">{{ $products->product_name}}</h2>
+                        <h1 class="display-5">{{$products->price}}</h1>
+                        <p class="lead">{{$products->product_description}}</p>
+                        <form action="{{route('addcart', ['id'=>$products->product_id])}}" method="post">
+                        @csrf
+                            <button type="submit" class="btn btn-success">หยิบใส่รถเข็น</button>
+                            <div class="input-group number-spinner mt-2">
+                                {{-- <span class="input-group-btn">
+                                    <button style="font-size: 10px;" class="btn btn-default btn-outline-success" data-dir="dwn">-<span class="glyphicon glyphicon-minus"></span></button>
+                                </span> --}}
+                                <input name='qty' id='qty' style="font-size: 20px; width:50%; height:30px" type="text" class="form-control text-center" value="1">
+                                {{-- <span class="input-group-btn">
+                                    <button style="font-size: 10px;" class="btn btn-default btn-outline-success" data-dir="up">+<span class="glyphicon glyphicon-plus"></span></button>
+                                </span> --}}
+                            </div>
+                        </form>
                 </div>
             </div>
         </div>

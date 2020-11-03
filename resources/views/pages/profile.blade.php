@@ -3,9 +3,16 @@
 @section('content')
 <div class="bg-orange" style="min-height: 100vh;font-family: 'Bai Jamjuree', sans-serif; padding-top:70px">
 
-  <div style="padding-top: 30px;" class="container d-flex justify-content-between">
+  <div style="padding-top: 30px;" class="container d-flex justify-content-end">
     <div class="d-flex">
-      <a class="btn btn-success" href="{{ route('product_list.index') }}">เปิดร้านค้า!</a>
+        @if(sizeof($stores)==0)
+            <a href="{{ route('create_store.create') }}" class="btn" style="background-color:RGB(242,137,108)">เปิดร้านค้า!</a>
+        @else
+            <h5 class="mr-3 mt-2">ร้านค้าของคุณ</h5>
+{{--            @foreach($stores as $store)--}}
+            <a href="{{ route('product_list.index') }}" class="btn" style="background-color:RGB(242,137,108)"> ไปยังร้านค้าของคุณ!</a>
+{{--            @endforeach--}}
+        @endif
     </div>
 
   </div>
@@ -56,10 +63,10 @@
             <form action="{{route('changeDefaultAddress', ['address' => $addr->no])}}" method="post">
               @method('put')
               @csrf
-              <button style="width: 135px" class="btn btn-primary">ตั้งเป็นค่าเริ่มต้น</button>
+              <button class="btn btn-primary">ตั้งเป็นค่าเริ่มต้น</button>
             </form>
             @else
-            <button style="width: 135px" disabled class="btn btn-success">ที่อยู่ปัจจุบัน</button>
+            <button  disabled class="btn btn-success">ที่อยู่ปัจจุบัน</button>
             @endif
 
             {{-- edit address --}}
@@ -73,7 +80,7 @@
             <form class="mx-1 ml-auto" action="{{route('address.destroy', ['address' => $addr->no])}}" method="post">
               @csrf
               @method('delete')
-              <button class="btn btn-danger">ลบ</button>
+              <button class="btn btn-danger ml-1">ลบ</button>
             </form>
           </div>
         </div>

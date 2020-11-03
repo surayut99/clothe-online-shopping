@@ -31,9 +31,9 @@
           <a href="{{ route('cart') }}"><img class="mr-2 mt-1" src="{{asset('storage/pictures/cart.png')}}" style="height: 40px;"></a></li>
         <li>
 
-{{--      <li>--}}
-{{--          <a href="{{ route('stores') }}"><img class="mr-2 mt-1" src="{{asset('storage/pictures/shop.png')}}" style="height: 40px;"></a></li>--}}
-{{--      <li>--}}
+     <li>
+         <a href="{{ route('stores.index') }}"><img class="mr-3 ml-3 mt-1" src="{{asset('storage/pictures/shop.png')}}" style="height: 40px;"></a></li>
+     <li>
 
         <li class="nav-item dropdown">
           <a id="navbarDropdown" style="color:white" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

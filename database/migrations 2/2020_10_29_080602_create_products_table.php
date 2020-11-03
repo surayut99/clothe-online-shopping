@@ -14,10 +14,12 @@ class CreateProductsTable extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
+
             $table->unsignedBigInteger('store_id');
+            $table->foreign('store_id')->references('store_id')->on('stores');
             $table->id('product_id');
             $table->string('product_name');
-            $table->string('product_description');
+            $table->string('product_description')->nullable(true);
             $table->string('product_img_path')->default('storage/pictures/ecommerce.png');
             $table->string('product_primary_type');
             $table->string('product_secondary_type');
@@ -27,8 +29,6 @@ class CreateProductsTable extends Migration
             $table->double('price');
             $table->boolean('recommended')->default(false);
             $table->timestamps();
-
-            $table->foreign('store_id')->references('store_id')->on('stores');
         });
     }
 
@@ -39,13 +39,11 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-        Schema::table('products', function (Blueprint $table) {
-            Schema::disableForeignKeyConstraints();
-            $table->dropForeign(['user_id']);
-            $table->dropColumn('user_id');
-            Schema::enableForeignKeyConstraints();
-        });
-
         Schema::dropIfExists('products');
+//        Schema::table('products', function (Blueprint $table) {
+//            $table->dropForeign(['user_id']);
+//            $table->dropColumn('user_id');
+//            Schema::enableForeignKeyConstraints();
+//        });
     }
 }
