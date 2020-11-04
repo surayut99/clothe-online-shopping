@@ -16,9 +16,13 @@ class ProfileController extends Controller
                     ->orderBy("default", "desc")
                     ->get();
 
-        return view('pages.profile', [
+        return view('profile.index', [
             'addrs' =>  $addresses
         ]);
+    }
+
+    public function showEditProfile() {
+        return view('profile.edit');
     }
 
     public function editProfile(Request $request) {
@@ -27,9 +31,19 @@ class ProfileController extends Controller
             'new_tel' => ['required', 'max:10', new TelNumber]
         ]);
 
+        print_r($request->input());
+        print_r($request->file());
+
+        $img = $request->file('inpImg');
+        $filename = Auth::user()->id . "." . $img->getClientOriginalExtension();
+        $path = 'storage/pictures/avatars';
+
+        $img->move($path, $filename);
+
         $user = User::findOrFail(Auth::user()->id);
         $user->name = $request->input('new_name');
         $user->telephone = $request->input('new_tel');
+        $user->profile_photo_path = $path . "/" . $filename;
         $user->save();
 
         return redirect()->route('profile');

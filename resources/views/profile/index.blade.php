@@ -17,7 +17,7 @@
 
     <div class="d-flex bd-highlight">
       <div class="p-2 bd-highlight mx-3">
-        <img src="https://www.flaticon.com/svg/static/icons/svg/2922/2922510.svg" width="100" height="100">
+        <img src="{{ asset(Auth::user()->profile_photo_path) }}" width="100" height="100">
       </div>
       <div class="p-2 bd-highlight mx-3">
         <h4>ชื่อ: {{Auth::user()->name}}</h4>
@@ -26,19 +26,7 @@
       </div>
     </div>
 
-    <div>
-      <button id="edit-profile" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#profile-form" aria-controls="profile-form" aria-expanded="false" onclick="showform(),checkinfo()">แก้ไขข้อมูลส่วนตัว</button>
-      <form style="width: 20vw" class="collapse" id="profile-form" action="{{ route('editProfile') }}" method=POST>
-        @csrf
-        <br>
-        <label>ชื่อ: </label>
-        <input value="{{Auth::user()->name}}" name="new_name" class="form-control" id="changeName">
-        <label>เบอร์: </label>
-        <input value="{{Auth::user()->telephone}}" name="new_tel" class="form-control" id="changeTel" type='string'>
-        <br>
-        <button type='submit' class="btn btn-primary">บันทึก</button>
-      </form>
-    </div>
+    <a href="{{route('edit-profile')}}" class="btn btn-primary" type="button">แก้ไขข้อมูลส่วนตัว</a>
 
     <hr>
 
@@ -87,11 +75,11 @@
         @csrf
         <br>
         <label>ชื่อผู้รับ</label>
-        <input class="form-control" type="text" name="new_receiver">
+        <input class="form-control" type="text" name="new_receiver" id="new_receiver">
         <label>เบอร์โทร</label>
-        <input class="form-control" type="text" name="new_tel">
+        <input class="form-control" type="text" name="new_tel" id="new_tel">
         <label>ที่อยู่</label>
-        <textarea class="form-control" name="new_address"></textarea>
+        <textarea class="form-control" name="new_address" id="new_address"></textarea>
         <br>
         <button type=submit class="btn btn-primary">บันทึก</button>
       </form>
@@ -107,5 +95,32 @@
 
       </div>
     </div>
+
+    <script>
+      function validateTelNumber() {
+        var new_tel = $("#changeTel").val();
+        console.log(typeof new_tel)
+
+        if (new_tel.length > 10) {
+          var new_tel = $("#changeTel").val(new_tel.substring(0, 10));
+          return;
+        }
+
+        if (new_tel[0] != "0") {
+          var new_tel = $("#changeTel").val(new_tel.slice(0, -1));
+          return;
+        }
+
+        if (!isDigit(new_tel.charAt(new_tel.length - 1))) {
+          var new_tel = $("#changeTel").val(new_tel.slice(0, -1));
+          return;
+        }
+      }
+
+      function isDigit(n) {
+        return /^-?[\d.]+(?:e-?\d+)?$/.test(n)
+      }
+
+    </script>
   </div>
   @endsection
