@@ -48,7 +48,7 @@
 
       <hr>
 
-      <button class="btn btn-danger" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">ลบที่อยู่นี้</button>
+      <button onclick="collapseDelOpt()" id="deleteOpt" class="btn btn-danger" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">ลบที่อยู่นี้</button>
 
       <form id="collapseExample" class="mt-3 collapse" action="{{ route('address.destroy', ['address' => $addr->no]) }}" method="POST">
         @method('delete')
@@ -56,7 +56,7 @@
         <label>คุณต้องการลบที่อยู่นี้ใช่หรือไม่</label>
         <div>
           <button type="submit" class="btn btn-danger">ใช่</button>
-          <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">ไม่</button>
+          <button onclick="collapseDelOpt()" class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">ไม่</button>
         </div>
       </form>
 
@@ -64,6 +64,12 @@
   </div>
 
   <script src="{{ asset('storage/js/editProfile.js') }}"></script>
+  <script>
+    function collapseDelOpt() {
+      $("#deleteOpt").attr("hidden", !$("#deleteOpt").attr("hidden"))
+    }
+
+  </script>
 
 </div>
 @endsection

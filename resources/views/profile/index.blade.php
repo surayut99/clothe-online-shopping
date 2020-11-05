@@ -1,9 +1,9 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="bg-light" style="min-height: 100vh;font-family: 'Bai Jamjuree', sans-serif; padding-top:70px">
+<div class="bg-light pb-5" style="min-height: 100vh;font-family: 'Bai Jamjuree', sans-serif; padding-top:100px">
 
-  <div style="padding-top: 30px;" class="container d-flex justify-content-between">
+  <div class="container d-flex justify-content-between">
     <div class="d-flex">
       @if(!$store)
       <a href="{{ route('create_store.create') }}" class="btn" style="background-color:RGB(242,137,108)">เปิดร้านค้า!</a>
@@ -30,40 +30,38 @@
       </div>
     </div>
 
-    <a href="{{route('edit-profile')}}" class="btn btn-warning border border-secondary" type="button">แก้ไขข้อมูลส่วนตัว</a>
+    <a href="{{route('edit-profile')}}" class="btn btn-warning" type="button">แก้ไขข้อมูลส่วนตัว</a>
 
     <hr>
 
     <h1 style="border: 2px ">ที่อยู่</h1>
 
-    <div class="my-2">
+    <div class="my-2 d-flex">
       @foreach($addrs as $addr)
-      <div class="d-flex">
-        <div class="card my-1 p-2 bordered-rounded" style="width: 20vw; background-color: whitesmoke">
+      <div class="card mr-3 my-1 p-2 bordered-rounded" style="width: 20vw; background-color: whitesmoke">
 
-          <p class="text-bold"><span>ชื่อ: </span> {{$addr->receiver}} </p>
-          <p><span>เบอร์โทร: </span>{{$addr->telephone}}</p>
-          <p><span>ที่อยู่: </span>{{$addr->address}}</p>
-          <div class="d-flex">
+        <p class="text-bold"><span>ชื่อ: </span> {{$addr->receiver}} </p>
+        <p><span>เบอร์โทร: </span>{{$addr->telephone}}</p>
+        <p><span>ที่อยู่: </span>{{$addr->address}}</p>
+        <div class="d-flex">
 
-            {{-- set as default address --}}
-            @if(!$addr->default)
-            <form action="{{route('changeDefaultAddress', ['address' => $addr->no])}}" method="post">
-              @method('put')
-              @csrf
-              <button style="width: 135px" class="btn btn-success">ตั้งเป็นค่าเริ่มต้น</button>
-            </form>
-            @else
-            <button style="width: 135px" disabled class="btn btn-outline-primary">ที่อยู่ปัจจุบัน</button>
-            @endif
+          {{-- set as default address --}}
+          @if(!$addr->default)
+          <form action="{{route('changeDefaultAddress', ['address' => $addr->no])}}" method="post">
+            @method('put')
+            @csrf
+            <button style="width: 135px" class="btn btn-success">ตั้งเป็นที่อยู่หลัก</button>
+          </form>
+          @else
+          <button style="width: 135px" disabled class="btn btn-outline-primary">ที่อยู่ปัจจุบัน</button>
+          @endif
 
-            {{-- edit address --}}
-            <form class="ml-1" action="{{ route('address.update', ['address'=> $addr->no])}}" method="post">
-              @method('put')
-              @csrf
-              <a href="{{ route('address.edit', ['address' => $addr->no]) }}" class="btn btn-warning">แก้ไขที่อยู่</a>
-            </form>
-          </div>
+          {{-- edit address --}}
+          <form class="ml-1" action="{{ route('address.update', ['address'=> $addr->no])}}" method="post">
+            @method('put')
+            @csrf
+            <a href="{{ route('address.edit', ['address' => $addr->no]) }}" class="btn btn-warning">แก้ไขที่อยู่</a>
+          </form>
         </div>
       </div>
       @endforeach
