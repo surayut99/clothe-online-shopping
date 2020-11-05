@@ -28,7 +28,7 @@
 
         <div class="my-1">
           <h4>เบอร์โทร: </h4>
-          <input value="{{Auth::user()->telephone}}" name="new_tel" class="form-control" id="changeTel" type='string' onkeyup="validateTelNumber()">
+          <input value="{{Auth::user()->telephone}}" name="new_tel" class="form-control" id="changeTel" type='string' onkeyup="validateTelNumber(this)">
         </div>
 
         <button type="submit" class="btn btn-primary my-3" href="">บันทึก</button>

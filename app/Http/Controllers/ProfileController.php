@@ -22,7 +22,7 @@ class ProfileController extends Controller
     }
 
     public function showEditProfile() {
-        return view('profile.edit');
+        return view('profile.edit_profile');
     }
 
     public function editProfile(Request $request) {

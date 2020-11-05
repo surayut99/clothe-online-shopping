@@ -26,20 +26,23 @@
       </div>
     </div>
 
-    <a href="{{route('edit-profile')}}" class="btn btn-primary" type="button">แก้ไขข้อมูลส่วนตัว</a>
+    <a href="{{route('edit-profile')}}" class="btn btn-warning border border-secondary" type="button">แก้ไขข้อมูลส่วนตัว</a>
 
     <hr>
 
     <h1 style="border: 2px ">ที่อยู่</h1>
 
-    <div class="container my-2">
+    <div class="my-2">
       @foreach($addrs as $addr)
       <div class="d-flex">
-        <div class="card my-1 p-2 " style="width: 20vw">
-          <p class="text-bold"> {{$addr->receiver}} </p>
-          <p>{{$addr->telephone}}</p>
-          <p>{{$addr->address}}</p>
+        <div class="card my-1 p-2 bordered-rounded" style="width: 20vw">
+
+          <p class="text-bold"><span>ชื่อ: </span> {{$addr->receiver}} </p>
+          <p><span>เบอร์โทร: </span>{{$addr->telephone}}</p>
+          <p><span>ที่อยู่: </span>{{$addr->address}}</p>
           <div class="d-flex">
+
+            {{-- set as default address --}}
             @if(!$addr->default)
             <form action="{{route('changeDefaultAddress', ['address' => $addr->no])}}" method="post">
               @method('put')
@@ -54,14 +57,7 @@
             <form class="ml-1" action="{{ route('address.update', ['address'=> $addr->no])}}" method="post">
               @method('put')
               @csrf
-              <button class="btn btn-warning">แก้ไขที่อยู่</button>
-            </form>
-
-            {{-- delete address --}}
-            <form class="mx-1 ml-auto" action="{{route('address.destroy', ['address' => $addr->no])}}" method="post">
-              @csrf
-              @method('delete')
-              <button class="btn btn-danger">ลบ</button>
+              <a href="{{ route('address.edit', ['address' => $addr->no]) }}" class="btn btn-warning">แก้ไขที่อยู่</a>
             </form>
           </div>
         </div>
@@ -70,57 +66,19 @@
     </div>
 
     <div>
-      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#address-form" aria-expanded="false" aria-controls="address-form">เพิ่มที่อยู่สำหรับจัดส่ง</button>
-      <form action="{{ route('address.store') }}" style="width: 30vw" class="collapse" id="address-form" method="POST">
-        @csrf
-        <br>
-        <label>ชื่อผู้รับ</label>
-        <input class="form-control" type="text" name="new_receiver" id="new_receiver">
-        <label>เบอร์โทร</label>
-        <input class="form-control" type="text" name="new_tel" id="new_tel">
-        <label>ที่อยู่</label>
-        <textarea class="form-control" name="new_address" id="new_address"></textarea>
-        <br>
-        <button type=submit class="btn btn-primary">บันทึก</button>
-      </form>
-      <hr>
-      <div class="d-flex" id="between-content">
-        <button class="btn btn-primary">ตะกร้าของฉัน</button>
-        <button class="btn btn-primary">รายการที่ต้องชำระ</button>
-        <button class="btn btn-primary">รายการที่ต้องได้รับ</button>
-        <button class="btn btn-primary">ประวัติการซื้อ</button>
-      </div>
-
-      <div class="border border-warning rounded" style="margin-top:10px ;height: 200px;">
-
-      </div>
+      <a href="{{ route('address.create') }}" class="btn btn-primary">เพิ่มที่อยู่สำหรับจัดส่ง</a>
     </div>
 
-    <script>
-      function validateTelNumber() {
-        var new_tel = $("#changeTel").val();
-        console.log(typeof new_tel)
+    <hr>
 
-        if (new_tel.length > 10) {
-          var new_tel = $("#changeTel").val(new_tel.substring(0, 10));
-          return;
-        }
+    <div class="d-flex" id="between-content">
+      <button class="btn btn-primary">รายการที่ต้องชำระ</button>
+      <button class="btn btn-primary">รายการที่ต้องได้รับ</button>
+      <button class="btn btn-primary">ประวัติการซื้อ</button>
+    </div>
 
-        if (new_tel[0] != "0") {
-          var new_tel = $("#changeTel").val(new_tel.slice(0, -1));
-          return;
-        }
+    <div class="border border-warning rounded" style="margin-top:10px ;height: 200px;">
 
-        if (!isDigit(new_tel.charAt(new_tel.length - 1))) {
-          var new_tel = $("#changeTel").val(new_tel.slice(0, -1));
-          return;
-        }
-      }
-
-      function isDigit(n) {
-        return /^-?[\d.]+(?:e-?\d+)?$/.test(n)
-      }
-
-    </script>
+    </div>
   </div>
   @endsection
