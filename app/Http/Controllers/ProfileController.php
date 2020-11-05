@@ -27,15 +27,29 @@ class ProfileController extends Controller
         ]);
     }
 
+    public function showEditProfile() {
+        return view('profile.edit_profile');
+    }
+
     public function editProfile(Request $request) {
         $request->validate([
             'new_name' => ['required', 'max:30', 'string'],
             'new_tel' => ['required', 'max:10', new TelNumber]
         ]);
 
+        print_r($request->input());
+        print_r($request->file());
+
+        $img = $request->file('inpImg');
+        $filename = Auth::user()->id . "." . $img->getClientOriginalExtension();
+        $path = 'storage/pictures/avatars';
+
+        $img->move($path, $filename);
+
         $user = User::findOrFail(Auth::user()->id);
         $user->name = $request->input('new_name');
         $user->telephone = $request->input('new_tel');
+        $user->profile_photo_path = $path . "/" . $filename;
         $user->save();
 
         return redirect()->route('profile');

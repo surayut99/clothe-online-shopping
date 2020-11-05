@@ -26,7 +26,7 @@ class AddressController extends Controller
      */
     public function create()
     {
-        //
+        return view('profile.add_address');
     }
 
     /**
@@ -78,7 +78,10 @@ class AddressController extends Controller
      */
     public function edit($id)
     {
-        //
+        $addr = Address::where('user_id', '=', Auth::user()->id)->where('no', '=', $id)->first();
+        return view('profile.edit_address', [
+            'addr' => $addr
+        ]);
     }
 
     /**
@@ -96,11 +99,12 @@ class AddressController extends Controller
             'new_tel' => ['required', new TelNumber],
         ]);
 
-        Address::where('user_id', '=', Auth::user()->id, 'and', 'no', '=', $id)
-        ->update(array(
+        Address::where('user_id', '=', Auth::user()->id)->where('no', '=', $id)
+        ->update([
             'receiver' => $request->input('new_receiver'),
+            'telephone' => $request->input('new_tel'),
             'address' => $request->input('new_address')
-        ));
+        ]);
 
         return redirect()->route('profile');
     }

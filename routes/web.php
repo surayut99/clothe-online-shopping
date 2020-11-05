@@ -49,6 +49,7 @@ Route::get('/cart/checkout', function () {
 
 
 Route::get('/profile', [ProfileController::class,'index'])->name('profile');
+Route::get('/profile/edit', [ProfileController::class, 'showEditProfile'])->name('edit-profile');
 Route::get('/profile/open-shop', function () {
     return view('auth.seller_register');
 })->name('seller_register');
@@ -58,8 +59,7 @@ Route::get('/order-details/1', function () {
 })->name('order_details');
 
 //post
-Route::post('/profile/edit', [ProfileController::class,'editProfile'])->name('editProfile');
-Route::post('/cart/{id}', [CartController::class, 'store'])->name('addcart');
+Route::post('/profile/edit', [ProfileController::class,'editProfile'])->name('update-profile');
 
 //put
 Route::put('/address/change_default/{address}', [AddressController::class, 'changeDefaultAddress'])->name('changeDefaultAddress');
