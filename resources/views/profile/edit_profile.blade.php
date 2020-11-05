@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="bg-orange" style="min-height: 100vh;font-family: 'Bai Jamjuree', sans-serif; padding-top:100px">
+<div class="bg-light" style="min-height: 100vh;font-family: 'Bai Jamjuree', sans-serif; padding-top:100px">
   <div class="container">
     <h1 style="border: 2px ">แก้ไขข้อมูลส่วนตัว</h1>
 

@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="bg-orange" style="min-height: 100vh;font-family: 'Bai Jamjuree', sans-serif; padding-top:100px">
+<div class="bg-light" style="min-height: 100vh;font-family: 'Bai Jamjuree', sans-serif; padding-top:100px">
   <div class="container">
     <h1 style="border: 2px ">แก้ไขที่อยู่สำหรับจัดส่ง</h1>
 
@@ -48,13 +48,17 @@
 
       <hr>
 
-      <form class="mt-3" onsubmit="return confirm('go ?')" action="{{ route('address.destroy', ['address' => $addr->no]) }}" method="POST">
+      <button class="btn btn-danger" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">ลบที่อยู่นี้</button>
+
+      <form id="collapseExample" class="mt-3 collapse" action="{{ route('address.destroy', ['address' => $addr->no]) }}" method="POST">
         @method('delete')
         @csrf
-        <button class="btn btn-danger">ลบที่อยู่นี้</button>
+        <label>คุณต้องการลบที่อยู่นี้ใช่หรือไม่</label>
+        <div>
+          <button type="submit" class="btn btn-danger">ใช่</button>
+          <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">ไม่</button>
+        </div>
       </form>
-
-
 
     </div>
   </div>

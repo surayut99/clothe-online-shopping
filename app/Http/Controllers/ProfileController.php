@@ -14,16 +14,14 @@ use Illuminate\Support\Facades\DB;
 class ProfileController extends Controller
 {
     public function index() {
-        $addresses = DB::table('addresses')
-                    ->where("user_id", "=", Auth::user()->id)
+        $addresses = Address::where("user_id", "=", Auth::user()->id)
                     ->orderBy("default", "desc")
                     ->get();
-        $addresses = DB::table('addresses')->where("user_id", "=", Auth::user()->id)->get();
-        $stores = DB::table('stores')->where('user_id', "=", Auth::user()->id)->get();
+        $store = Store::where('user_id', "=", Auth::user()->id)->first();
 
-        return view('pages.profile', [
+        return view('profile.index', [
             'addrs' =>  $addresses,
-            'stores' => $stores,
+            'store' => $store,
         ]);
     }
 

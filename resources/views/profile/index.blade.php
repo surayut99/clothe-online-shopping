@@ -1,13 +1,17 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="bg-orange" style="min-height: 100vh;font-family: 'Bai Jamjuree', sans-serif; padding-top:70px">
+<div class="bg-light" style="min-height: 100vh;font-family: 'Bai Jamjuree', sans-serif; padding-top:70px">
 
   <div style="padding-top: 30px;" class="container d-flex justify-content-between">
     <div class="d-flex">
-      <a class="btn btn-success" href="{{ route('product_list.index') }}">เปิดร้านค้า!</a>
+      @if(!$store)
+      <a href="{{ route('create_store.create') }}" class="btn" style="background-color:RGB(242,137,108)">เปิดร้านค้า!</a>
+      @else
+      <h5 class="mr-3 mt-2">ร้านค้าของคุณ: </h5>
+      <a href="{{ route('product_list.index') }}" class="btn" style="background-color:RGB(242,137,108)">{{ $store->store_name }}</a>
+      @endif
     </div>
-
   </div>
 
   <hr class="container">
@@ -35,7 +39,7 @@
     <div class="my-2">
       @foreach($addrs as $addr)
       <div class="d-flex">
-        <div class="card my-1 p-2 bordered-rounded" style="width: 20vw">
+        <div class="card my-1 p-2 bordered-rounded" style="width: 20vw; background-color: whitesmoke">
 
           <p class="text-bold"><span>ชื่อ: </span> {{$addr->receiver}} </p>
           <p><span>เบอร์โทร: </span>{{$addr->telephone}}</p>
@@ -47,10 +51,10 @@
             <form action="{{route('changeDefaultAddress', ['address' => $addr->no])}}" method="post">
               @method('put')
               @csrf
-              <button style="width: 135px" class="btn btn-primary">ตั้งเป็นค่าเริ่มต้น</button>
+              <button style="width: 135px" class="btn btn-success">ตั้งเป็นค่าเริ่มต้น</button>
             </form>
             @else
-            <button style="width: 135px" disabled class="btn btn-success">ที่อยู่ปัจจุบัน</button>
+            <button style="width: 135px" disabled class="btn btn-outline-primary">ที่อยู่ปัจจุบัน</button>
             @endif
 
             {{-- edit address --}}
@@ -65,10 +69,12 @@
       @endforeach
     </div>
 
-    <div>
-      <a href="{{ route('address.create') }}" class="btn btn-primary">เพิ่มที่อยู่สำหรับจัดส่ง</a>
-    </div>
 
+    @if(sizeof($addrs) != 3)
+    <a href="{{ route('address.create') }}" class="btn btn-primary">เพิ่มที่อยู่สำหรับจัดส่ง</a>
+    @else
+    <h6>คุณสามารเพิ่มที่อยู่สำหรับจัดส่งได้เพียง 3 ที่อยู่เท่านั้น</h6>
+    @endif
     <hr>
 
     <div class="d-flex" id="between-content">
