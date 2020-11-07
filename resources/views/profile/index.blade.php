@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
+<meta name="_token" content="{{ csrf_token() }}">
 <div class="bg-light pb-5" style="min-height: 100vh;font-family: 'Bai Jamjuree', sans-serif; padding-top:100px">
 
   <div class="container d-flex justify-content-between">
@@ -76,13 +77,16 @@
     <hr>
 
     <div class="d-flex" id="between-content">
-      <button class="btn btn-primary">รายการที่ต้องชำระ</button>
-      <button class="btn btn-primary">รายการที่ต้องได้รับ</button>
-      <button class="btn btn-primary">ประวัติการซื้อ</button>
+      <a id="wait" class="btn btn-primary">รายการที่ต้องชำระ</a>
+      <a id="purchased" class="btn btn-primary">รายการที่ชำระเงินแล้ว</a>
+      <a id="deliveried" class="btn btn-primary">รายการที่ต้องได้รับ</a>
+      <a id="history" class="btn btn-primary">ประวัติการซื้อ</a>
     </div>
 
-    <div class="border border-warning rounded" style="margin-top:10px ;height: 200px;">
+    <div id="product_list" class="border border-warning rounded" style="margin-top:10px ;height: 200px;">
 
     </div>
+
+    <script src=" {{ asset('storage/js/user_product.js') }} "></script>
   </div>
   @endsection

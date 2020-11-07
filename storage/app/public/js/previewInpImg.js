@@ -1,4 +1,4 @@
-function previewAvatar() {
+$("#inpImg").change(function() {
     const file = document.getElementById('inpImg').files[0];
 
     if (file) {
@@ -11,4 +11,4 @@ function previewAvatar() {
 
         reader.readAsDataURL(file);
     }
-}
+})
