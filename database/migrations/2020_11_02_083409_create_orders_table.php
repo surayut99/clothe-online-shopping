@@ -3,6 +3,7 @@
 use Carbon\Carbon;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateOrdersTable extends Migration
@@ -36,7 +37,7 @@ class CreateOrdersTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->primary(['order_id', 'store_id']);
 
-            // $table->timestamps();
+            $table->timestamps();
         });
     }
 
@@ -47,14 +48,9 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        // Schema::table('order_details', function (Blueprint $table) {
-        //     Schema::disableForeignKeyConstraints();
-        //     $table->dropForeign(['store_id', 'user_id']);
-        //     $table->dropColumn('store_id');
-        //     $table->dropColumn('user_id');
-        //     Schema::enableForeignKeyConstraints();
-        // });
-
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('orders');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+
     }
 }
