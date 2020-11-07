@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StoresController;
 use App\Http\Controllers\ImageUploadController;
+use App\Http\Controllers\UserProductController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -56,7 +57,7 @@ Route::get('/order-details/1', function () {
 
 //post
 Route::post('/profile/edit', [ProfileController::class,'editProfile'])->name('update-profile');
-Route::post('/profile/show/{opt}', [ProfileController::class, 'showUserProduct']);
+Route::post('/user_product/{opt}', [UserProductController::class, 'showUserProduct']);
 
 //put
 Route::put('/address/change_default/{address}', [AddressController::class, 'changeDefaultAddress'])->name('changeDefaultAddress');

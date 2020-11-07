@@ -83,10 +83,11 @@
       <a id="history" class="btn btn-primary">ประวัติการซื้อ</a>
     </div>
 
-    <div id="product_list" class="border border-warning rounded" style="margin-top:10px ;height: 200px;">
+    <div id="product_list" class="border border-warning rounded p-2 mt-2" style="max-height: 1000px">
 
     </div>
 
     <script src=" {{ asset('storage/js/user_product.js') }} "></script>
+
   </div>
   @endsection

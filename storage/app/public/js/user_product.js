@@ -2,7 +2,7 @@ var _token = ($('meta[name="_token"]').attr('content'));
 
 $("a#wait").click(function() {
     $.ajax({
-        url: "/profile/show/wait",
+        url: "/user_product/wait",
         type: "post",
         data: {
             "_token": _token
@@ -15,7 +15,7 @@ $("a#wait").click(function() {
 
 $("a#purchased").click(function() {
     $.ajax({
-        url: "/profile/show/purchased",
+        url: "/user_product/purchased",
         type: "post",
         data: {
             "_token": _token
@@ -28,7 +28,7 @@ $("a#purchased").click(function() {
 
 $("a#deliveried").click(function() {
     $.ajax({
-        url: "/profile/show/deliveried",
+        url: "/user_product/deliveried",
         type: "post",
         data: {
             "_token": _token
@@ -41,7 +41,7 @@ $("a#deliveried").click(function() {
 
 $("a#history").click(function() {
     $.ajax({
-        url: "/profile/show/history",
+        url: "/user_product/history",
         type: "post",
         data: {
             "_token": _token
