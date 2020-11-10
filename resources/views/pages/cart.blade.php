@@ -2,21 +2,31 @@
 @section('content')
     <div class="container" style="padding-top: 90px;">
     <div class="d-flex">
-        <h2>รถเข็นของคุณ</h2> <a class="btn btn-success ml-3" style="height:100%" href="/">เลือกสินค้าต่อ</a>
+        <h2>รถเข็นของคุณ</h2> <a class="btn btn-success ml-3" style="height:100%" href="{{route('stores.index')}}">เลือกสินค้าต่อ</a>
     </div>
         <table style="text-align: center; " class="table table-striped">
             <thead>
                 <tr >
-                <th style="width: 10px;" scope="col"><input type="checkbox" class="check" id="checkAll"></th>
+                <th style="width: 10px;" scope="col"></th>
                 <th style="width: 200px;" scope="col">สินค้า</th>
                 <th style="width: 100px;" scope="col">ราคาต่อชิ้น</th>
                 <th style="width: 100px;" scope="col">จำนวน</th>
                 <th style="width: 100px;" scope="col">ราคารวม</th>
-                <th style="width: 50px;" scope="col">หมายเหตุ</th>
                 </tr>
             </thead>
+            <tbody>
+            @foreach($carts as $cart)
+                <tr>
+                <td><input type="checkbox" class="check" id="checkAll"></td>
+                <td>{{$cart->product_name}}</td>
+                <td>{{$cart->price}}</td>
+                <td>{{$cart->qty}}</td>
+                <td>{{$cart->qty * $cart->price}}</td>
+                </tr>
+            @endforeach
+            </tbody>
         </table>
-        <table style="text-align: center;"class="table table-striped">
+        {{-- <table style="text-align: center;"class="table table-striped">
             <thead>
                 <tr>
                 <th style="width: 10px;" scope="col"><input type="checkbox" class="checkAll1"  ></th>
@@ -59,7 +69,7 @@
                 <td>@twitter</td>
                 </tr>
             </tbody>
-        </table>
+        </table> --}}
         <a class="btn btn-primary float-right" href="{{ route('checkout') }}" >Check out</a>
     </div>
 @endsection

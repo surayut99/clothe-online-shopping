@@ -12,14 +12,14 @@
       </div>
     </div>
     {{-- Search Tool --}}
-    <div class="d-flex">
+    {{-- <div class="d-flex">
       <ul class="navbar-nav">
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="ค้นหา" aria-label="Search" style="width: 30vw;">
           <button class="btn btn-warning my-2 my-sm-0" type="submit" style="border:2px solid white; font-weight: bold">ค้นหา</button>
         </form>
       </ul>
-    </div>
+    </div> --}}
 
     {{-- Acccount Tool --}}
     <div class="d-flex" id="account-content">
@@ -30,6 +30,10 @@
         <li>
           <a href="{{ route('cart') }}"><img class="mr-2 mt-1" src="{{asset('storage/pictures/cart.png')}}" style="height: 40px;"></a></li>
         <li>
+
+     <li>
+         <a href="{{ route('stores.index') }}"><img class="mr-3 ml-3 mt-1" src="{{asset('storage/pictures/shop.png')}}" style="height: 40px;"></a></li>
+     <li>
 
         <li class="nav-item dropdown">
           <a id="navbarDropdown" style="color:white" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
