@@ -21,7 +21,7 @@ class OrdersController extends Controller
                     ->get();
         $stores = $products->select('store_id')->groupBy('store_id')->get();
 
-        // add dato to orders table
+        // add data to orders table
         $recv_addr = Address::where('user_id', '=', Auth::user()->id)->where('default', '=', true)->get();
         foreach ($stores as $s) {
             $new_id = Order::where('store_id', '=', $s->store_id)->count() + 1;

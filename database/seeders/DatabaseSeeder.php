@@ -20,7 +20,9 @@ class DatabaseSeeder extends Seeder
             // AddressSeeder::class,
             // StoreSeeder::class,
             // ProductSeeder::class,
-            CartSeeder::class
+            // CartSeeder::class
+            OrderSeeder::class,
+            OrderDetailsSeeder::class
         ]);
     }
 }

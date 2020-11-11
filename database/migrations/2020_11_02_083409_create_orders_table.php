@@ -3,6 +3,7 @@
 use Carbon\Carbon;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateOrdersTable extends Migration
@@ -18,17 +19,22 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('order_id')->nullable(false);
             $table->unsignedBigInteger('user_id')->nullable(false);
             $table->unsignedBigInteger('store_id')->nullable(false);
-            $table->dateTime('order_date')->nullable(false);
-            $table->dateTime('exp_date')->nullable(false);
-            $table->dateTime('verified_date')->nullable();
+
+            $table->dateTime('ordered_at')->nullable(false);
+            $table->dateTime('expired_at')->nullable(false);
+            $table->dateTime('purchased_at')->nullable();
+            $table->dateTime('verified_at')->nullable();
+            $table->dateTime('deliveried_at')->nullable();
+            $table->dateTime('completed_at')->nullable();
+            $table->dateTime('cancelled_at')->nullable();
 
             $table->double('total_cost')->nullable(false);
             $table->string('recv_address')->nullable(false);
             $table->string('recv_name')->nullable(false);
             $table->string('recv_tel')->nullable(false);
-            $table->enum('status', array('verifying', 'verified', 'delivery', 'cancelled'))->default('verifying');
-            $table->enum('shipment', array('Kerry', 'EMS', 'DHL', 'Flash', 'Standard Express'))->nullable(false);
-            $table->enum('payment', array('COD', 'transfer_money'));
+            $table->enum('status', array('purchasing', 'verifying', 'verified', 'deliveried', 'completed', 'cancelled'))->default('purchasing');
+            $table->enum('shipment_type', array('Kerry', 'EMS', 'DHL', 'Flash', 'Standard Express'))->nullable(false);
+            $table->enum('payment_type', array('COD', 'Transfering'));
             $table->string('track_id')->nullable();
             $table->string('store_comment')->nullable();
 
@@ -36,7 +42,7 @@ class CreateOrdersTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->primary(['order_id', 'store_id']);
 
-            // $table->timestamps();
+            $table->timestamps();
         });
     }
 
@@ -47,14 +53,9 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        // Schema::table('order_details', function (Blueprint $table) {
-        //     Schema::disableForeignKeyConstraints();
-        //     $table->dropForeign(['store_id', 'user_id']);
-        //     $table->dropColumn('store_id');
-        //     $table->dropColumn('user_id');
-        //     Schema::enableForeignKeyConstraints();
-        // });
-
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('orders');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+
     }
 }
