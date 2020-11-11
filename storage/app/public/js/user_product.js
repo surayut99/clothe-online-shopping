@@ -3,10 +3,7 @@ var _token = ($('meta[name="_token"]').attr('content'));
 $("a#wait").click(function() {
     $.ajax({
         url: "/user_product/wait",
-        type: "post",
-        data: {
-            "_token": _token
-        },
+        type: "get",
         success: function(data) {
             $("#product_list").html(data)
         }
@@ -16,10 +13,7 @@ $("a#wait").click(function() {
 $("a#purchased").click(function() {
     $.ajax({
         url: "/user_product/purchased",
-        type: "post",
-        data: {
-            "_token": _token
-        },
+        type: "get",
         success: function(data) {
             $("#product_list").html(data)
         }
@@ -29,10 +23,7 @@ $("a#purchased").click(function() {
 $("a#deliveried").click(function() {
     $.ajax({
         url: "/user_product/deliveried",
-        type: "post",
-        data: {
-            "_token": _token
-        },
+        type: "get",
         success: function(data) {
             $("#product_list").html(data)
         }
@@ -42,10 +33,7 @@ $("a#deliveried").click(function() {
 $("a#history").click(function() {
     $.ajax({
         url: "/user_product/history",
-        type: "post",
-        data: {
-            "_token": _token
-        },
+        type: "get",
         success: function(data) {
             $("#product_list").html(data)
         }
