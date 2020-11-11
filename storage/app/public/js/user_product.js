@@ -1,8 +1,8 @@
 var _token = ($('meta[name="_token"]').attr('content'));
 
-$("a#wait").click(function() {
+$("a#purchasing").click(function() {
     $.ajax({
-        url: "/user_product/wait",
+        url: "/user_product/purchasing",
         type: "get",
         success: function(data) {
             $("#product_list").html(data)
@@ -10,9 +10,19 @@ $("a#wait").click(function() {
     })
 })
 
-$("a#purchased").click(function() {
+$("a#verifying").click(function() {
     $.ajax({
-        url: "/user_product/purchased",
+        url: "/user_product/verifying",
+        type: "get",
+        success: function(data) {
+            $("#product_list").html(data)
+        }
+    })
+})
+
+$("a#verified").click(function() {
+    $.ajax({
+        url: "/user_product/verified",
         type: "get",
         success: function(data) {
             $("#product_list").html(data)
@@ -30,9 +40,19 @@ $("a#deliveried").click(function() {
     })
 })
 
-$("a#history").click(function() {
+$("a#completed").click(function() {
     $.ajax({
-        url: "/user_product/history",
+        url: "/user_product/completed",
+        type: "get",
+        success: function(data) {
+            $("#product_list").html(data)
+        }
+    })
+})
+
+$("a#cancelled").click(function() {
+    $.ajax({
+        url: "/user_product/cancelled",
         type: "get",
         success: function(data) {
             $("#product_list").html(data)
@@ -41,5 +61,5 @@ $("a#history").click(function() {
 })
 
 window.onload = function() {
-    $("a#wait").click();
+    $("a#purchasing").click();
 }

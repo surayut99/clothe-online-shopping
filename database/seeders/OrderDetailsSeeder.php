@@ -15,6 +15,20 @@ class OrderDetailsSeeder extends Seeder
     public function run()
     {
         $detail = new OrderDetail();
+        $detail->order_id = 1;
+        $detail->product_id = 1;
+        $detail->qty = 12;
+        $detail->price = 30;
+        $detail->save();
+
+        $detail = new OrderDetail();
+        $detail->order_id = 1;
+        $detail->product_id = 2;
+        $detail->qty = 20;
+        $detail->price = 300;
+        $detail->save();
+
+        $detail = new OrderDetail();
         $detail->order_id = 2;
         $detail->product_id = 1;
         $detail->qty = 12;

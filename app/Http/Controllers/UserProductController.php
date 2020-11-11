@@ -9,12 +9,15 @@ use Illuminate\Support\Facades\DB;
 class UserProductController extends Controller
 {
 
-    private function showWaitPurchase() {
+    private function parseTimeZone($dt) {
+        return Carbon::parse($dt)->timezone('Asia/Bangkok')->toDateTimeString();
+    }
+
+    private function findOrder($opt) {
+        $order_list = array();
         $orders = DB::table('orders')
                 ->where('user_id', '=', Auth::user()->id)
-                ->where('status', '=', 'purchasing')
-                ->get();
-        $order_list = array();
+                ->where('status', '=', $opt)->get();
 
         foreach($orders as $order) {
             $order_detail = DB::table('order_details')
@@ -23,50 +26,28 @@ class UserProductController extends Controller
                             ->select('order_details.*', 'product_name')
                             ->get()
                             ->all();
-            $order->order_date = Carbon::parse($order->order_date)->timezone('Asia/Bangkok')->toDateTimeString();
-            $order->exp_date = Carbon::parse($order->exp_date)->timezone('Asia/Bangkok')->toDateTimeString();
+
+            $order->ordered_at = $this->parseTimeZone($order->ordered_at);
+            $order->purchased_at = $this->parseTimeZone($order->purchased_at);
+            $order->verified_at = $this->parseTimeZone($order->verified_at);
+            $order->deliveried_at = $this->parseTimeZone($order->deliveried_at);
+            $order->completed_at = $this->parseTimeZone($order->completed_at);
+            $order->cancelled_at = $this->parseTimeZone($order->cancelled_at);
+
             $store = DB::table('stores')->where("store_id", '=', $order->store_id)->first();
             $odr = (object) array("order" => $order, "store" => $store->store_name, "detail" => $order_detail);
+
             array_push($order_list, $odr);
         }
 
-        return view('profile.user_product.wait', [
-            "orders" => $order_list
-        ]);
-    }
-
-    private function showPurchased() {
-        return view('profile.user_product.purchased');
-    }
-
-    private function showDeliveried() {
-        return view('profile.user_product.deliveried');
-    }
-
-    private function showHistory() {
-        return view('profile.user_product.history');
+        return $order_list;
     }
 
     public function showUserProduct($opt) {
-        $view = null;
+        $status = ["purchasing", "verifying", "verified", "deliveried", "completed", "cancelled"];
 
-        switch ($opt) {
-            case "wait":
-                $view = $this->showWaitPurchase();
-            break;
-            case "purchased":
-                $view = $this->showPurchased();
-            break;
-            case "deliveried":
-                $view = $this->showDeliveried();
-            break;
-            case "history":
-                $view = $this->showHistory();
-            break;
-            default:
-                $view = redirect()->route('profile');
-        }
-
-        return $view;
+        return in_array($opt, $status) ?
+            view('profile.user_product.orders', ["orders" => $this->findOrder($opt), "opt" => $opt]) :
+            redirect()->route('profile');
     }
 }
