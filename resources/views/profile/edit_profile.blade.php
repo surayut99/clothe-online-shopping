@@ -8,7 +8,7 @@
     <div class="bd-highlight">
       <div class="py-2 bd-highlight">
         <div class="my-1">
-          <img id="preImg" name="preImg" src="{{ asset(Auth::user()->profile_photo_path) }}" width="150" height="150">
+          <img id="preImg" name="preImg" src="{{ asset('storage/pictures/avatars/'.Auth::user()->id.'.jpg') }}" width="150" height="150">
         </div>
       </div>
 

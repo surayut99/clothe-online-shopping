@@ -25,7 +25,7 @@ class OrderSeeder extends Seeder
 
         $order = new Order();
         $order->order_id = Order::where('store_id', '=', 1)->count() + 1;
-        $order->customer_id = 1;
+        $order->user_id = 1;
         $order->store_id = 1;
         $order->order_date = $dt;
         $order->exp_date = $dt->addDay(2);

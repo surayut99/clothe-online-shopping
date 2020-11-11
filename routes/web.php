@@ -47,7 +47,7 @@ Route::resource('address', AddressController::class);
 Route::put('/address/change_default/{address}', [AddressController::class, 'changeDefaultAddress'])->name('changeDefaultAddress');
 
 // UserProduct
-Route::post('/user_product/{opt}', [UserProductController::class, 'showUserProduct']);
+Route::get('/user_product/{opt}', [UserProductController::class, 'showUserProduct']);
 
 // Cart
 Route::get('/cart', [CartController::class, 'index'])->name('cart');

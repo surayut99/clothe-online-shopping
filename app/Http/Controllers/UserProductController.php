@@ -2,12 +2,37 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserProductController extends Controller
 {
+
     private function showWaitPurchase() {
-        return view('profile.user_product.wait');
+        $orders = DB::table('orders')
+                ->where('user_id', '=', Auth::user()->id)
+                ->where('status', '=', 'purchasing')
+                ->get();
+        $order_list = array();
+
+        foreach($orders as $order) {
+            $order_detail = DB::table('order_details')
+                            ->where('order_id', '=', $order->order_id)
+                            ->join('products', 'products.product_id', '=', 'order_details.product_id')
+                            ->select('order_details.*', 'product_name')
+                            ->get()
+                            ->all();
+            $order->order_date = Carbon::parse($order->order_date)->timezone('Asia/Bangkok')->toDateTimeString();
+            $order->exp_date = Carbon::parse($order->exp_date)->timezone('Asia/Bangkok')->toDateTimeString();
+            $store = DB::table('stores')->where("store_id", '=', $order->store_id)->first();
+            $odr = (object) array("order" => $order, "store" => $store->store_name, "detail" => $order_detail);
+            array_push($order_list, $odr);
+        }
+
+        return view('profile.user_product.wait', [
+            "orders" => $order_list
+        ]);
     }
 
     private function showPurchased() {

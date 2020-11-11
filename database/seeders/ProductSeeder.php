@@ -17,7 +17,7 @@ class ProductSeeder extends Seeder
     {
         $product = new Product;
         $product->store_id = 2;
-        $product->product_name = 'รองเท้าแตะสัญชาติเกาหลี';
+        $product->product_name = 'รองเท้าแตะสัญชาติเกาหลี 2';
         $product->product_description = 'รองเท้าแตะยางคุณภาพนำเข้าจากจีน';
         $product->product_img_path = 'storage/pictures/ecommerce.png';
         $product->product_primary_type = 'รองเท้า';

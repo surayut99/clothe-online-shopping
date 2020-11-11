@@ -14,16 +14,9 @@ class CartSeeder extends Seeder
      */
     public function run()
     {
-        // $cart = new Cart();
-        // $cart->user_id = 1;
-        // $cart->product_id = 1;
-        // $cart->qty = 10;
-
-        // $cart->save();
-
         $cart = new Cart();
         $cart->user_id = 1;
-        $cart->product_id = 2;
+        $cart->product_id = 1;
         $cart->qty = 10;
 
         $cart->save();

@@ -22,7 +22,7 @@
 
     <div class="d-flex bd-highlight">
       <div class="p-2 bd-highlight mx-3">
-        <img src="{{ asset(Auth::user()->profile_photo_path) }}" width="100" height="100">
+        <img src="{{ asset('storage/pictures/avatars/'.Auth::user()->id.'.jpg') }}" width="100" height="100">
       </div>
       <div class="p-2 bd-highlight mx-3">
         <h4>ชื่อ: {{Auth::user()->name}}</h4>
@@ -84,9 +84,17 @@
     </div>
 
     <div id="product_list" class="border border-warning rounded p-2 mt-2" style="max-height: 1000px">
-
+      {{-- table containing user products --}}
+      <table class="table table-bordered"></table>
     </div>
 
+    <?php
+    $products = "i'm from blade.";
+    ?>
+    <script>
+      var products = "<?= $products ?>";
+
+    </script>
     <script src=" {{ asset('storage/js/user_product.js') }} "></script>
 
   </div>
