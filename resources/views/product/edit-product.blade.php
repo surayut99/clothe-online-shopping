@@ -1,7 +1,7 @@
 @extends ('layouts.main')
 
 @section('content')
-    <div class="container" style="margin-top: 100px">
+    <div class="container" style="margin-top: 100px; font-family: 'Bai Jamjuree', sans-serif;">
         <div>
             <form action="{{ route('product_list.update',['product_list' => $products->product_id])}}" METHOD="POST">
                 @method('PUT')

@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('content')
-    <div class="container" style="padding-top: 90px;">
+    <div class="container" style="padding-top: 90px; font-family: 'Bai Jamjuree', sans-serif;">
     <div class="d-flex">
         <h2>รถเข็นของคุณ</h2> <a class="btn btn-success ml-3" style="height:100%" href="{{route('stores.index')}}">เลือกสินค้าต่อ</a>
     </div>
