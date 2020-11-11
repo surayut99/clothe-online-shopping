@@ -19,17 +19,22 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('order_id')->nullable(false);
             $table->unsignedBigInteger('user_id')->nullable(false);
             $table->unsignedBigInteger('store_id')->nullable(false);
-            $table->dateTime('order_date')->nullable(false);
-            $table->dateTime('exp_date')->nullable(false);
-            $table->dateTime('verified_date')->nullable();
+
+            $table->dateTime('ordered_at')->nullable(false);
+            $table->dateTime('expired_at')->nullable(false);
+            $table->dateTime('purchased_at')->nullable();
+            $table->dateTime('verified_at')->nullable();
+            $table->dateTime('deliveried_at')->nullable();
+            $table->dateTime('completed_at')->nullable();
+            $table->dateTime('cancelled_at')->nullable();
 
             $table->double('total_cost')->nullable(false);
             $table->string('recv_address')->nullable(false);
             $table->string('recv_name')->nullable(false);
             $table->string('recv_tel')->nullable(false);
-            $table->enum('status', array('purchasing', 'verifying', 'verified', 'deliveried', 'cancelled'))->default('purchasing');
-            $table->enum('shipment', array('Kerry', 'EMS', 'DHL', 'Flash', 'Standard Express'))->nullable(false);
-            $table->enum('payment', array('COD', 'Transfering'));
+            $table->enum('status', array('purchasing', 'verifying', 'verified', 'deliveried', 'completed', 'cancelled'))->default('purchasing');
+            $table->enum('shipment_type', array('Kerry', 'EMS', 'DHL', 'Flash', 'Standard Express'))->nullable(false);
+            $table->enum('payment_type', array('COD', 'Transfering'));
             $table->string('track_id')->nullable();
             $table->string('store_comment')->nullable();
 

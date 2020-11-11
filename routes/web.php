@@ -6,7 +6,6 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StoresController;
-use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\UserProductController;
 use Illuminate\Support\Facades\Route;
 

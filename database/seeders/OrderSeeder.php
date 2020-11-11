@@ -18,7 +18,6 @@ class OrderSeeder extends Seeder
      */
     public function run()
     {
-        $cart = Cart::where('customer_id', '=', '1');
         $dt = Carbon::now();
         $user = User::find(1);
         $address = Address::where('user_id', '=', $user->id)->where('default', '=', '1')->get()[0];
@@ -27,14 +26,35 @@ class OrderSeeder extends Seeder
         $order->order_id = Order::where('store_id', '=', 1)->count() + 1;
         $order->user_id = 1;
         $order->store_id = 1;
-        $order->order_date = $dt;
-        $order->exp_date = $dt->addDay(2);
+        $order->ordered_at = $dt;
+        $order->expired_at = $dt->addDay(2);
 
         $order->total_cost = 5000.50;
         $order->recv_address = $address->address;
         $order->recv_name = $address->receiver;
         $order->recv_tel = $address->telephone;
-        $order->shipment = 'Kerry';
+        $order->shipment_type = 'Kerry';
+        $order->payment_type = 'COD';
+
+        $order->save();
+
+        $dt = Carbon::now();
+        $user = User::find(1);
+        $address = Address::where('user_id', '=', $user->id)->where('default', '=', '1')->get()[0];
+
+        $order = new Order();
+        $order->order_id = Order::where('store_id', '=', 1)->count() + 1;
+        $order->user_id = 1;
+        $order->store_id = 1;
+        $order->ordered_at = $dt;
+        $order->expired_at = $dt->addDay(2);
+
+        $order->total_cost = 5000.50;
+        $order->recv_address = $address->address;
+        $order->recv_name = $address->receiver;
+        $order->recv_tel = $address->telephone;
+        $order->shipment_type = 'DHL';
+        $order->payment_type = 'Transfering';
 
         $order->save();
     }

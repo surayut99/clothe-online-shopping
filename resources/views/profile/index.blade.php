@@ -7,7 +7,7 @@
   <div class="container d-flex justify-content-between">
     <div class="d-flex">
       @if(!$store)
-      <a href="{{ route('create_store.create') }}" class="btn" style="background-color:RGB(242,137,108)">เปิดร้านค้า!</a>
+      <a href="{{ route('stores.create') }}" class="btn" style="background-color:RGB(242,137,108)">เปิดร้านค้า!</a>
       @else
       <h5 class="mr-3 mt-2">ร้านค้าของคุณ: </h5>
       <a href="{{ route('product_list.index') }}" class="btn" style="background-color:RGB(242,137,108)">{{ $store->store_name }}</a>
@@ -77,24 +77,18 @@
     <hr>
 
     <div class="d-flex" id="between-content">
-      <a id="wait" class="btn btn-primary">รายการที่ต้องชำระ</a>
-      <a id="purchased" class="btn btn-primary">รายการที่ชำระเงินแล้ว</a>
+      <a id="purchasing" class="btn btn-primary">รายการที่ต้องชำระ</a>
+      <a id="verifying" class="btn btn-primary">รายการรอการตรวจสอบ</a>
+      <a id="verified" class="btn btn-primary">รายการรอจัดส่ง</a>
       <a id="deliveried" class="btn btn-primary">รายการที่ต้องได้รับ</a>
-      <a id="history" class="btn btn-primary">ประวัติการซื้อ</a>
+      <a id="completed" class="btn btn-primary">รายการที่ได้รับสำเร็จ</a>
+      <a id="cancelled" class="btn btn-primary">รายการที่ถูกยกเลิก</a>
     </div>
 
     <div id="product_list" class="border border-warning rounded p-2 mt-2" style="max-height: 1000px">
       {{-- table containing user products --}}
-      <table class="table table-bordered"></table>
     </div>
 
-    <?php
-    $products = "i'm from blade.";
-    ?>
-    <script>
-      var products = "<?= $products ?>";
-
-    </script>
     <script src=" {{ asset('storage/js/user_product.js') }} "></script>
 
   </div>
