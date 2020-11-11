@@ -5,7 +5,7 @@
         <h2>ข้อมูลเบื้องต้นร้านค้าของแม่ค้ามือใหม่</h2>
 
 {{--        <form action="{{route('posts.update', ['post' => $post->id])}}" method="POST">--}}
-        <form action="{{ route('create_store.store') }}" method="POST">
+        <form action="{{ route('stores.store') }}" method="POST">
             @csrf
             <div class="form-group">
                 <div class="form-inline">

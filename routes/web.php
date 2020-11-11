@@ -52,7 +52,9 @@ Route::get('/user_product/{opt}', [UserProductController::class, 'showUserProduc
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 
 // Products
-Route::resource('product_list', ProductsController::class);
+Route::resource('products', ProductsController::class);
+Route::get('products/{products}', [ProductsController::class, 'getSecondary']);
+
 
 // Stores
 Route::resource('stores',StoresController::class);
