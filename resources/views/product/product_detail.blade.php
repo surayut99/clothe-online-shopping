@@ -77,21 +77,21 @@
             , oldValue = btn.closest('.number-spinner').find('input').val().trim()
             , newVal = 0;
         var max = parseInt($('span#max').text())
-        console.log(parseInt(oldValue) + 0 <= max)
         if (btn.attr('data-dir') == 'up') {
-            if (parseInt(oldValue) + 0 < max) {
-                newVal = parseInt(oldValue) + 0;
+            if (parseInt(oldValue) + 1 <= max) {
+                newVal = parseInt(oldValue) + 1;
             } else {
-                newVal = max - 1;
+                newVal = max;
             }
         } else {
             if (oldValue > 1) {
-                newVal = parseInt(oldValue) - 0;
+                newVal = parseInt(oldValue) - 1;
             } else {
                 newVal = 1;
             }
         }
         btn.closest('.number-spinner').find('input').val(newVal);
+
     });
 
 </script>

@@ -190,4 +190,10 @@ class ProductsController extends Controller
                         ->pluck('product_secondary_type')->toArray();
         return $secondary;
     }
+
+    public function getMaxQty($id){
+        return DB::table('products')->where('product_id', "=", $id)
+        ->select('qty')->get()
+        ->pluck('qty')->toArray()[0];
+    }
 }

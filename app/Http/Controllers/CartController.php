@@ -11,7 +11,7 @@ class CartController extends Controller
 {
     public function index()
     {
-        $cart = Cart::where('user_id','=',Auth::user()->id)->join('products','products.product_id','=','carts.product_id')->select('product_name','price','carts.qty')->get();
+        $cart = Cart::where('user_id','=',Auth::user()->id)->join('products','products.product_id','=','carts.product_id')->select('carts.product_id','product_name','price','carts.qty')->get();
 
         return view('pages.cart',[
             'carts' => $cart,
