@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\ProductType;
 use App\Models\Store;
 use App\Models\User;
+use App\Rules\ImgFile;
 use Brick\Math\BigInteger;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,23 +22,13 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $store = Store::where('store_id', "=", Auth::user()->id)->get();
-        $primary_type = DB::table('product_types')->select('product_primary_type')->distinct()->get();
-        $secondary_type = ProductType::all();
-        $products = Product::where('store_id', "=", $store[0]->store_id)->get();
 
-        return view('product.product-list',[
-            'products' => $products,
-            'stores' => $store[0],
-            'product_type' => $primary_type,
-            'secondary_types' => $secondary_type
-        ]);
     }
 
     public function productDetail($id)
     {
         $product = Product::where('product_id','=',$id)->get()[0];
-        
+
         // $products = Product::all();
         return view('product.product_detail',[
             'products' => $product
@@ -51,7 +42,14 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+        $primary_type = DB::table('product_types')->select('product_primary_type')
+                        ->distinct()->get()->pluck('product_primary_type')->toArray();
+        $secondary_type = $this->getSecondary($primary_type[0]);
+
+        return view('product.add_product',[
+            'product_type' => $primary_type,
+            'secondary_type' => $secondary_type
+        ]);
     }
 
     /**
@@ -62,23 +60,47 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-         $product = new Product;
-         $product->product_name = $request->input('productName');
-         $product->product_description = $request->input('productDes');
-         $product->product_img_path = 'storage/pictures/ecommerce.png';
-//        $request->image->storeAs('images', $request->input('myfile'));
+
+        $request->validate([
+            'productName' => 'required',
+            'productDes' => 'required',
+            'color' => 'required',
+            'price' => 'required',
+            'qty' => 'required',
+            'inpImg' => 'required'
+        ]);
+
+        if (!$request->file('inpImg')) {
+            return back()
+                ->with('error',"กรุณาใส่รูปสินค้า");
+        }
+            $product = new Product;
+        $product->product_name = $request->input('productName');
+        $product->product_description = $request->input('productDes');
+        $product->product_img_path = 'storage/pictures/ecommerce.png';
+        $product->product_primary_type = $request->get('primeProdType');
+        $product->product_secondary_type = $request->get('secondProdType');
+        $product->color = $request->input('color');
+        $product->size = $request->input('size');
+        $product->qty = $request->input('qty');
+        $product->price = $request->input('price');
+        $store = Store::where('user_id', '=', Auth::user()->id)->get();
+        $product->store_id = $store[0]->store_id;
+        $product->save();
 
 
-         $product->product_primary_type = $request->get('primeProdType');
-         $product->product_secondary_type = $request->get('secondProdType');
-         $product->color = $request->input('color');
-         $product->size = $request->input('size');
-         $product->qty = $request->input('qty');
-         $product->price = $request->input('price');
-         $store = Store::where('user_id', '=', Auth::user()->id)->get();
-         $product->store_id = $store[0]->store_id;
-         $product->save();
-         return redirect()->route('product_list.index');
+
+        $img = $request->file('inpImg');
+        $filename = $product->id . "." . $img->getClientOriginalExtension();
+        $path = 'storage/pictures/products';
+        $img->move($path, $filename);
+
+
+        DB::table('products')->where('product_id','=', $product->id)->update([
+            'product_img_path' => $path . "/" . $filename,
+        ]);
+
+        return redirect()->route('products.index');
     }
 
     /**
@@ -150,7 +172,7 @@ class ProductsController extends Controller
         // $store = Store::where('user_id', '=', Auth::user()->id)->get();
         // $product->store_id = $store[0]->store_id;
         // $product->save();
-        return redirect()->route('product_list.index');
+        return redirect()->route('products.index');
     }
 
     /**
@@ -162,7 +184,7 @@ class ProductsController extends Controller
     public function destroy($id)
     {
         Product::where('product_id', '=', $id)->delete();
-        return redirect()->route('product_list.index');
+        return redirect()->route('products.index');
     }
 
 //    public function editProduct(){
@@ -172,4 +194,10 @@ class ProductsController extends Controller
 //            'products'=>$products,
 //        ]);
 //    }
+    public function getSecondary($prime){
+        $secondary = DB::table('product_types')->where('product_primary_type', '=', $prime)
+                        ->select('product_secondary_type')->get()
+                        ->pluck('product_secondary_type')->toArray();
+        return $secondary;
+    }
 }

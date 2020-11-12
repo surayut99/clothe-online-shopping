@@ -5,7 +5,7 @@ $("a#purchasing").click(function() {
         url: "/user_product/purchasing",
         type: "get",
         success: function(data) {
-            $("#product_list").html(data)
+            $("#products").html(data)
         }
     })
 })
@@ -15,7 +15,7 @@ $("a#verifying").click(function() {
         url: "/user_product/verifying",
         type: "get",
         success: function(data) {
-            $("#product_list").html(data)
+            $("#products").html(data)
         }
     })
 })
@@ -25,7 +25,7 @@ $("a#verified").click(function() {
         url: "/user_product/verified",
         type: "get",
         success: function(data) {
-            $("#product_list").html(data)
+            $("#products").html(data)
         }
     })
 })
@@ -35,7 +35,7 @@ $("a#deliveried").click(function() {
         url: "/user_product/deliveried",
         type: "get",
         success: function(data) {
-            $("#product_list").html(data)
+            $("#products").html(data)
         }
     })
 })
@@ -45,7 +45,7 @@ $("a#completed").click(function() {
         url: "/user_product/completed",
         type: "get",
         success: function(data) {
-            $("#product_list").html(data)
+            $("#products").html(data)
         }
     })
 })
@@ -55,7 +55,7 @@ $("a#cancelled").click(function() {
         url: "/user_product/cancelled",
         type: "get",
         success: function(data) {
-            $("#product_list").html(data)
+            $("#products").html(data)
         }
     })
 })

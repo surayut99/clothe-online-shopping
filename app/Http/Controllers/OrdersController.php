@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Auth;
 
 class OrdersController extends Controller
 {
+    public function checkout(){
+        
+    }
+
     public function placeOrder(Request $request) {
         $dt = Carbon::now();
         $products = Cart::where('user_id', '=', Auth::user()->id)
@@ -21,7 +25,7 @@ class OrdersController extends Controller
                     ->get();
         $stores = $products->select('store_id')->groupBy('store_id')->get();
 
-        // add data to orders table
+        // add dato to orders table
         $recv_addr = Address::where('user_id', '=', Auth::user()->id)->where('default', '=', true)->get();
         foreach ($stores as $s) {
             $new_id = Order::where('store_id', '=', $s->store_id)->count() + 1;

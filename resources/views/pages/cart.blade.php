@@ -1,32 +1,32 @@
 @extends('layouts.main')
 @section('content')
-    <div class="container" style="padding-top: 90px;">
+<div class="container pt-5">
     <div class="d-flex">
         <h2>รถเข็นของคุณ</h2> <a class="btn btn-success ml-3" style="height:100%" href="{{route('stores.index')}}">เลือกสินค้าต่อ</a>
     </div>
-        <table style="text-align: center; " class="table table-striped">
-            <thead>
-                <tr >
+    <table style="text-align: center; " class="table table-striped">
+        <thead>
+            <tr>
                 <th style="width: 10px;" scope="col"></th>
                 <th style="width: 200px;" scope="col">สินค้า</th>
                 <th style="width: 100px;" scope="col">ราคาต่อชิ้น</th>
                 <th style="width: 100px;" scope="col">จำนวน</th>
                 <th style="width: 100px;" scope="col">ราคารวม</th>
-                </tr>
-            </thead>
-            <tbody>
+            </tr>
+        </thead>
+        <tbody>
             @foreach($carts as $cart)
-                <tr>
+            <tr>
                 <td><input type="checkbox" class="check" id="checkAll"></td>
                 <td>{{$cart->product_name}}</td>
                 <td>{{$cart->price}}</td>
                 <td>{{$cart->qty}}</td>
                 <td>{{$cart->qty * $cart->price}}</td>
-                </tr>
+            </tr>
             @endforeach
-            </tbody>
-        </table>
-        {{-- <table style="text-align: center;"class="table table-striped">
+        </tbody>
+    </table>
+    {{-- <table style="text-align: center;"class="table table-striped">
             <thead>
                 <tr>
                 <th style="width: 10px;" scope="col"><input type="checkbox" class="checkAll1"  ></th>
@@ -70,35 +70,37 @@
                 </tr>
             </tbody>
         </table> --}}
-        <a class="btn btn-primary float-right" href="{{ route('checkout') }}" >Check out</a>
-    </div>
+    <a class="btn btn-primary float-right" href="{{ route('checkout') }}">Check out</a>
+</div>
 @endsection
 <script>
-    $(".checkAll1").click(function () {
-    $(".check1").prop('checked', $(this).prop('checked'));
+    $(".checkAll1").click(function() {
+        $(".check1").prop('checked', $(this).prop('checked'));
     });
-    
-    $("#checkAll").click(function () {
-    $(".checkAll1").prop('checked', $(this).prop('checked'));
-    $(".check1").prop('checked', $(this).prop('checked'));
+
+    $("#checkAll").click(function() {
+        $(".checkAll1").prop('checked', $(this).prop('checked'));
+        $(".check1").prop('checked', $(this).prop('checked'));
     });
+
 </script>
 <!-- ไว้กำหนดค่า + - จำนวนสินค้า -->
 <script>
-    $(document).on('click', '.number-spinner button', function () {    
-    var btn = $(this),
-        oldValue = btn.closest('.number-spinner').find('input').val().trim(),
-        newVal = 0;
-    
-    if (btn.attr('data-dir') == 'up') {
-        newVal = parseInt(oldValue) + 1;
-    } else {
-        if (oldValue > 1) {
-            newVal = parseInt(oldValue) - 1;
+    $(document).on('click', '.number-spinner button', function() {
+        var btn = $(this)
+            , oldValue = btn.closest('.number-spinner').find('input').val().trim()
+            , newVal = 0;
+
+        if (btn.attr('data-dir') == 'up') {
+            newVal = parseInt(oldValue) + 1;
         } else {
-            newVal = 1;
+            if (oldValue > 1) {
+                newVal = parseInt(oldValue) - 1;
+            } else {
+                newVal = 1;
+            }
         }
-    }
-    btn.closest('.number-spinner').find('input').val(newVal);
-});
+        btn.closest('.number-spinner').find('input').val(newVal);
+    });
+
 </script>

@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Owner;
 use App\Models\Product;
+use App\Models\ProductType;
 use App\Models\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class StoresController extends Controller
 {
@@ -17,9 +19,20 @@ class StoresController extends Controller
      */
     public function index()
     {
-        $stores = Store::all();
-        return view('pages.show-store',[
-            'stores' => $stores,
+        // $stores = Store::all();
+        // return view('pages.show-store',[
+        //     'stores' => $stores,
+        // ]);
+        $store = Store::where('store_id', "=", Auth::user()->id)->get();
+        $primary_type = DB::table('product_types')->select('product_primary_type')->distinct()->get();
+        $secondary_type = ProductType::all();
+        $products = Product::where('store_id', "=", $store[0]->store_id)->get();
+
+        return view('store.index',[
+            'products' => $products,
+            'stores' => $store[0],
+            'product_type' => $primary_type,
+            'secondary_types' => $secondary_type
         ]);
     }
 
@@ -106,4 +119,5 @@ class StoresController extends Controller
     {
         //
     }
+
 }
