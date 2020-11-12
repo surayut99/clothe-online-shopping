@@ -25,16 +25,6 @@ class ProductsController extends Controller
 
     }
 
-    public function productDetail($id)
-    {
-        $product = Product::where('product_id','=',$id)->get()[0];
-
-        // $products = Product::all();
-        return view('product.product_detail',[
-            'products' => $product
-        ]);
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -111,12 +101,12 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        $products = Product::where('store_id','=', $id)->get();
-        $store = Store::where('store_id', '=', $id)->get();
+        $product = Product::where('product_id','=',$id)->first();
+        $store = Store::where('store_id', '=', $product->store_id)->first();
 
-        return view('product.product-list',[
-            'products' => $products,
-            'stores' => $store,
+        return view('product.product_detail',[
+            'product' => $product,
+            'store' => $store,
         ]);
     }
 

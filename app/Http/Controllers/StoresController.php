@@ -78,7 +78,7 @@ class StoresController extends Controller
         $products = Product::where('store_id','=', $id)->get();
         $store = Store::where('store_id', '=', $id)->get();
 
-        return view('product.show-product',[
+        return view('store.show_store',[
             'products' => $products,
             'stores' => $store,
             'from' => 'customer'

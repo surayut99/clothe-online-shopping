@@ -73,19 +73,9 @@
     <a class="btn btn-primary float-right" href="{{ route('checkout') }}">Check out</a>
 </div>
 @endsection
-<script>
-    $(".checkAll1").click(function() {
-        $(".check1").prop('checked', $(this).prop('checked'));
-    });
 
-    $("#checkAll").click(function() {
-        $(".checkAll1").prop('checked', $(this).prop('checked'));
-        $(".check1").prop('checked', $(this).prop('checked'));
-    });
-
-</script>
 <!-- ไว้กำหนดค่า + - จำนวนสินค้า -->
-<script>
+{{-- <script>
     $(document).on('click', '.number-spinner button', function() {
         var btn = $(this)
             , oldValue = btn.closest('.number-spinner').find('input').val().trim()
@@ -101,6 +91,4 @@
             }
         }
         btn.closest('.number-spinner').find('input').val(newVal);
-    });
-
-</script>
+    }); --}}

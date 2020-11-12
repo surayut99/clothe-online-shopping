@@ -50,6 +50,7 @@ Route::get('/user_product/{opt}', [UserProductController::class, 'showUserProduc
 
 // Cart
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::post('add_product/{id}',  [CartController::class, 'store'])->name('addcart');
 
 // Products
 Route::resource('products', ProductsController::class);
@@ -64,9 +65,6 @@ Route::resource('stores',StoresController::class);
 Route::get('/cart/checkout', function () {
     return view('pages.checkout');
 })->name('checkout');
-Route::get('/product_detail', function () {
-    return view('product.product_detail');
-})->name('product_detail');
 Route::get('/profile/open-shop', function () {
     return view('auth.seller_register');
 })->name('seller_register');
