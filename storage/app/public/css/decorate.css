@@ -14,7 +14,7 @@ div#between-content>* {
 }
 
 .bg-home {
-    background-image: url("../pictures/bg-home.jpg");
+    background-image: url("../pictures/bg/bg-home.jpg");
     min-height: 100vh;
     height: 100;
     background-position: center;

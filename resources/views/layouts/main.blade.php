@@ -25,7 +25,7 @@
 <body>
   @include('layouts.menu')
 
-  <div style="font-family: 'Bai Jamjuree', sans-serif; margin-top:74px;">
+  <div style="font-family: 'Bai Jamjuree', sans-serif; margin-top:70px;">
     @yield("content")
   </div>
 
