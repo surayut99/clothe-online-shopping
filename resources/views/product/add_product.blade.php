@@ -1,7 +1,6 @@
 @extends('layouts.main')
-
 @section('content')
-<div>
+<div style="padding: 90px;">
     <div>
         <hr>
         <h1>เพิ่มรายการสินค้า</h1>

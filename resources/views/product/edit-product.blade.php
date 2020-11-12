@@ -1,7 +1,7 @@
-@extends ('layouts.main')
-
+@extends('layouts.main')
 @section('content')
-<div class="container" style="margin-top: 100px; font-family: 'Bai Jamjuree', sans-serif;">
+<div style="padding: 90px;">
+<div class="container" style="margin-top: 100px; font-family: 'Bai Jamjuree', sans-serif; ">
     <div>
         <form action="{{ route('products.update',['products' => $products->product_id])}}" METHOD="POST">
             @method('PUT')
@@ -69,5 +69,6 @@
             <button type="submit" class="btn btn-primary">ยืนยันการแก้ไข</button>
         </form>
     </div>
+</div>
 </div>
 @endsection
