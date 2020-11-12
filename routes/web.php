@@ -53,7 +53,7 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart');
 
 // Products
 Route::resource('products', ProductsController::class);
-Route::get('products/{products}', [ProductsController::class, 'getSecondary']);
+Route::get('product_types/{products}', [ProductsController::class, 'getSecondary']);
 
 
 // Stores
