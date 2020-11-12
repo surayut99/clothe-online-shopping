@@ -32,7 +32,7 @@ div#between-content>* {
 
 .bg-lr {
     font-family: 'Bai Jamjuree', sans-serif;
-    background-image: url("../pictures/bg-lr.jpg");
+    background-image: url("../pictures/bg/bg-lr.jpg");
     min-height: 100vh;
     height: 100%;
     background-position: center;
@@ -87,7 +87,6 @@ div#between-content>* {
 
 .table {
     table-layout: fixed;
-
 }
 
 th,
@@ -99,7 +98,6 @@ td {
     max-height: 400px;
     display: flex;
     overflow-x: auto;
-
 }
 
 .wrapper .item {

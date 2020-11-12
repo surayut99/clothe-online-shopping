@@ -1,3 +1,5 @@
 # *
 # !.git/
-/pictures
+# /products/*
+# /avatars/*
+# /promotions/*
