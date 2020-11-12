@@ -9,7 +9,7 @@
       </div>
 
       <div class="bg-light mr-md-3 pt-3 px-3 py-md-5 px-md-5">
-        <h2 class="display-5">{{ $products->product_name}}</h2>
+      <h2 class="display-5">{{ $products->product_name}}</h2>
         <h1 class="display-5">{{$products->price}} บาท/ตัว</h1>
         <p class="lead">{{$products->product_description}}</p>
         <form action="{{route('addcart', ['id'=>$products->product_id])}}" method="post">

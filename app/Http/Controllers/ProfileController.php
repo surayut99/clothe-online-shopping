@@ -35,19 +35,18 @@ class ProfileController extends Controller
             'new_tel' => ['required', 'max:10', new TelNumber]
         ]);
 
-        print_r($request->input());
-        print_r($request->file());
-
-        $img = $request->file('inpImg');
-        $filename = Auth::user()->id . "." . $img->getClientOriginalExtension();
-        $path = 'storage/pictures/avatars';
-
-        $img->move($path, $filename);
-
         $user = User::findOrFail(Auth::user()->id);
+
+        if ($request->file('inpImg')) {
+            $img = $request->file('inpImg');
+            $filename = Auth::user()->id . ".jpg";
+            $path = 'storage/pictures/avatars';
+            $img->move($path, $filename);
+            $user->profile_photo_path = $path . "/" . $filename;
+        }
+
         $user->name = $request->input('new_name');
         $user->telephone = $request->input('new_tel');
-        $user->profile_photo_path = $path . "/" . $filename;
         $user->save();
 
         return redirect()->route('profile');
