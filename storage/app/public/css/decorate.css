@@ -1,3 +1,11 @@
+div#main {
+    font-family: 'Bai Jamjuree', sans-serif;
+}
+
+div#main>div {
+    padding-top: 90px;
+}
+
 div#between-content>* {
     color: white !important;
     margin-right: 10px;
@@ -9,20 +17,8 @@ div#between-content>* {
     font-weight: bold;
 }
 
-.nav-deco {
+.shoppool-nav {
     background: linear-gradient(to right, #e52d27, #b31217);
-}
-
-.bg-home {
-    background-image: url("../pictures/bg/bg-home.jpg");
-    min-height: 100vh;
-    height: 100;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.lock-navbar {
     position: fixed;
     top: 0;
     left: 0;
@@ -30,14 +26,63 @@ div#between-content>* {
     z-index: 100;
 }
 
-.bg-lr {
+.sp-nav-font>a {
     font-family: 'Bai Jamjuree', sans-serif;
-    background-image: url("../pictures/bg/bg-lr.jpg");
-    min-height: 100vh;
-    height: 100%;
+    color: rgb(201, 201, 201) !important;
+}
+
+.sp-nav-font>a:hover,
+.sp-nav-font-active>a {
+    font-family: 'Bai Jamjuree', sans-serif;
+    color: whitesmoke !important;
+}
+
+.sp-nav-dropdown-menu>a:hover {
+    color: rgb(255, 255, 255) !important;
+    background: #ff0000;
+}
+
+.sp-nav-dropdown-menu>a {
+    color: yellowgreen;
+}
+
+.sp-nav-icon>li>a>img {
+    height: 40px;
+    transition: .25s;
+}
+
+.sp-nav-icon>li>a>img:hover {
+    filter: brightness(50%);
+    height: 60px;
+}
+
+.sp-nav-right>li {
+    margin: auto;
+}
+
+.form-auth {
+    margin-top: 6vh;
+    width: 50vw;
+    background-color: rgba(0, 0, 0, .5);
+    color: white;
+    border-radius: 30px;
+}
+
+.bg-home {
+    background-image: url("../pictures/bg/bg-home.jpg");
+    max-height: 100vh;
+    height: 100;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.bg-lr {
+    background-image: url("../pictures/bg/bg-lr.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
 }
 
 #home {
@@ -80,11 +125,6 @@ div#between-content>* {
     line-height: 0.5em;
 }
 
-.dropdown-menu>a:hover {
-    color: yellow;
-    background: #ff0000;
-}
-
 .table {
     table-layout: fixed;
 }
@@ -94,12 +134,12 @@ td {
     vertical-align: middle !important;
 }
 
-.wrapper {
+.overflow-h {
     max-height: 400px;
     display: flex;
     overflow-x: auto;
 }
 
-.wrapper .item {
+.overflow-h .item {
     min-width: 300px;
 }

@@ -1,7 +1,6 @@
 @extends('layouts.main')
 
 @section('content')
-<meta name="_token" content="{{ csrf_token() }}">
 <div>
 
   <div class="container pt-5 d-flex justify-content-between">
@@ -46,7 +45,7 @@
         <p><span>ที่อยู่: </span>{{$addr->address}}</p>
         <div class="d-flex">
 
-          {{-- set as default address --}}
+
           @if(!$addr->default)
           <form action="{{route('changeDefaultAddress', ['address' => $addr->no])}}" method="post">
             @method('put')
@@ -57,7 +56,7 @@
           <button style="width: 135px" disabled class="btn btn-outline-primary">ที่อยู่ปัจจุบัน</button>
           @endif
 
-          {{-- edit address --}}
+
           <form class="ml-1" action="{{ route('address.update', ['address'=> $addr->no])}}" method="post">
             @method('put')
             @csrf
@@ -86,10 +85,13 @@
     </div>
 
     <div id="products" class="border border-warning rounded p-2 my-2" style="min-height: 500px; max-height:500px; overflow-y: auto">
-      {{-- table containing user products --}}
     </div>
 
-    <script src=" {{ asset('storage/js/user_product.js') }} "></script>
 
   </div>
-  @endsection
+</div>
+@endsection
+
+@section('script')
+<script src=" {{ asset('storage/js/user_product.js') }} "></script>
+@endsection

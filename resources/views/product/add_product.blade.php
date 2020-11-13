@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('content')
-<div class="container" style="padding:90px">
+<div class="container">
   <div>
     <hr>
     <h1>เพิ่มรายการสินค้า</h1>
@@ -98,7 +98,10 @@
 
     </form>
   </div>
-  <script src="{{asset('storage/js/selectproducttype.js')}}"></script>
-  <script src="{{asset('storage/js/previewInpImg.js')}}"></script>
 </div>
+@endsection
+
+@section('script')
+<script src="{{asset('storage/js/selectproducttype.js')}}"></script>
+<script src="{{asset('storage/js/previewInpImg.js')}}"></script>
 @endsection

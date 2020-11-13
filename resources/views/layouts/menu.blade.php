@@ -1,5 +1,5 @@
-<div style="font-family: 'Bai Jamjuree', sans-serif;">
-  <nav class="navbar navbar-expand-lg navbar-light nav-deco lock-navbar d-flex justify-content-between">
+<div class="sp-nav-font">
+  <nav class="navbar navbar-expand-lg navbar-light shoppool-nav d-flex justify-content-between" style="min-height: 90px">
 
     {{-- Home LOGO --}}
     <div class="d-flex" style="max-width:14vw">
@@ -12,6 +12,7 @@
       </div>
     </div>
     {{-- Search Tool --}}
+
     {{-- <div class="d-flex">
       <ul class="navbar-nav">
         <form class="form-inline my-2 my-lg-0">
@@ -24,23 +25,22 @@
     {{-- Acccount Tool --}}
     <div class="d-flex" id="account-content">
       @if (Route::has('login'))
-      <ul class="navbar-nav mr-auto ">
+      <ul class="navbar-nav mr-auto sp-nav-icon sp-nav-right">
         @auth
-
         <li>
-          <a href="{{ route('cart') }}"><img class="mr-2 mt-1" src="{{asset('storage/pictures/icon/cart.png')}}" style="height: 40px;"></a></li>
-        <li>
-
-        <li>
-          <a href="{{ route('stores.index') }}"><img class="mr-3 ml-3 mt-1" src="{{asset('storage/pictures/icon/default_store2.png')}}" style="height: 40px;"></a></li>
+          <a href="{{ route('cart') }}"><img class="mr-2 mt-1" src="{{asset('storage/pictures/icon/cart.png')}}"></a></li>
         <li>
 
-        <li class="nav-item dropdown">
-          <a id="navbarDropdown" style="color:white" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+        <li>
+          <a href="{{ route('stores.index') }}"><img class="mr-3 ml-3 mt-1" src="{{asset('storage/pictures/icon/default_store2.png')}}"></a></li>
+        <li>
+
+        <li class="nav-item dropdown sp-nav-font">
+          <a id="navbarDropdown" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
             {{ Auth::user()->name }}
           </a>
 
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" style="background-color: #b31217;">
+          <div class="sp-nav-dropdown-menu dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" style="background-color: #501719;">
             <a href="{{ route('profile') }}" style="color: yellow;" class="dropdown-item">โปรไฟล์</a>
 
             <div style="background-color: white; height: 1px"></div>
@@ -55,15 +55,15 @@
           </div>
         </li>
         @else
-        <li class="nav-item {{ \Route::currentRouteName() === 'register' ? 'active' : '' }}">
-          <a class="nav-link    " href="{{ route('register') }}">ลงทะเบียน</a>
+        <li class="nav-item sp-nav-font {{ \Route::currentRouteName() === 'pages.auth.register' ? 'sp-nav-font-active   ' : '' }}">
+          <a class="nav-link" href="{{ route('pages.auth.register') }}">ลงทะเบียน</a>
         </li>
         @if (Route::has('register'))
-        <li class="nav-item {{ \Route::currentRouteName() === 'login' ? 'active' : '' }}">
+        <li class="nav-item sp-nav-font {{ \Route::currentRouteName() === 'login' ? 'sp-nav-font-active ' : '' }}">
           <a class="nav-link" href="{{ route('login') }}">เข้าสู่ระบบ</a>
         </li>
         @endif
-        @endif
+        @endauth
       </ul>
       @endif
     </div>

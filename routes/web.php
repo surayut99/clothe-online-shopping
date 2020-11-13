@@ -63,6 +63,12 @@ Route::get('product_qty/{product}', [ProductsController::class, 'getMaxQty']);
 Route::resource('stores',StoresController::class);
 
 // No Controller
+Route::get('auth/register', function () {
+    return view('pages.auth.register');
+})->name('pages.auth.register');
+Route::get('auth/login', function () {
+    return view('pages.auth.login');
+})->name('pages.auth.login');
 Route::get('/cart/checkout', function () {
     return view('pages.checkout');
 })->name('checkout');

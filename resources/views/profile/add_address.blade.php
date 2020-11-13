@@ -42,8 +42,9 @@
       </form>
     </div>
   </div>
-
-  <script src="{{ asset('storage/js/editProfile.js') }}"></script>
-
 </div>
+@endsection
+
+@section('script')
+<script src="{{ asset('storage/js/editProfile.js') }}"></script>
 @endsection

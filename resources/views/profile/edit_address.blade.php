@@ -63,13 +63,10 @@
     </div>
   </div>
 
-  <script src="{{ asset('storage/js/editProfile.js') }}"></script>
-  <script>
-    function collapseDelOpt() {
-      $("#deleteOpt").attr("hidden", !$("#deleteOpt").attr("hidden"))
-    }
-
-  </script>
 
 </div>
+@endsection
+
+@section('script')
+<script src="{{ asset('storage/js/editProfile.js') }}"></script>
 @endsection

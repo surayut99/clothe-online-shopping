@@ -1,5 +1,3 @@
-var _token = ($('meta[name="_token"]').attr('content'));
-
 $("a#purchasing").click(function() {
     $.ajax({
         url: "/user_product/purchasing",

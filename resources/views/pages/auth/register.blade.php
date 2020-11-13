@@ -1,10 +1,9 @@
-<x-guest-layout>
-  @include('layouts.menu')
-  <div class="bg-lr" style="padding-top: 120px">
-    <div class="container p-4" style="font-family: 'Bai Jamjuree', sans-serif; width: 50vw; background-color: rgba(0,0,0,.5); color: white; border-radius: 30px">
-      <h1 style="text-align: center; padding-top: 30px">ลงทะเบียน</h1>
+  @extends('layouts.main')
 
-      <x-jet-validation-errors class="mb-4" />
+  @section('content')
+  <div class="bg-lr" style="">
+    <div class=" container p-4 form-auth">
+      <h1 style="text-align: center; padding-top: 30px">ลงทะเบียน</h1>
 
       <form action="{{route("register")}}" method="POST">
         @csrf
@@ -56,4 +55,4 @@
       </form>
     </div>
   </div>
-</x-guest-layout>
+  @endsection

@@ -17,7 +17,7 @@
   </div>
 
 
-  <div class="d-flex wrapper" style="overflow-x: auto">
+  <div class="d-flex overflow-h">
     @foreach($products as $product)
     <div class="item card mr-3 my-1 p-2 bordered-rounded" style="background-color: whitesmoke">
       <a href="{{ route('products.show',['product'=>$product->product_id]) }}" class="mx-auto pt-2">
