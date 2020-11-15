@@ -32,7 +32,9 @@
         </div>
 
         <button type="submit" class="btn btn-primary my-3" href="">บันทึก</button>
+
       </form>
+
     </div>
   </div>
 </div>

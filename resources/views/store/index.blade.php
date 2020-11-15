@@ -4,7 +4,7 @@
 <div class="pt-5 container">
   <div>
     <div class="media">
-      <img src="{{asset("storage/pictures/icon/default_store.png")}}" class="mr-3" width="150px">
+      <img src="{{asset("storage/pictures/brand/" . $stores->store_id . ".jpg")}}" class="mr-3" width="150px">
       <div class="media-body mt-5">
         <h5 class="mt-0">{{ $stores->store_name }}</h5>
         <h6>{{ $stores->store_description }}</h6>
