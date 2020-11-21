@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('content')
 <h1 hidden id="max"></h1>
-<div class="container pt-5">
+<div class="container mt-5">
     <div class="d-flex">
         <h2>รถเข็นของคุณ</h2> <a class="btn btn-success ml-3" style="height:100%" href="{{route('stores.index')}}">เลือกสินค้าต่อ</a>
     </div>
