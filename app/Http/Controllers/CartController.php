@@ -6,13 +6,14 @@ use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
     public function index()
     {
         $cart = Cart::where('user_id','=',Auth::user()->id)->join('products','products.product_id','=','carts.product_id')->select('carts.product_id','product_name','price','carts.qty')->get();
-
+        
         return view('pages.cart',[
             'carts' => $cart,
         ]);
@@ -32,6 +33,12 @@ class CartController extends Controller
         $cart->product_id = $id;
         $cart->qty = $request->input('qty');
         $cart->save();
+        return redirect()->route('cart');
+    }
+
+    public function destroy($id)
+    {
+        DB::table('carts')->where('user_id', '=', Auth::user()->id)->where('product_id', '=', $id)->delete();
         return redirect()->route('cart');
     }
 }

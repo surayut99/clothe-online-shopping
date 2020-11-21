@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 class OrdersController extends Controller
 {
     public function checkout(){
-        
+
     }
 
     public function placeOrder(Request $request) {
@@ -62,4 +62,5 @@ class OrdersController extends Controller
 
         return redirect()->route('pages.home');
     }
-}
+
+    

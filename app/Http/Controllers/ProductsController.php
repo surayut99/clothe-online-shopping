@@ -90,7 +90,7 @@ class ProductsController extends Controller
             'product_img_path' => $path . "/" . $filename,
         ]);
 
-        return redirect()->route('stores.index');
+        return redirect()->route('stores.show');
     }
 
     /**

@@ -35,7 +35,11 @@
                     </div>
                 </td>
                 <td>{{$cart->qty * $cart->price}}</td>
-                <td class="btn btn-danger tr-1 tl-1" style="font-size: 12px; border-radius: 8px; ">ลบ</td>
+                <form action="{{route("cart.destroy",['id'=>$cart->product_id])}}" method="POST">
+                    @method('delete')
+                    @csrf
+                    <td> <button action="submit" class="btn btn-danger tr-1 tl-1" style="font-size: 12px; border-radius: 8px;">ลบ</button></td>
+                </form>
             </tr>
             @endforeach
         </tbody>
