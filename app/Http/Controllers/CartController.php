@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -12,10 +14,19 @@ class CartController extends Controller
 {
     public function index()
     {
-        $cart = Cart::where('user_id','=',Auth::user()->id)->join('products','products.product_id','=','carts.product_id')->select('carts.product_id','product_name','price','carts.qty')->get();
-        
+
+        $sum = Cart::where('user_id','=',Auth::user()->id)->join('products','products.product_id','=','carts.product_id')->select(DB::raw('products.price*carts.qty as total'))->pluck('total')->sum();
+        $cart = Cart::where('user_id','=',Auth::user()->id)->join('products','products.product_id','=','carts.product_id')->select('carts.product_id','price','products.*',DB::raw('carts.qty as amount'))->get();
+        $addresses = Address::where("user_id", "=", Auth::user()->id)
+                    ->orderBy("default", "desc")
+                    ->first();
+        $addresses = Address::where("user_id", "=", Auth::user()->id)
+                    ->orderBy("default", "desc")
+                    ->first();
         return view('pages.cart',[
             'carts' => $cart,
+            'address' => $addresses,
+            'sum' => $sum
         ]);
     }
 
