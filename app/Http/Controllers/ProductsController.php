@@ -106,7 +106,7 @@ class ProductsController extends Controller
         $product = Product::where('product_id','=',$id)->first();
         $store = Store::where('store_id', '=', $product->store_id)->first();
 
-        return view('product.product_detail',[
+        return view('product.show',[
             'product' => $product,
             'store' => $store,
         ]);
@@ -122,11 +122,11 @@ class ProductsController extends Controller
     {
 
         $store = Store::where('store_id', "=", Auth::user()->id)->get();
-        $products = Product::where('product_id','=',$id)->get()[0];
+        $product = Product::where('product_id','=',$id)->first();
         $primary_type = DB::table('product_types')->select('product_primary_type')->distinct()->get();
         $secondary_type = ProductType::all();
         return view('product.edit-product',[
-            'products' => $products,
+            'product' => $product,
             'stores' => $store,
             'product_type' => $primary_type,
             'secondary_types' => $secondary_type
@@ -197,5 +197,12 @@ class ProductsController extends Controller
         return DB::table('products')->where('product_id', "=", $id)
         ->select('qty')->get()
         ->pluck('qty')->toArray()[0];
+    }
+
+    public function productsInStore($id){
+        $products = DB::table('products')->where('store_id','=',$id)->get();
+        return view("product.manage-products",[
+            'products' => $products
+        ]);
     }
 }

@@ -6,6 +6,7 @@ use App\Models\Owner;
 use App\Models\Product;
 use App\Models\ProductType;
 use App\Models\Store;
+use App\Rules\TelNumber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -19,8 +20,11 @@ class StoresController extends Controller
      */
     public function index()
     {
-        $stores = Store::all();
+        if(!Auth::check()){
+            return view('auth.login');
+        }
 
+        $stores = Store::all();
         return view('store.index',[
             'stores' => $stores,
         ]);
@@ -76,6 +80,9 @@ class StoresController extends Controller
      */
     public function show($id)
     {
+        if(!Auth::check()){
+            return view('auth.login');
+        }
         $store = Store::where('store_id', '=', $id)->first();
         $products = DB::table('products')->where('store_id','=', $id)->get();
 
@@ -93,12 +100,17 @@ class StoresController extends Controller
      */
     public function edit($id)
     {
-        $store = DB::table('stores')->where('store_id','=',$id);
-        // print_r($store->user_id);
-        // if($store->user_id!=Auth::user()->id){
-        //     return view('store.index');
-        // }
-        // return view('store.edit');
+        $banks = ['ธนาคารกรุงไทย','ธนาคารกรุงไทย','ธนาคารกรุงศรีอยุธยา','ธนาคารกสิกรไทย','ธนาคารไทยพาณิชย์'];
+        $store = DB::table('stores')->where('store_id','=',$id)->first();
+        $store1 = DB::table('stores')->select('store_id')->where('user_id','=',Auth::user()->id)->first();
+        if($store->user_id!=Auth::user()->id){
+            // return 'pipe2';
+            return $this->show($store1->store_id);
+        }
+        return view('store.edit',[
+            'store' => $store,
+            'banks' => $banks,
+        ]);
     }
 
     /**
@@ -110,8 +122,39 @@ class StoresController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-//        return view('product.product-list');
+        $request->validate([
+            'store_name' => 'required',
+            'store_tel' => ['required', new TelNumber],
+            'store_bank_name' => 'required',
+            'store_bank_number' => ['required','max:10','min:10'],
+            'store_description' => 'required',
+        ],[
+            'store_name.required' => 'กรุณาใส่ชื่อร้านค้า',
+            'store_tel.required' => "กรุณากรอกเบอร์โทรศัพท์",
+            'store_bank_name.required' => 'กรุณาเลือกธนาคาร',
+            'store_bank_number.required' =>  'กรุณากรอกหมายเลขบัญชีธนาคาร',
+            'store_bank_number.max' =>  'กรุณากรอกหมายเลขบัญชีธนคารให้ถูกต้อง',
+            'store_bank_number.min' =>  'กรุณากรอกหมายเลขบัญชีธนาคารให้ถูกต้อง',
+            'store_description.required' => 'กรุณาใส่คำอธิบายร้านค้า'
+        ]);
+        $store = DB::table('stores')->where('store_id','=',$id)->first();
+        $img = $request->file('inpImg');
+        if($img){
+            $filename = $store->store_id . "." . $img->getClientOriginalExtension();
+            $path = 'storage/pictures/stores';
+            $img->move($path, $filename);
+            DB::table('stores')->where('store_id','=', $store->store_id)->update([
+                'store_img_path' => $path . "/" . $filename,
+            ]);
+        }
+        DB::table('stores')->where('store_id','=', $store->store_id)->update([
+            'store_name' => $request->store_name,
+            "store_description" => $request->store_description,
+            'store_tel' => $request->store_tel,
+            'store_bank_name' => $request->input("store_bank_name"),
+            'store_bank_number' => $request->store_bank_number,
+        ]);
+        return $this->show($id);
     }
 
     /**
