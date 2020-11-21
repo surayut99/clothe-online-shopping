@@ -20,9 +20,11 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-
+    public function index(){
+        $products = DB::table('products')->get();
+        return view('product.index',[
+            'products' => $products
+        ]);
     }
 
     /**
@@ -90,7 +92,7 @@ class ProductsController extends Controller
             'product_img_path' => $path . "/" . $filename,
         ]);
 
-        return redirect()->route('products.index');
+        return redirect()->route('stores.index');
     }
 
     /**

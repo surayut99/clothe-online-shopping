@@ -19,21 +19,22 @@ class StoresController extends Controller
      */
     public function index()
     {
-        // $stores = Store::all();
-        // return view('pages.show-store',[
-        //     'stores' => $stores,
-        // ]);
-        $store = Store::where('store_id', "=", Auth::user()->id)->get();
-        $primary_type = DB::table('product_types')->select('product_primary_type')->distinct()->get();
-        $secondary_type = ProductType::all();
-        $products = Product::where('store_id', "=", $store[0]->store_id)->get();
+        $stores = Store::all();
 
         return view('store.index',[
-            'products' => $products,
-            'stores' => $store[0],
-            'product_type' => $primary_type,
-            'secondary_types' => $secondary_type
+            'stores' => $stores,
         ]);
+        // $store = Store::where('store_id', "=", Auth::user()->id)->get();
+        // $primary_type = DB::table('product_types')->select('product_primary_type')->distinct()->get();
+        // $secondary_type = ProductType::all();
+        // $products = Product::where('store_id', "=", $store[0]->store_id)->get();
+
+        // return view('store.index',[
+        //     'products' => $products,
+        //     'stores' => $store[0],
+        //     'product_type' => $primary_type,
+        //     'secondary_types' => $secondary_type
+        // ]);
     }
 
 
@@ -63,7 +64,7 @@ class StoresController extends Controller
 
         $owner = new Owner;
         $owner->user_id = Auth::user()->id;
-        $owner->save;
+        $owner->save();
         return redirect()->route('profile');
     }
 
@@ -75,13 +76,12 @@ class StoresController extends Controller
      */
     public function show($id)
     {
-        $products = Product::where('store_id','=', $id)->get();
-        $store = Store::where('store_id', '=', $id)->get();
+        $store = Store::where('store_id', '=', $id)->first();
+        $products = DB::table('products')->where('store_id','=', $id)->get();
 
-        return view('store.show_store',[
+        return view('store.show',[
+            'store' => $store,
             'products' => $products,
-            'stores' => $store,
-            'from' => 'customer'
         ]);
     }
 
@@ -93,7 +93,12 @@ class StoresController extends Controller
      */
     public function edit($id)
     {
-        //
+        $store = DB::table('stores')->where('store_id','=',$id);
+        // print_r($store->user_id);
+        // if($store->user_id!=Auth::user()->id){
+        //     return view('store.index');
+        // }
+        // return view('store.edit');
     }
 
     /**
