@@ -5,6 +5,8 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StoresController;
+use App\Http\Controllers\UserProductController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -19,31 +21,60 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//resource::
-Route::resource('product_list', ProductsController::class);
-Route::resource('address', AddressController::class);
 
-//middleware
+/*
+| GROUP SECTION BY CONTROLLER NAME
+| GROUP IN SECTION BY REQUEST METHOD
+*/
+
+
+// Authentication
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia\Inertia::render('Dashboard');
 })->name('dashboard');
 
-// get
+// Pages
 Route::get('/', [PagesController::class, 'index'])->name('pages.home');
+
+// Porfile
+Route::get('/profile', [ProfileController::class,'index'])->name('profile');
+Route::get('/profile/edit', [ProfileController::class, 'showEditProfile'])->name('edit-profile');
+Route::post('/profile/edit', [ProfileController::class,'editProfile'])->name('update-profile');
+
+// Address
+Route::resource('address', AddressController::class);
+Route::put('/address/change_default/{address}', [AddressController::class, 'changeDefaultAddress'])->name('changeDefaultAddress');
+
+// UserProduct
+Route::get('/user_product/{opt}', [UserProductController::class, 'showUserProduct']);
+
+// Cart
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::post('add_product/{id}',  [CartController::class, 'store'])->name('addcart');
+
+// Products
+Route::resource('products', ProductsController::class);
+Route::get('product_types/{products}', [ProductsController::class, 'getSecondary']);
+Route::get('product_qty/{product}', [ProductsController::class, 'getMaxQty']);
+
+
+
+// Stores
+Route::resource('stores',StoresController::class);
+
+// No Controller
+Route::get('auth/register', function () {
+    return view('pages.auth.register');
+})->name('pages.auth.register');
+Route::get('auth/login', function () {
+    return view('pages.auth.login');
+})->name('pages.auth.login');
 Route::get('/cart/checkout', function () {
     return view('pages.checkout');
 })->name('checkout');
-Route::get('/profile', [ProfileController::class,'index'])->name('profile');
 Route::get('/profile/open-shop', function () {
     return view('auth.seller_register');
 })->name('seller_register');
-
-Route::get('/address/change_default/{address}', [AddressController::class, 'changeDefaultAddress']);
-
-Route::get('/product/1', [ProductsController::class,'productDetail'])->name('product_detail');
 Route::get('/order-details/1', function () {
     return view('pages.order_details');
 })->name('order_details');
-
-//post

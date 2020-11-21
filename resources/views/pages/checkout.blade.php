@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('content')
-    <div class="bg-lr" style="padding-top: 90px;">
+    <div class="bg-lr" style="padding: 90px;">
         <h2 class="text-center text-light">ทำการสั่งซื้อ</h2>
         <div class="container">
             <div class="bg-light py-md-3 px-md-5 mb-3">
@@ -20,24 +20,14 @@
                     </tr>
                     </thead>
                     <tbody style="background-color: #D1F2EB">
+                    @foreach()
+                    @endforeach
                     <tr>
                         <th scope="row">1</th>
                         <td>Mark</td>
                         <td>Otto</td>
                         <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
+                    </tr>                    
                     </tbody>
                 </table>
                 <p class="text-right">ยอดสั่งซื้อทั้งหมด:</p>
@@ -45,22 +35,31 @@
 
             <div class="bg-light py-md-3 px-md-5 mb-3">
                 <h5>วิธีการชำระเงิน</h5>
-                <div>
-                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#banks" aria-controls="profile-form" aria-expanded="false"  onclick="showform(),checkinfo()"><input type="checkbox">ชำระผ่านบัญชีธนาคาร</button>
-                <button class="btn btn-info" type="button"> <input type="checkbox">ชำระเงินปลายทาง</button>
+                <div class="accordion" id="accordionExample">
+                    <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#banks" aria-expanded="true" aria-controls="banks">ชำระผ่านบัญชีธนาคาร</button>
+                    <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#destination" aria-expanded="false" aria-controls="destination">ชำระเงินปลายทาง</button>
+                    <div class="collapse" id="banks" data-parent="#accordionExample">
+                        <br>
+                        <p>ชำระผ่านบัญชีธนาคาร</p>
+                        <p>ไทยพาณิชย์ : 111-221100-2</p>
+                        <p>กสิกรไทย : 333-220100-4</p>
+                        <p>กรุงไทย : 431-000456-1</p>
+                        <p>เมื่อชำระเงินแล้วกรุณาแนบหลักฐานการโอน</p>
+                    </div>
+                    <div class="collapse" id="destination" data-parent="#accordionExample">
+                        <br>
+                        <p>ชำระเงินปลายทาง</p>
+                    </div>
                 </div>
-                <div class="collapse" id="banks">
-                    <br>
-                    <p>ไทยพาณิชย์ : 111-221100-2</p>
-                    <p>กสิกรไทย : 333-220100-4</p>
-                    <p>กรุุงไทย : 431-000456-1</p>
-                    <p>เมื่อชำระเงินแล้วกรุณาแนบหลักฐานการโอน</p>
-                </div>
+
             </div>
-            <div class="py-md-3 px-md-5 mb-3 text-right mb-5" style="background-color: #FADBD8">
+            <div class="bg-light py-md-3 px-md-5 mb-3 text-right mb-5">
                 <p>ยอดรวมสินค้า: </p>
                 <p>รวมการจัดส่ง: </p>
                 <p>การชำระเงินทั้งหมด: </p>
-                <a class="btn btn-primary float-right" href="" >ยืนยันการชำระเงิน</a>
             </div>
+            <a class="btn btn-primary float-right" href="" >ยืนยันการชำระเงิน</a>
     </div>
+    </div>
+
+@endsection
