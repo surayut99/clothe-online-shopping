@@ -50,7 +50,7 @@
                         @method('delete')
                         @csrf
                         <div class="pl-4">
-                            <button onclick="collapseDelOpt()" id="{{$cart->product_id}}deleteOpt" class="btn btn-danger" type="button" data-toggle="collapse" data-target="#{{$cart->product_id}}collapseExample" aria-expanded="false" aria-controls="{{$cart->product_id}}collapseExample">ลบ</button>
+                            <button type="submit" class="btn btn-danger" type="button" data-toggle="collapse" data-target="#{{$cart->product_id}}collapseExample" aria-expanded="false" aria-controls="{{$cart->product_id}}collapseExample">ลบ</button>
                         </div>
                     </form>
                 </div>
