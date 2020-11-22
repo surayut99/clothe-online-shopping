@@ -95,6 +95,13 @@ class ProductsController extends Controller
         return redirect()->route('stores.show',['store'=>$store->store_id]);
     }
 
+    public function showByPrimaryType($type)
+    {
+        $products = Product::where('product_primary_type', '=', $type)->get();
+        return view('product.index', [ 'products' => $products]);
+
+    }
+
     /**
      * Display the specified resource.
      *
@@ -111,7 +118,6 @@ class ProductsController extends Controller
             'store' => $store,
         ]);
     }
-
     public function searchByName(Request $request)
     {
         $request->validate([

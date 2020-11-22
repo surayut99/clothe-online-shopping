@@ -62,6 +62,7 @@ Route::get('product/{id}/detail', [ProductsController::class, 'show'])->name('pr
 
 Route::get('product_management/{store}', [ProductsController::class, 'productsinStore'])->name('product_management');
 Route::get('product/search', [ProductsController::class, 'searchByName'])->name('product.searchByName');
+Route::get('product/show/{type}', [ProductsController::class, 'showByPrimaryType'])->name('products.showByPrimaryType');
 
 // Stores
 Route::resource('stores',StoresController::class);

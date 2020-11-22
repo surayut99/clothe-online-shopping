@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('content')
 <div class="container">
-    <h1 class="pt-3">รายการสินค้าทั้งหมด</h1>
+    <h1 class="pt-3">แสดงรายการสินค้า</h1>
 
     @if(count($products) > 0)
     <div id="between-content" class="d-flex d-inline-flex p-1 bd-highlight sp-flex space-bottom">
