@@ -37,6 +37,6 @@ class TelNumber implements Rule
      */
     public function message()
     {
-        return 'The telephone format is invalid.';
+        return 'กรุณากรอกหมายเลขโทรศัพท์ให้ถูกต้อง';
     }
 }

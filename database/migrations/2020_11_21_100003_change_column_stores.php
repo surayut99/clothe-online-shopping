@@ -15,6 +15,9 @@ class ChangeColumnStores extends Migration
     {
         Schema::table('stores', function (Blueprint $table) {
             $table->string("store_img_path")->default("storage/pictures/icon/default_store.png");
+            $table->string('store_bank_name')->nullable();
+            $table->dropColumn('store_bank');
+            $table->string('store_bank_number')->nullable();
         });
     }
 
