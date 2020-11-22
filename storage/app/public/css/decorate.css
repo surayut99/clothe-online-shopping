@@ -143,3 +143,27 @@ td {
 .overflow-h .item {
     min-width: 300px;
 }
+
+.space-left>* {
+    margin-left: 10px;
+}
+
+.space-right>* {
+    margin-right: 10px;
+}
+
+.shrink-text {
+    width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sp-flex {
+    flex-flow: wrap;
+    justify-content: start;
+}
+
+.space-bottom>* {
+    margin-bottom: 15px;
+}
