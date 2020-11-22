@@ -2,13 +2,13 @@
 @section('content')
 <div class="container">
     <h1 class="pt-3">แสดงรายการสินค้า</h1>
-
     @if(count($products) > 0)
     <div id="between-content" class="d-flex d-inline-flex p-1 bd-highlight sp-flex space-bottom">
+
         @foreach($products as $product)
-        <div style="background-color: #FDEDEC; width:20vw; border-radius:10px; margin: 15px" class="p-3 text-center">
+        <div style="background-color: #f9f7cf; border-radius:10px; width:25vw" class="p-3 text-center">
             <a href="{{ route('products.show',['product'=>$product->product_id]) }}" style="color:maroon">
-                <img src="{{asset($product->product_img_path)}}" height="200px">
+                <img src="{{asset($product->product_img_path)}}" style="object-fit: cover;width:200px;height:200px">
             </a>
             <div style="padding-top: 20px;" class="shrink-text">
                 <h4 class="rounded" style="color:black;">{{$product->product_name}}</h4>
@@ -24,9 +24,8 @@
         </div>
         @endforeach
     </div>
-
     @else
-        <h3 style="text-align: center">ขออภัย ไม่พบรายการสินค้าที่คุณต้องการ</h3>
+    <h3 style="text-align: center">ขออภัย ไม่พบรายการสินค้าที่คุณต้องการ</h3>
     @endif
 </div>
 @endsection

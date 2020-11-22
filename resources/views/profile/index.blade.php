@@ -21,7 +21,7 @@
 
         <div class="d-flex bd-highlight">
             <div class="p-2 bd-highlight mx-3">
-                <img src="{{ asset('storage/pictures/avatars/'.Auth::user()->id.'.jpg') }}" width="100" height="100">
+                <img src="{{ asset('storage/pictures/avatars/'.Auth::user()->id.'.jpg') }}" width="100px">
             </div>
             <div class="p-2 bd-highlight mx-3">
                 <h4>ชื่อ: {{Auth::user()->name}}</h4>

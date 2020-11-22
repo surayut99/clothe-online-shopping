@@ -5,7 +5,7 @@
     <div class="container">
         <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
             <div class="bg-light mr-md-3 pt-3 px-3 py-md-3 px-md-3">
-                <img src="{{ asset($product->product_img_path)}}" style="height: 300px">
+                <img src="{{ asset($product->product_img_path)}}" style="object-fit: cover;width:500px;height:350px">
             </div>
 
             <div class="bg-light mr-md-3 pt-3 px-3 py-md-5 px-md-5">
@@ -37,7 +37,6 @@
             </div>
         </div>
     </div>
-
     <div class="container mb-3">
         <div class="bg-light mr-md-3 pt-3 px-3 py-md-5 px-md-5">
             <div class="media">

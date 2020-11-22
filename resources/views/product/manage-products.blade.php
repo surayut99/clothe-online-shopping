@@ -20,20 +20,16 @@
             </div>
             <div class="text-right d-flex justify-content-end space-left">
                 <a href="{{route('products.edit',['product'=>$product->product_id])}}" class="btn btn-outline-info">แก้ไข</a>
-                <button onclick="collapseDelOpt()" id="deleteOpt" class="btn btn-outline-danger" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">ลบสินค้านี้</button>
-
-
                 {{-- <a href="{{route('products.destroy',['product'=>$product->product_id])}}" class="btn btn-outline-danger">ลบ</a> --}}
+
+                <form action="{{route('products.destroy',['product'=>$product->product_id])}}" method="post">
+                    @method('delete')
+                    @csrf
+                    <div>
+                        <button type="submit" class="btn btn-outline-danger">ลบสินค้านี้</button>
+                    </div>
+                </form>
             </div>
-            <form id="collapseExample" class="mt-3 collapse text-right" action="{{route('products.destroy',['product'=>$product->product_id])}}" method="post">
-                @method('delete')
-                @csrf
-                <label style="color:black">คุณต้องการลบสินค้านี้ใช่หรือไม่</label>
-                <div>
-                    <button type="submit" class="btn btn-danger">ใช่</button>
-                    <button onclick="collapseDelOpt()" class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">ไม่</button>
-                </div>
-            </form>
         </div>
         @endforeach
     </div>
