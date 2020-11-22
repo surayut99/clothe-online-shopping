@@ -39,7 +39,7 @@
                     <div class="input-group number-spinner pt-3">
                         <div class="d-flex pt-2">
                             <button type="submit" name="{{$cart->product_id}}" style="font-size: 10px;" class="btn btn-default btn-outline-success" onclick="onClickMinus(event)">-</button>
-                            <input onkeyup="onKeyUp(event, {{$cart->qty}},{{$cart->product_id}})" name='update' id='{{$cart->product_id}}' max="{{$cart->qty}}" min="1" style="font-size: 20px; width:50%; height:30px" type="text" class="form-control text-center" value="{{$cart->amount}}">
+                            <input disabled type="disabled" onkeyup="onKeyUp(event, {{$cart->qty}},{{$cart->product_id}})" name='update' id='{{$cart->product_id}}' max="{{$cart->qty}}" min="1" style="font-size: 20px; width:50%; height:30px" type="text" class="form-control text-center" value="{{$cart->amount}}">
                             <button type="submit" name="{{$cart->product_id}}" style="font-size: 10px;" class=" btn btn-default btn-outline-success" onclick="onClickPlus(event,{{$cart->qty}})">+</button>
                         </div>
                     </div>

@@ -56,7 +56,6 @@ function onKeyUp(event, max, id) {
     }
 
 
-
 }
 
 function increaseTotal(id){
@@ -74,6 +73,3 @@ function decreaseTotal(id){
 }
 
 
-function collapseDelOpt() {
-    // $("#deleteOpt").attr("hidden", !$("#deleteOpt").attr("hidden"))
-}
