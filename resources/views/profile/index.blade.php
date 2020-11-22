@@ -9,7 +9,7 @@
             <a href="{{ route('stores.create') }}" class="btn" style="background-color:RGB(242,137,108)">เปิดร้านค้า!</a>
             @else
             <h5 class="mr-3 mt-2">ร้านค้าของคุณ: </h5>
-            <a href="{{ route('stores.show',['store'=>$store->store_id]) }}" class="btn" style="background-color:RGB(242,137,108)">{{ $store->store_name }}</a>
+            <a href="{{ route('stores.show',['store'=>$store->store_id]) }}" class="btn" style="background-color:#120078; color:whitesmoke">{{ $store->store_name }}</a>
             @endif
         </div>
     </div>

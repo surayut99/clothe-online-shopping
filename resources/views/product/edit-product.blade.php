@@ -6,28 +6,53 @@
             <form action="{{route('products.update',['product'=>$product->product_id])}}" METHOD="POST">
                 @method('PUT')
                 @csrf
-
+                <div>
+                </div>
+                <div class="col-md-2 m-4 text-center">
+                    <img id="preImg" name="preImg" src="{{ asset($product->product_img_path) }}" width="150" height="150">
+                    <hr>
+                    <div>
+                        <h4 class="mt-4">แก้ไขรูปภาพสินค้า</h4>
+                        <label for="inpImg" class="btn btn-outline-info mt-1 ml-2">เลือกไฟล์รูปภาพ</label>
+                        <input hidden type="file" id="inpImg" name="inpImg" accept="image/png, image/jpeg" onchange="previewAvatar()">
+                    </div>
+                </div>
                 <div class="form-row">
                     <div class="form-group col-md-8">
                         <label for="inputEmail4">ชื่อสินค้า:</label>
-                        <input value="{{old('productName', $product->product_name)}}" class="form-control" id="productName" name="productName" placeholder="ชื่อสินค้า">
+                        <input value="{{old('productName', $product->product_name)}}" class="form-control @error('productName') is-invalid @enderror" id="productName" name="productName" placeholder="ชื่อสินค้า">
+                        @error('productName')
+                        <p class="text-danger">{{$message}}</p>
+                        @enderror
                     </div>
                     <br>
                     <div class="form-group col-md-2">
                         <label for="inputPassword4">จำนวนสินค้า:</label>
-                        <input value="{{old('qty', $product->qty)}}" class="form-control" id="qty" name="qty" placeholder="จำนวนสินค้า">
+                        <input value="{{old('qty', $product->qty)}}" class="form-control @error('qty') is-invalid @enderror" id="qty" name="qty" placeholder="จำนวนสินค้า">
+                        @error('qty')
+                        <p class="text-danger">{{$message}}</p>
+                        @enderror
                     </div>
                     <div class="form-group col-md-2">
                         <label for="inputPassword4">ราคาสินค้า(บาท/ชิ้น):</label>
-                        <input value="{{old('price', $product->price)}}" class="form-control" id="price" name="price" placeholder="ราคาสินค้า">
+                        <input value="{{old('price', $product->price)}}" class="form-control @error('price') is-invalid @enderror" id="price" name="price" placeholder="ราคาสินค้า">
+                        @error('price')
+                        <p class="text-danger">{{$message}}</p>
+                        @enderror
                     </div>
                     <div class="form-group col-md-2">
                         <label for="inputPassword4">ไซซ์:</label>
-                        <input value="{{old('size', $product->size)}}" class="form-control" id="size" name="size" placeholder="ไซซ์">
+                        <input value="{{old('size', $product->size)}}" class="form-control @error('size') is-invalid @enderror" id="size" name="size" placeholder="ไซซ์">
+                        @error('size')
+                        <p class="text-danger">{{$message}}</p>
+                        @enderror
                     </div>
                     <div class="form-group col-md-5">
                         <label for="inputPassword4">สี:</label>
-                        <input value="{{old('color', $product->color)}}" class="form-control" id="color" name="color" placeholder="สี">
+                        <input value="{{old('color', $product->color)}}" class="form-control @error('color') is-invalid @enderror" id="color" name="color" placeholder="สี">
+                        @error('color')
+                        <p class="text-danger">{{$message}}</p>
+                        @enderror
                     </div>
                 </div>
                 <div class="form-row">
@@ -63,7 +88,10 @@
 
                 <div class="form-group">
                     <label for="inputAddress">รายละเอียดสินค้า: </label>
-                    <input value="{{old('productDes', $product->product_description)}}" class="form-control" id="productDes" name="productDes">
+                    <input value="{{old('productDes', $product->product_description)}}" class="form-control @error('productDes') is-invalid @enderror" id="productDes" name="productDes">
+                    @error('productDes')
+                    <p class="text-danger">{{$message}}</p>
+                    @enderror
                 </div>
                 <button type="submit" class="btn btn-primary">ยืนยันการแก้ไข</button>
             </form>
@@ -71,8 +99,7 @@
     </div>
 </div>
 @endsection
-
-
 @section('script')
-
+<script src="{{ asset('storage/js/editProfile.js') }}"></script>
+<script src="{{ asset('storage/js/previewInpImg.js') }}"></script>
 @endsection
