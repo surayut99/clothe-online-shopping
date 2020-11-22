@@ -20,9 +20,7 @@ class CartController extends Controller
         $addresses = Address::where("user_id", "=", Auth::user()->id)
                     ->orderBy("default", "desc")
                     ->first();
-        $addresses = Address::where("user_id", "=", Auth::user()->id)
-                    ->orderBy("default", "desc")
-                    ->first();
+        $addresses = Address::where("user_id", "=", Auth::user()->id)->orderBy("default", "desc")->first();
         return view('pages.cart',[
             'carts' => $cart,
             'address' => $addresses,

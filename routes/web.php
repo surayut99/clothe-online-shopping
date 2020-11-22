@@ -57,6 +57,7 @@ Route::post('add_product/{id}',  [CartController::class, 'store'])->name('addcar
 Route::resource('products', ProductsController::class);
 Route::get('product_types/{products}', [ProductsController::class, 'getSecondary']);
 Route::get('product_qty/{product}', [ProductsController::class, 'getMaxQty']);
+Route::get('product_management/{store}', [ProductsController::class, 'productsinStore'])->name('product_management');
 
 
 

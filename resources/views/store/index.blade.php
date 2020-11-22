@@ -1,39 +1,59 @@
-@extends ('layouts.main')
+@extends('layouts.main')
+
+
 
 @section('content')
+<div class="container">
+    <h1>ร้านค้าทั้งหมด</h1>
+    <div class="d-flex overflow-h">
+        @foreach($stores as $store)
+        <div class="item card mr-3 my-1 p-2 bordered-rounded text-center" style="background-color: whitesmoke; width:500px;">
+            <a href="{{ route('stores.show',['store'=>$store->store_id]) }}" class="mx-auto pt-2" style='color:red'>
+                <img src="{{asset($store->store_img_path)}}" width="150px">
+                <div style="color: black; padding-top: 20px">
+                    <h3 style="text-align: center">{{$store->store_name}}</h3>
+                    <p>{{$store->store_description}}</p>
+                    {{-- <hr> --}}
+                </div>
+            </a>
+        </div>
+        @endforeach
+    </div>
+</div>
+{{-- @section('content')
 <div class="container mt-5">
     <div>
         <div class="media">
             <img src="{{asset("storage/pictures/icon/default_store.png")}}" class="mr-3" width="150px">
-            <div class="media-body mt-5">
-                <h5 class="mt-0">{{ $stores->store_name }}</h5>
-                <h6>{{ $stores->store_description }}</h6>
+<div class="media-body mt-5">
+    <h5 class="mt-0">{{ $stores->store_name }}</h5>
+    <h6>{{ $stores->store_description }}</h6>
+</div>
+</div>
+</div>
+<div class="d-flex justify-content-end">
+    <a href="{{route('products.create')}}" class="btn btn-primary mr-2" id="addProduct">เพิ่มรายการสินค้า</a>
+    <a href="{{route('products.create')}}" class="btn btn-primary mr-2" id="addProduct">การจัดการสินค้า</a>
+</div>
+
+
+<div class="d-flex overflow-h">
+    @foreach($products as $product)
+    <div class="item card mr-3 my-1 p-2 bordered-rounded" style="background-color: whitesmoke">
+        <a href="{{ route('products.show',['product'=>$product->product_id]) }}" class="mx-auto pt-2">
+            <img src="{{asset($product->product_img_path)}}" width="150px">
+            <div style="color: black; padding-top: 20px">
+                <h3 style="text-align: center">{{$product->product_name}}</h3>
+                <p style="text-align: center">{{$product->product_description}}</p>
             </div>
-        </div>
+        </a>
     </div>
-    <div class="d-flex justify-content-end">
-        <a href="{{route('products.create')}}" class="btn btn-primary mr-2" id="addProduct">เพิ่มรายการสินค้า</a>
-        <a href="{{route('products.create')}}" class="btn btn-primary mr-2" id="addProduct">การจัดการสินค้า</a>
-    </div>
-
-
-    <div class="d-flex overflow-h">
-        @foreach($products as $product)
-        <div class="item card mr-3 my-1 p-2 bordered-rounded" style="background-color: whitesmoke">
-            <a href="{{ route('products.show',['product'=>$product->product_id]) }}" class="mx-auto pt-2">
-                <img src="{{asset($product->product_img_path)}}" width="150px">
-                <div style="color: black; padding-top: 20px">
-                    <h3 style="text-align: center">{{$product->product_name}}</h3>
-                    <p style="text-align: center">{{$product->product_description}}</p>
-                </div>
-            </a>
-        </div>
-        {{-- <div style="background-color: orange; width:500px; height:500px" class="mx-2 item">
+    {{-- <div style="background-color: orange; width:500px; height:500px" class="mx-2 item">
     </div> --}}
-        @endforeach
-    </div>
+    {{-- @endforeach --}}
+</div> --}}
 
-    {{-- <div class="collapse" id="delete">
+{{-- <div class="collapse" id="delete">
         <hr>
         <h6>ลบรายการสินค้า</h6>
         <form action="">
@@ -51,26 +71,26 @@
                 <tbody>
                     @foreach($products as $product)
                     <form action="{{route('products.destroy', ['products'=> $product->product_id])}}" method="POSt">
-    @method('delete')
-    @csrf
-    <tr style="text-align: center">
-        <td>{{ $product->product_name }}</td>
-        <td>{{ $product->product_description }}</td>
-        <td>{{ $product->qty }}</td>
-        <td>{{ $product->color }}</td>
-        <td>{{ $product->size }}</td>
-        <td>{{ $product->price }}</td>
-        <td>
-            <button type="submit" class="btn btn-danger pl-2 pr-2 pt-1 pb-1">
-                ลบ
-            </button>
-        </td>
-    </tr>
-    </form>
-    @endforeach
-    </tbody>
-    </table>
-    </form>
+@method('delete')
+@csrf
+<tr style="text-align: center">
+    <td>{{ $product->product_name }}</td>
+    <td>{{ $product->product_description }}</td>
+    <td>{{ $product->qty }}</td>
+    <td>{{ $product->color }}</td>
+    <td>{{ $product->size }}</td>
+    <td>{{ $product->price }}</td>
+    <td>
+        <button type="submit" class="btn btn-danger pl-2 pr-2 pt-1 pb-1">
+            ลบ
+        </button>
+    </td>
+</tr>
+</form>
+@endforeach
+</tbody>
+</table>
+</form>
 
 </div>
 
