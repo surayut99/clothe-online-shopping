@@ -50,7 +50,7 @@
     </div>
     {{-- <div style="background-color: orange; width:500px; height:500px" class="mx-2 item">
     </div> --}}
-    @endforeach
+    {{-- @endforeach --}}
 </div> --}}
 
 {{-- <div class="collapse" id="delete">
