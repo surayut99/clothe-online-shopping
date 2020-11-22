@@ -2,6 +2,7 @@
 
   @section('content')
   <div class="bg-lr" style="">
+<<<<<<< HEAD
     <div class=" container p-4 form-auth">
       <h1 style="text-align: center; padding-top: 30px">ลงทะเบียน</h1>
 
@@ -47,12 +48,59 @@
 {{--          </div>--}}
 {{--          <input required id="telephone" type="text" class="form-control" name="telephone">--}}
 {{--        </div>--}}
+=======
+      <div class=" container p-4 form-auth">
+          <h1 style="text-align: center; padding-top: 30px">ลงทะเบียน</h1>
 
-        <div style="text-align: center">
-          <button type="submit" class="btn" style="background-color: cornflowerblue;">ลงทะเบียน</button>
-        </div>
+          <form action="{{route("register")}}" method="POST">
+              @csrf
 
-      </form>
-    </div>
+              <div class="form-group">
+                  <div class="form-inline">
+                      <label for="name">ชื่อผู้ใช้ &nbsp;</label>
+                      <small class="form-text text-warning">***</small>
+                  </div>
+                  <input required id="name" type="text" class="form-control" name="name">
+              </div>
+
+              <div class="form-group">
+                  <div class="form-inline">
+                      <label for="email">อีเมล &nbsp;</label>
+                      <small class="form-text text-warning">***</small>
+                  </div>
+                  <input required type="email" class="form-control" name="email">
+              </div>
+
+              <div class="form-group" style="margin-top: 20px">
+                  <div class="form-inline">
+                      <label for="password">รหัสผ่าน &nbsp;</label>
+                      <small class="form-text text-warning">***</small>
+                  </div>
+                  <input required id="password" type="password" class="form-control" name="password">
+              </div>
+
+              <div class="form-group" style="margin-top: 20px">
+                  <div class="form-inline">
+                      <label for="pasword_confirmation">ยืนยันรหัสผ่าน &nbsp;</label>
+                      <small class="form-text text-warning">***</small>
+                  </div>
+                  <input required id="password_confirmation" type="password" class="form-control" name="password_confirmation">
+              </div>
+
+              {{-- <div class="form-group" style="margin-top: 20px">
+          <div class="form-inline">
+            <label for="telephone">เบอร์โทรศัพท์ &nbsp;</label>
+            <small class="form-text text-warning">***</small>
+          </div>
+          <input required id="telephone" type="text" class="form-control" name="telephone">
+        </div> --}}
+>>>>>>> 455e7f5485fba5c139452aeac1c3a9e0d078d320
+
+              <div style="text-align: center">
+                  <button type="submit" class="btn" style="background-color: cornflowerblue;">ลงทะเบียน</button>
+              </div>
+
+          </form>
+      </div>
   </div>
   @endsection

@@ -12,24 +12,24 @@ class CreatePaymentTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('payments', function (Blueprint $table) {
-            $table->unsignedBigInteger("order_id");
-            $table->string("bank_name");
-            $table->string("img_path");
-        });
-    }
+    // public function up()
+    // {
+    //     Schema::create('payments', function (Blueprint $table) {
+    //         $table->unsignedBigInteger("order_id");
+    //         $table->string("bank_name");
+    //         $table->string("img_path");
+    //     });
+    // }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        Schema::dropIfExists('order_details');
-        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
-    }
+    // /**
+    //  * Reverse the migrations.
+    //  *
+    //  * @return void
+    //  */
+    // public function down()
+    // {
+    //     DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+    //     Schema::dropIfExists('order_details');
+    //     DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+    // }
 }

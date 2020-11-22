@@ -98,7 +98,7 @@ class StoresController extends Controller
             return view('auth.login');
         }
         $store = Store::where('store_id', '=', $id)->first();
-        $products = DB::table('products')->where('store_id','=', $id)->get();
+        $products = DB::table('products')->where('store_id','=', $id)->orderByDesc('updated_at')->get();
 
         return view('store.show',[
             'store' => $store,

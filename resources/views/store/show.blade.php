@@ -1,7 +1,7 @@
 @extends ('layouts.main')
 
 @section('content')
-<div class="container">
+<div class="container mt-5">
     <div class="media">
         <img src="{{asset($store->store_img_path)}}" class="mr-3" width="150px">
         <div class="media-body mt-5">
@@ -19,19 +19,19 @@
     <hr>
     <div>
         <h4>รายการสินค้าในร้านค้า</h4>
-        <div id="between-content" class="d-flex d-inline-flex p-1 bd-highlight">
+        <div id="between-content" class="d-flex d-inline-flex p-1 bd-highlight sp-flex space-bottom">
             @foreach($products as $product)
-            <div style="background-color: whitesmoke; border-radius:10px; width:30vw" class="p-3 text-center">
+            <div style="background-color: whitesmoke; border-radius:10px; width:25vw" class="p-3 text-center">
                 <a href="{{ route('products.show',['product'=>$product->product_id]) }}" style="color:maroon">
                     <img src="{{asset($product->product_img_path)}}" height="200px">
                 </a>
-                <div style="padding-top: 20px;">
+                <div style="padding-top: 20px;" class="shrink-text">
                     <h4 class="rounded" style="color:black;">{{$product->product_name}}</h4>
                 </div>
                 <hr>
                 <div style="color:black">
                     <h6 style="color:blue">ราคา {{$product->price}} บาท </h6>
-                    <label>{{$product->product_description}}</label>
+                    <label class="shrink-text">{{$product->product_description}}</label>
                 </div>
             </div>
             @endforeach

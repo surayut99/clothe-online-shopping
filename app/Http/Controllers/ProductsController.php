@@ -21,7 +21,7 @@ class ProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $products = DB::table('products')->get();
+        $products = DB::table('products')->orderBy('updated_at','desc')->get();
         return view('product.index',[
             'products' => $products
         ]);
@@ -76,8 +76,8 @@ class ProductsController extends Controller
         $product->size = $request->input('size');
         $product->qty = $request->input('qty');
         $product->price = $request->input('price');
-        $store = Store::where('user_id', '=', Auth::user()->id)->get();
-        $product->store_id = $store[0]->store_id;
+        $store = Store::where('user_id', '=', Auth::user()->id)->first();
+        $product->store_id = $store->store_id;
         $product->save();
 
 
@@ -92,7 +92,7 @@ class ProductsController extends Controller
             'product_img_path' => $path . "/" . $filename,
         ]);
 
-        return redirect()->route('stores.index');
+        return redirect()->route('stores.show',['store'=>$store->store_id]);
     }
 
     /**
@@ -112,11 +112,19 @@ class ProductsController extends Controller
         ]);
     }
 
-    public function showAll(){
-        $products = DB::table('products')->get();
-        return view('product.show_all_products',[
-            'products' => $products
+    public function searchByName(Request $request)
+    {
+        $request->validate([
+            'product_name' => 'required|min:1'
         ]);
+
+        $product_name = $request->input('product_name');
+        $products = DB::table('products')->orderBy('updated_at','desc')
+            ->where('product_name','LIKE', '%'.$product_name.'%')
+            ->get();
+
+        return view("product.index")->with('products' , $products);
+
     }
 
     /**
@@ -149,6 +157,31 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'productName' => 'required',
+            'productDes' => 'required',
+            'color' => 'required',
+            'size' => 'required',
+            'qty' => 'required',
+            'price' => 'required',
+        ],[
+            'productName.required' => 'กรุณาใส่ชื่อสินค้า',
+            'productDes.required' => "กรุณาใส่คำอธิบายสินค้า",
+            'color.required' => 'กรุณาระบุสีสินค้า',
+            'size.required' =>  'กรุณาระบุไซซ์สินค้า',
+            'qty.required' =>  'กรุณาระบุจำนวนสินค้า',
+            'price.required' => 'กรุณาระบุราคาสินค้า'
+        ]);
+        $product = DB::table('products')->where('product_id','=',$id)->first();
+        $img = $request->file('inpImg');
+        if($img){
+            $filename = $product->product_id . "." . $img->getClientOriginalExtension();
+                $path = 'storage/pictures/products';
+                $img->move($path, $filename);
+                DB::table('products')->where('product_id','=', $product->product_id)->update([
+                    'product_img_path' => $path . "/" . $filename,
+                ]);
+        }
         Product::where('product_id','=',$id)->update([
             'product_name' => $request->input('productName'),
             'product_description' => $request->input('productDes'),
@@ -159,18 +192,6 @@ class ProductsController extends Controller
             'qty' => $request->get('qty'),
             'price' => $request->get('price'),
         ]);
-        // $product = Product::where('product_id', '=', $id)->get();
-        // $product->product_name = $request->input('productName');
-        // $product->product_description = $request->input('productDes');
-        // $product->product_primary_type = $request->get('primeProdType');
-        // $product->product_secondary_type = $request->get('secondProdType');
-        // $product->color = $request->input('color');
-        // $product->size = $request->input('size');
-        // $product->qty = $id;
-        // $product->price = $request->input('price');
-        // $store = Store::where('user_id', '=', Auth::user()->id)->get();
-        // $product->store_id = $store[0]->store_id;
-        // $product->save();
         return redirect()->route('products.index');
     }
 
@@ -183,7 +204,7 @@ class ProductsController extends Controller
     public function destroy($id)
     {
         Product::where('product_id', '=', $id)->delete();
-        return redirect()->route('products.index');
+        return redirect()->back();
     }
 
 //    public function editProduct(){

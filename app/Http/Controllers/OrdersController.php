@@ -62,5 +62,6 @@ class OrdersController extends Controller
 
         return redirect()->route('pages.home');
     }
+}
 
-    
+

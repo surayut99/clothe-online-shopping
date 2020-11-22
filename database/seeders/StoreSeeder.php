@@ -19,7 +19,7 @@ class StoreSeeder extends Seeder
         $str->store_name = "PUEN STORE";
         $str->store_description = "WoW";
         $str->store_tel = "0909042122";
-        $str->store_bank = "8282831923";
+        $str->store_bank_number = "8282831923";
 
         $str->save();
 
@@ -28,7 +28,7 @@ class StoreSeeder extends Seeder
         $str->store_name = "PUEN STORE 2";
         $str->store_description = "WoW WOWW";
         $str->store_tel = "1150";
-        $str->store_bank = "2315452333";
+        $str->store_bank_number = "2315452333";
 
         $str->save();
     }

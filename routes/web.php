@@ -61,9 +61,7 @@ Route::get('product_qty/{product}', [ProductsController::class, 'getMaxQty']);
 Route::get('product/{id}/detail', [ProductsController::class, 'show'])->name('product.detail');
 
 Route::get('product_management/{store}', [ProductsController::class, 'productsinStore'])->name('product_management');
-
-Route::get('product/show_all', [ProductsController::class, 'showAll'])->name('product.show_all');
-
+Route::get('product/search', [ProductsController::class, 'searchByName'])->name('product.searchByName');
 
 // Stores
 Route::resource('stores',StoresController::class);
