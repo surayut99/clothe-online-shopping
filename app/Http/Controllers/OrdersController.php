@@ -222,5 +222,18 @@ class OrdersController extends Controller
 
         return redirect()->route("profile");
     }
+    public function ordersStore($id){
+        $store = DB::table('stores')->where('store_id','=',$id)->first();
+        $orders = DB::table('orders')->join('order_details','orders.order_id','=','order_details.order_id')->join('products','order_details.product_id','=','products.product_id')->select('orders.*','order_details.*','products.*')->get();
+        foreach($orders as $order){
+            $product = DB::table('products')->where('product_id','=',$order->product_id)->get();
+            // return $product;
+        }
+        return view('store.show_orders',[
+            'orders' => $orders,
+            'store' => $store,
+        ]);
+    }
+
 }
 

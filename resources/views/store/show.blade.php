@@ -12,6 +12,7 @@
                 <a href="{{route('stores.edit',['store'=>$store->store_id])}}" class="btn btn-warning mr-2">แก้ไขร้านค้า</a>
                 <a href="{{route('products.create')}}" class="btn btn-primary mr-2" id="addProduct">เพิ่มรายการสินค้า</a>
                 <a href="{{route('product_management',['store'=>$store->store_id])}}" class="btn btn-primary mr-2" id="addProduct">การจัดการสินค้า</a>
+                <a href="{{route('store_orders',['store'=>$store->store_id])}}" class="btn btn-info mr-2">รายการสั่งซื้อ</a>
             </div>
             @endif
         </div>
