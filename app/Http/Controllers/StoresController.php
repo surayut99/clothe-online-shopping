@@ -53,11 +53,25 @@ class StoresController extends Controller
         $store->store_name = $request->input('storeName');
         $store->store_description = $request->input('storeDes');
         $store->user_id = Auth::user()->id;
+
         $store->save();
+        
+        if ($request->file('inpImg')) {
+            $img = $request->file('inpImg');
+            $store = DB::table('stores')->where("user_id", "=", Auth::user()->id)->first();
+            $filename = $store->store_id . ".jpg";
+            $path = 'storage/pictures/brand';
+            $img->move($path, $filename);
+        }
+
+        // $owner = new Owner;
+        // $owner->user_id = Auth::user()->id;
+        // $owner->save;
 
         $owner = new Owner;
         $owner->user_id = Auth::user()->id;
         $owner->save();
+
         return redirect()->route('profile');
     }
 

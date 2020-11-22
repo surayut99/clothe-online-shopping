@@ -3,6 +3,7 @@
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StoresController;
@@ -52,14 +53,21 @@ Route::get('/user_product/{opt}', [UserProductController::class, 'showUserProduc
 Route::delete('/cart/{id}/delete',[CartController::class,'destroy'])->name('cart.destroy');
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::post('add_product/{id}',  [CartController::class, 'store'])->name('addcart');
+Route::get('/cart/checkout',[CartController::class,'checkout'])->name('checkout');
 
-// Products
+// Product
 Route::resource('products', ProductsController::class);
 Route::get('product_types/{products}', [ProductsController::class, 'getSecondary']);
 Route::get('product_qty/{product}', [ProductsController::class, 'getMaxQty']);
+Route::get('product_detail/{id}', [ProductsController::class, 'show'])->name('product.detail');
 Route::get('product_management/{store}', [ProductsController::class, 'productsinStore'])->name('product_management');
+Route::get('product/search', [ProductsController::class, 'searchByName'])->name('product.searchByName');
+Route::get('product/show/{type}', [ProductsController::class, 'showByPrimaryType'])->name('products.showByPrimaryType');
 
-
+//Order
+Route::resource("orders", OrdersController::class);
+Route::get('orders/{order}/inform_payment', [OrdersController::class, 'informPayment'])->name("orders.inform");
+Route::post("orders/{order}/infrom_payment", [OrdersController::class, "storePayment"])->name("orders.store_payment");
 
 // Stores
 Route::resource('stores',StoresController::class);
@@ -71,12 +79,10 @@ Route::get('auth/register', function () {
 Route::get('auth/login', function () {
     return view('pages.auth.login');
 })->name('pages.auth.login');
-Route::get('/cart/checkout', function () {
-    return view('pages.checkout');
-})->name('checkout');
 Route::get('/profile/open-shop', function () {
     return view('auth.seller_register');
 })->name('seller_register');
 Route::get('/order-details/1', function () {
     return view('pages.order_details');
 })->name('order_details');
+

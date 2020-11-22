@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="bg-light">
-    <div class=" container">
+    <div class=" container pt-4">
         <h1 style="border: 2px ">แก้ไขข้อมูลส่วนตัว</h1>
 
         <div class="bd-highlight">
@@ -26,19 +26,13 @@
                     <input value="{{Auth::user()->name}}" name="new_name" class="form-control" id="changeName">
                 </div>
 
-                <div class="my-1">
-                    <h4>เบอร์โทร: </h4>
-                    <input value="{{Auth::user()->telephone}}" name="new_tel" class="form-control" id="changeTel" type='string' onkeyup="validateTelNumber(this)">
-                </div>
-
-                <button type="submit" class="btn btn-primary my-3" href="">บันทึก</button>
+                <button type="submit" class="btn btn-success my-3" href="">บันทึก</button>
             </form>
         </div>
     </div>
-</div>
-@endsection
+    @endsection
 
-@section('script')
-<script src="{{ asset('storage/js/editProfile.js') }}"></script>
-<script src="{{ asset('storage/js/previewInpImg.js') }}"></script>
-@endsection
+    @section('script')
+    <script src="{{ asset('storage/js/editProfile.js') }}"></script>
+    <script src="{{ asset('storage/js/previewInpImg.js') }}"></script>
+    @endsection

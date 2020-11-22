@@ -43,9 +43,17 @@ class CartController extends Controller
         return redirect()->route('cart');
     }
 
+    public function update(Request $request,$id){
+        DB::table('carts')->where('user_id', '=', Auth::user()->id)->where('product_id', '=', $id)
+        ->update([
+            'qty' => $request->input('amount'),
+        ]);
+    }
+
     public function destroy($id)
     {
         DB::table('carts')->where('user_id', '=', Auth::user()->id)->where('product_id', '=', $id)->delete();
         return redirect()->route('cart');
     }
+
 }

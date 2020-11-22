@@ -14,7 +14,8 @@ class DeleteColumnOrders extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->dropColumn(['purchased_at', 'verified_at', 'deliveried_at', 'completed_at', 'cancelled_at', 'payment_type']);
+//            $table->dropColumn(['purchased_at', 'verified_at', 'deliveried_at', 'completed_at', 'cancelled_at', 'payment_type']);
+            $table->dropColumn(['purchased_at', 'verified_at', 'deliveried_at', 'completed_at', 'cancelled_at']);
         });
     }
 
@@ -31,7 +32,7 @@ class DeleteColumnOrders extends Migration
             $table->dateTime('deliveried_at')->nullable();
             $table->dateTime('completed_at')->nullable();
             $table->dateTime('cancelled_at')->nullable();
-            $table->enum('payment_type', array('COD', 'Transfering'));
+//            $table->enum('payment_type', array('COD', 'Transfering'));
         });
     }
 }

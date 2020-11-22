@@ -95,6 +95,13 @@ class ProductsController extends Controller
         return redirect()->route('stores.show',['store'=>$store->store_id]);
     }
 
+    public function showByPrimaryType($type)
+    {
+        $products = Product::where('product_primary_type', '=', $type)->get();
+        return view('product.index', [ 'products' => $products]);
+
+    }
+
     /**
      * Display the specified resource.
      *
@@ -106,10 +113,24 @@ class ProductsController extends Controller
         $product = Product::where('product_id','=',$id)->first();
         $store = Store::where('store_id', '=', $product->store_id)->first();
 
-        return view('product.show',[
+        return view('product.product_detail',[
             'product' => $product,
             'store' => $store,
         ]);
+    }
+    public function searchByName(Request $request)
+    {
+        $request->validate([
+            'product_name' => 'required|min:1'
+        ]);
+
+        $product_name = $request->input('product_name');
+        $products = DB::table('products')->orderBy('updated_at','desc')
+            ->where('product_name','LIKE', '%'.$product_name.'%')
+            ->get();
+
+        return view("product.index")->with('products' , $products);
+
     }
 
     /**

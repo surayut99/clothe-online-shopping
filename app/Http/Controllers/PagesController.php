@@ -8,6 +8,8 @@ class PagesController extends Controller
 {
     public function index()
     {
+
+
         $rec_images = [
             "เสื้อผู้ชาย" => 'storage/pictures/icon/male_clothe.png',
             "เสื้อผู้หญิง" => 'storage/pictures/icon/female_clothe.png',

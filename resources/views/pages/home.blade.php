@@ -38,7 +38,9 @@
       <div id="between-content" class="d-flex d-flex justify-content-center">
         @foreach($rec_images as $key=>$image)
         <div style="background-color: white;" class="p-3">
-          <img src="{{asset($image)}}">
+            <a href="{{ route('products.showByPrimaryType',  ['type'=>$key]) }}">
+                <img src="{{asset($image)}}">
+            </a>
           <div style="color: black; padding-top: 20px">
             <p style="text-align: center">{{$key}}</p>
           </div>

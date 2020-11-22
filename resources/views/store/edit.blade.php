@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="container">
+<div class="container mt-5">
     <h1>แก้ไขร้านค้า</h1>
     <div>
         <form enctype="multipart/form-data" action="{{route('stores.update',['store'=>$store->store_id])}}" method="post">

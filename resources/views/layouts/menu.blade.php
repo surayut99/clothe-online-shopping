@@ -1,6 +1,5 @@
 <div class="sp-nav-font">
-    <nav class="navbar navbar-expand-lg navbar-light shoppool-nav d-flex justify-content-between" style="min-height: 90px">
-
+    <nav class="navbar navbar-expand-lg navbar-light shoppool-nav d-flex justify-content-between" style="min-height: 70px">
         {{-- Home LOGO --}}
         <div class="d-flex" style="max-width:14vw">
             <img src="{{asset('storage/pictures/icon/logo.png')}}" style="height: 50px; filter: drop-shadow(2px 2px 2px RGB(47,49,54));">
@@ -8,19 +7,27 @@
                 <a id="home" class="navbar-brand logo-font p-2" href="/" style="font-size:25px;">SHOPPOOL</a>
                 <br>
                 <a id="home" class="navbar-brand logo-font1" href="/" style="font-size:15px; line-height: 1em">fabulous & gorgeous</a>
-
             </div>
         </div>
-        {{-- Search Tool --}}
 
-        {{-- <div class="d-flex">
-      <ul class="navbar-nav">
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="ค้นหา" aria-label="Search" style="width: 30vw;">
-          <button class="btn btn-warning my-2 my-sm-0" type="submit" style="border:2px solid white; font-weight: bold">ค้นหา</button>
-        </form>
-      </ul>
-    </div> --}}
+        {{--ค้นหาสินค้า--}}
+        <div class="pl-2">
+            <form action="{{ route("product.searchByName") }}" method="GET">
+                <div class="row">
+                    <div style="margin-right: 10px;">
+                        <input required class="form-control" type="text" placeholder="พิมพ์ชื่อสินค้า..." name="product_name" aria-label="Search">
+
+                    </div>
+                    <div>
+                        <div style="text-align: right">
+                            <button type="submit" class="btn btn-outline-light">ค้นหา</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
 
         {{-- Acccount Tool --}}
         <div class="d-flex" id="account-content">
