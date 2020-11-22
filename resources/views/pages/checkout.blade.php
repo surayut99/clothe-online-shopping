@@ -17,30 +17,21 @@
                         <th scope="col">ราคาต่อหน่วย</th>
                         <th scope="col">จำนวน</th>
                     </tr>
-<<<<<<< HEAD
-                    </thead>
-                    <tbody style="background-color: #D1F2EB">
-=======
+
                 </thead>
                 <tbody style="background-color: #D1F2EB">
->>>>>>> 455e7f5485fba5c139452aeac1c3a9e0d078d320
+
                     <tr>
                         <th scope="row">1</th>
                         <td>Mark</td>
                         <td>Otto</td>
                         <td>@mdo</td>
                     </tr>
-<<<<<<< HEAD
-                    </tbody>
-                </table>
-                <p class="text-right">ยอดสั่งซื้อทั้งหมด:</p>
-            </div>
-=======
+
                 </tbody>
             </table>
             <p class="text-right">ยอดสั่งซื้อทั้งหมด:</p>
         </div>
->>>>>>> 455e7f5485fba5c139452aeac1c3a9e0d078d320
 
         <div class="bg-light py-md-3 px-md-5 mb-3">
             <h5>วิธีการชำระเงิน</h5>

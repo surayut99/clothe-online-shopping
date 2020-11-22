@@ -52,31 +52,22 @@
     <div style="padding-bottom: 20px">
       <h2 style="margin-bottom: 10px; text-align: center; color: white">ร้านค้าแนะนำ</h2>
       <div class="d-flex justify-content-center">
-        <div class="btn" id="between-content">
-          <div style="background-color: white;" class="p-3">
-            <img src="{{asset('storage/pictures/korea_shoe.jpg')}}" style="height: 300px">
-            <div style="color: black; padding-top: 20px">
-              <p style="text-align: center; font-weight: bold; font-size: 20px">RANKA</p>
-              <p style="text-align: center">รองเท้านำเข้าจากเกาหลีคุณภาพดี ราคาถูก ใช้ทน ยางคุณภาพดี มีหลายไซซ์หลากสี</p>
-            </div>
-          </div>
-        </div>
-        <div class="btn" id="between-content">
-          <div style="background-color: white;" class="p-3">
-            <img src="{{asset('storage/pictures/koreashirt.jpeg')}}" style="height: 300px">
-            <div style="color: black; padding-top: 20px">
-              <p style="text-align: center; font-weight: bold; font-size: 20px">RAN-KAI-WA</p>
-              <p style="text-align: center">เสื้อผ้านำเข้าจากเกาหลี เนื้อผ้าคุณภาพ ราคาเหมาะสม</p>
-            </div>
-          </div>
-        </div>
-        <div class="btn" id="between-content">
-          <div style="background-color: white;" class="p-3">
-            <img src="{{asset('storage/pictures/koreatrousers.jpeg')}}" style="height: 300px">
-            <div style="color: black; padding-top: 20px">
-              <p style="text-align: center; font-weight: bold; font-size: 20px">RAN-DI-CHON-AENG</p>
-              <p style="text-align: center">กางเกงนำเข้าจากเกาหลีมีหลายไซซ์ คุณภาพดี เนื้อผ้าใส่สบาย ใส่ได้หลายโอกาส</p>
-            </div>
+          @foreach($stores as $store)
+              @if($store->store_id <= 3)
+                  <div style="background-color: white; margin: 15px" class="p-3">
+                      <a href="{{route('stores.show', ['store'=>$store->store_id])}}">
+                          <div>
+                              <img src="{{$store->store_img_path}}" style="object-fit: cover;width:250px;height:250px">
+                              <div style="color: black; padding-top: 20px">
+                                  <p style="text-align: center; font-weight: bold; font-size: 20px">{{$store->store_name}}</p>
+                                  <p style="text-align: center">{{$store->store_description}}</p>
+                              </div>
+                          </div>
+                      </a>
+                  </div>
+
+              @endif
+          @endforeach
           </div>
         </div>
       </div>

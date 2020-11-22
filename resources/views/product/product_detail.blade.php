@@ -58,11 +58,11 @@
         </div>
     </div>
 
-    <div class="container mb-3">
-        <div class="bg-light mr-md-3 pt-3 px-3 py-md-5 px-md-5">
-            <h5>คะแนนของสินค้า</h5>
-        </div>
-    </div>
+{{--    <div class="container mb-3">--}}
+{{--        <div class="bg-light mr-md-3 pt-3 px-3 py-md-5 px-md-5">--}}
+{{--            <h5>คะแนนของสินค้า</h5>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 
 </div>
 @endsection
