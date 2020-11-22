@@ -158,6 +158,7 @@ class ProductsController extends Controller
             'price.required' => 'กรุณาระบุราคาสินค้า'
         ]);
         $product = DB::table('products')->where('product_id','=',$id)->first();
+        print_r($product);
         $img = $request->file('inpImg');
         if($img){
             $filename = $product->product_id . "." . $img->getClientOriginalExtension();
@@ -166,6 +167,7 @@ class ProductsController extends Controller
                 DB::table('products')->where('product_id','=', $product->product_id)->update([
                     'product_img_path' => $path . "/" . $filename,
                 ]);
+
         }
         Product::where('product_id','=',$id)->update([
             'product_name' => $request->input('productName'),
@@ -177,7 +179,7 @@ class ProductsController extends Controller
             'qty' => $request->get('qty'),
             'price' => $request->get('price'),
         ]);
-        return redirect()->route('products.index');
+        return redirect()->route('stores.show',$product->store_id);
     }
 
     /**
