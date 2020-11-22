@@ -113,7 +113,7 @@ class ProductsController extends Controller
         $product = Product::where('product_id','=',$id)->first();
         $store = Store::where('store_id', '=', $product->store_id)->first();
 
-        return view('product.show',[
+        return view('product.product_detail',[
             'product' => $product,
             'store' => $store,
         ]);

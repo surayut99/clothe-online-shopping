@@ -19,7 +19,7 @@
                 <label class="shrink-text">{{$product->product_description}}</label>
             </div>
             <div class="text-center">
-                <a href="" class="btn btn-outline-info">เลือกสินค้า</a>
+                <a href="{{route('product.detail', ['id'=>$product->product_id])}}" class="btn btn-outline-info">ดูรายละเอียดสินค้า</a>
             </div>
         </div>
         @endforeach

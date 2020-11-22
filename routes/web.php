@@ -58,7 +58,7 @@ Route::resource('products', ProductsController::class);
 Route::get('product_types/{products}', [ProductsController::class, 'getSecondary']);
 Route::get('product_qty/{product}', [ProductsController::class, 'getMaxQty']);
 
-Route::get('product/{id}/detail', [ProductsController::class, 'show'])->name('product.detail');
+Route::get('product_detail/{id}', [ProductsController::class, 'show'])->name('product.detail');
 
 Route::get('product_management/{store}', [ProductsController::class, 'productsinStore'])->name('product_management');
 Route::get('product/search', [ProductsController::class, 'searchByName'])->name('product.searchByName');
