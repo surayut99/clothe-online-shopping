@@ -46,10 +46,8 @@
           @endforeach
         </tbody>
       </table>
-      <p class="text-right">ยอดสั่งซื้อทั้งหมด:</p>
+      <p class="text-right">ยอดสั่งซื้อทั้งหมด: {{$sum}}</p>
     </div>
-    </table>
-    <p class="text-right">ยอดสั่งซื้อทั้งหมด: {{$sum}}</p>
   </div>
 
   <div class="bg-light py-md-3 px-md-5 mb-3">
@@ -109,7 +107,7 @@
     {{-- <p>รวมการจัดส่ง: </p>--}}
     {{-- <p>การชำระเงินทั้งหมด: </p>--}}
   </div>
-  <form action="{{ route('orders.store') }}" method="POST">
+  <form class="text-right" action="{{ route('order.store') }}" method="POST">
     @csrf
     <button type="submit" class="btn btn-success">ยืนยันการสั่งซื้อสินค้า</button>
   </form>

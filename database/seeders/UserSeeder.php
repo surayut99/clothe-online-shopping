@@ -26,5 +26,11 @@ class UserSeeder extends Seeder
         $usr->email = "p2@pp.com";
         $usr->password = Hash::make("puenpuen");
         $usr->save();
+
+        $usr = new User();
+        $usr->name = "punch";
+        $usr->email = "punch.rinlanee@gmail.com";
+        $usr->password = Hash::make("12345678");
+        $usr->save();
     }
 };
