@@ -7,25 +7,33 @@
         <div class="container" style="padding-left:100px; padding-right:100px">
             <h5>รายการสินค้า</h5>
 
-            @foreach($order as $order)
-            <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
-                <img src="" style="height: 100px;" class="mr-3">
-                <div>
-                    <p></p>
-                    <p>ราคาสินค้า</p>
+            @foreach($order_list as $ord)
+
+                <h3>{{$ord['order']->store_name}}</h3>
+                <div class="row">
+                    @foreach($ord['products'] as $product)
+                        <img src="{{asset($product->product_img_path)}}" alt="">
+                        <h4>{{$product->product_name}}</h4>
+                        <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+                            <img src="" style="height: 100px;" class="mr-3">
+                            <div>
+                                <p>{{$product->price}} บาท</p>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
-            </div>
+                <h5>สั่งซื้อเมื่อ</h5>
+                <p>{{$ord['order']->created_at}}</p>
+                <h5>ชำระด้วย</h5>
+                <p>{{$ord['order']->payment_type}}</p>
             @endforeach
 
-            <h5>สั่งซื้อเมื่อ</h5>
-            <p>30 ตุลาคม 17:01</p>
 
-            <h5>ชำระด้วย</h5>
-            <p>-</p>
+
 
             <h5>จัดส่งไปที่</h5>
-            <p>ชื่อผู้รับ</p>
-            <p>ที่อยู่ผู่รับ</p>
+{{--            <p>{{$user->name}}</p>--}}
+{{--            <p>{{$address->address}}</p>--}}
 
             <h5>สรุป</h5>
             <div class="d-md-flex justify-content-between">

@@ -108,7 +108,7 @@
     {{-- <p>รวมการจัดส่ง: </p>--}}
     {{-- <p>การชำระเงินทั้งหมด: </p>--}}
   </div>
-  <form class="text-right" action="{{ route('order.details') }}" method="POST">
+  <form class="text-right" action="{{ route('order.store') }}" method="POST">
     @csrf
     <button type="submit" class="btn btn-success">ยืนยันการสั่งซื้อสินค้า</button>
   </form>

@@ -101,16 +101,31 @@ class OrdersController extends Controller
             $current_store = $products[$i]->store_id;
         }
 
-        return redirect()->route('profile');
+        return redirect()->route('order.success');
     }
 
-    public function showOrderDetails($id)
+    public function success()
     {
+        $dt = Order::where('user_id','=',1)->select(DB::raw("max(created_at) as last"))->first()->last;
+        $orders = Order::where('orders.user_id', '=', Auth::id())->where('created_at', '=', $dt)
+            ->join('stores', 'stores.store_id', '=', 'orders.store_id')
+            ->select('orders.*', 'stores.store_name')
+            ->get();
+        $order_list = [];
+        foreach ($orders as $order){
+            $products = OrderDetail::where('order_id', '=', $order->order_id)
+                ->join('products','products.product_id', '=', 'order_details.product_id')
+                ->select('order_details.*', 'products.product_img_path', 'products.price')
+                ->get();
+            $ord = ['order' => $order, 'products' => $products];
+            array_push($order_list, $ord);
+        }
 
-//        $order_details = OrderDetails::where('order_id', '=', $id)
-//            ->join('products','products.product_id','=','order_details.product_id')
-//            ->get();
-//        return view("pages.order_details", ['order_details' => $order_details]);
+//        return $order_list[0]['order'];
+        return view('orders.success', [
+            'order_list' => $order_list,
+            'orders' => $orders
+        ]);
     }
     /**
      * Display the specified resource.

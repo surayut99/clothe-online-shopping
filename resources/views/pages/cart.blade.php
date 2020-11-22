@@ -90,7 +90,7 @@
             </div>
             @else
             <div style="padding-left:180px">
-              <a href="{{route('checkout')}}" class="disabled btn btn-secondary" style="height:40px">Check out</a>
+              <a class="disabled btn btn-secondary" style="height:40px">Check out</a>
             </div>
             @endif
       </div>
