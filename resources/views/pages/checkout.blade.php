@@ -4,19 +4,23 @@
     <h2 class="text-center text-light">ทำการสั่งซื้อ</h2>
     <div class="container">
         <div class="bg-light py-md-3 px-md-5 mb-3">
-            <h5 style="font-weight: bold">ที่อยู่ในการจัดส่ง</h5>
+            <h3 style="font-weight: bold">ยืนยันการสั่งซื้อสินค้า</h3>
         </div>
 
         <div class="bg-light py-md-3 px-md-5 mb-3">
             <h5 style="font-weight: bold">ที่อยู่การจัดส่ง</h5>
             <div >
-                <dev class="form-row">
-                    <p  class="form-group col-md-5">ชื่อ : {{$address->receiver}}</p>
-                    <p  class="form-group col-md-6">เบอร์โทร : {{$address->telephone}}</p>
-                </dev>
-                <br>
+                <div class="form-row">
+                    <p  style="font-weight: bold">ชื่อ : </p>
+                    <p class="form-group col-md-4">{{$address->receiver}}</p>
+                    <p  style="font-weight: bold">เบอร์โทร : </p>
+                    <p class="form-group col-md-3">{{$address->telephone}}</p>
+                </div>
+                <div class="form-row">
+                    <p style="font-weight: bold">ที่อยู่ : </p>
+                    <p class="form-group col-md-4">{{$address->address}}</p>
+                </div>
 
-                <p>ที่อยู่ : {{$address->address}}</p>
             </div>
         </div>
 
@@ -35,7 +39,7 @@
                 <tbody style="background-color: #D1F2EB">
 
                     <tr>
-                        <th ><img class="btn" src="{{$cart->product_img_path}}" style="width:80px;"></th>
+                        <th ><img style="width:80px;" src="{{asset($cart->product_img_path)}}"></th>
                         <td>{{$cart->product_name}}</td>
                         <td>{{$cart->price}}</td>
                         <td>{{$cart->amount}}</td>
@@ -48,34 +52,70 @@
 
 
 
-        <div class="bg-light py-md-3 px-md-5 mb-3">
-            <h5>วิธีการชำระเงิน</h5>
-            <div class="accordion" id="accordionExample">
-                <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#banks" aria-expanded="true" aria-controls="banks">ชำระผ่านบัญชีธนาคาร</button>
-                <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#destination" aria-expanded="false" aria-controls="destination">ชำระเงินปลายทาง</button>
-                <div class="collapse" id="banks" data-parent="#accordionExample">
-                    <br>
-                    <p>ชำระผ่านบัญชีธนาคาร</p>
-                    <p>ไทยพาณิชย์ : 111-221100-2</p>
-                    <p>กสิกรไทย : 333-220100-4</p>
-                    <p>กรุงไทย : 431-000456-1</p>
-                    <p>เมื่อชำระเงินแล้วกรุณาแนบหลักฐานการโอน</p>
-                </div>
-                <div class="collapse" id="destination" data-parent="#accordionExample">
-                    <br>
-                    <p>ชำระเงินปลายทาง</p>
-                </div>
-            </div>
+{{--        <div class="bg-light py-md-3 px-md-5 mb-3">--}}
+{{--            <h5>วิธีการชำระเงิน</h5>--}}
+{{--            <div class="accordion" id="accordionExample">--}}
+{{--                <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#banks" aria-expanded="true" aria-controls="banks">ชำระผ่านบัญชีธนาคาร</button>--}}
+{{--                <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#destination" aria-expanded="false" aria-controls="destination">ชำระเงินปลายทาง</button>--}}
+{{--                <div class="collapse" id="banks" data-parent="#accordionExample">--}}
+{{--                    <br>--}}
+{{--                    <p>ชำระผ่านบัญชีธนาคาร</p>--}}
+{{--                    <p>ไทยพาณิชย์ : 111-221100-2</p>--}}
+{{--                    <p>กสิกรไทย : 333-220100-4</p>--}}
+{{--                    <p>กรุงไทย : 431-000456-1</p>--}}
+{{--                    <p>เมื่อชำระเงินแล้วกรุณาแนบหลักฐานการโอน</p>--}}
+{{--                </div>--}}
+{{--                <div class="collapse" id="destination" data-parent="#accordionExample">--}}
+{{--                    <br>--}}
+{{--                    <p>ชำระเงินปลายทาง</p>--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
+{{--        </div>--}}
+
+        <div >
+            <div class="form-row">
+                <div class="form-group col-md-6 bg-light py-md-3 px-md-5 mb-3" >
+                    <div>
+                        วิธีการชำระเงินที่ต้องการ
+                    </div>
+                    <br>
+                    <div>
+                        <select name="payment_type" id="" class="form-control">
+                            @foreach($payment_types as $payment_type)
+                                <option value="{{$payment_type}}">{{$payment_type}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-md-6 bg-light py-md-3 px-md-5 mb-3">
+                    <div>
+                        วิธีการจัดส่งสินค้าที่ต้องการ
+                    </div>
+                    <br>
+                    <div>
+                        <select name="shipment_type" id="" class="form-control">
+                            @foreach($shipment_types as $shipment_type)
+                                <option value="{{$shipment_type}}">{{$shipment_type}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+            </div>
         </div>
+
+
+
+
 
 
         <div class="bg-light py-md-3 px-md-5 mb-3 text-right mb-5">
-            <p>ยอดรวมสินค้า: </p>
-            <p>รวมการจัดส่ง: </p>
-            <p>การชำระเงินทั้งหมด: </p>
+            <p>ยอดรวมสินค้า:   {{$sum}}</p>
+{{--            <p>รวมการจัดส่ง: </p>--}}
+{{--            <p>การชำระเงินทั้งหมด: </p>--}}
         </div>
-        <a class="btn btn-primary float-right" href="">ยืนยันการชำระเงิน</a>
+        <a class="btn btn-primary float-right" href="{{ route('save_order') }}">ยืนยันการชำระเงิน</a>
     </div>
 </div>
 

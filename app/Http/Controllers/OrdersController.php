@@ -7,8 +7,11 @@ use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class OrdersController extends Controller
 {
@@ -63,6 +66,49 @@ class OrdersController extends Controller
         }
 
         return redirect()->route('pages.home');
+    }
+
+    public function saveOrder(Request $request){
+        $addresses = Address::where("user_id", "=", Auth::user()->id)->orderBy("default", "desc")->first();
+//        $sum = Cart::where('user_id','=',Auth::user()->id)->join('products','products.product_id','=','carts.product_id')
+//            ->select(DB::raw('products.price*carts.qty as total'))->pluck('total')->sum();
+        $products = Cart::where('user_id','=',Auth::user()->id)->join('products','products.product_id','=','carts.product_id')
+            ->select('products.product_id','products.product_name','products.price','carts.qty','products.store_id')->orderBy('products.store_id')->get();
+        $current_store = $products[0]->store_id;
+        $order = null;
+        $dateTime = Carbon::now();
+        for($i = 0; $i < $products->count();$i++){
+            if($products[$i]->store_id != $current_store){
+                $order = new Order();
+                $order->user_id = Auth::user()->id;
+                $order->store_id = $current_store;
+                $order->expired_at = $dateTime->addDays(2);
+                $order->total_cost = 0;
+                $order->recv_address = $addresses->address;
+                $order->recv_name = $addresses->receiver;
+                $order->recv_tel = $addresses->telephone;
+                $order->shipment_type = $request->get('shipment_type');
+                $order->payment_type = $request->get('payment_type');
+
+                $order->save();
+            }
+            $order_id = DB::table('orders')->max('order_id')+1;
+            $total = 0;
+            while ($products[$i]->store_id == $current_store){
+                $order_detail = new OrderDetail();
+                $order_detail->order_id = $order_id;
+                $order_detail->product_id = $products[$i]-> product_id;
+                $order_detail->product_name = $products[$i]->product_name;
+                $order_detail->qty = $products[$i]->qty;
+                $order_detail->price = $products[$i]->price;
+                $total = $order_detail->qty * $order_detail->price;
+                $order_detail->save();
+            }
+            DB::table('orders')->where('order_id','=', $order_id)->update(['total_cost'=>$total]);
+        }
+
+        return redirect()->route('profile');
+
     }
 }
 

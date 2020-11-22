@@ -34,10 +34,7 @@ class OrderSeeder extends Seeder
         $order->recv_name = $address->receiver;
         $order->recv_tel = $address->telephone;
         $order->shipment_type = 'Kerry';
-<<<<<<< HEAD
-=======
         // $order->payment_type = 'COD';
->>>>>>> 455e7f5485fba5c139452aeac1c3a9e0d078d320
 
         $order->save();
 
@@ -57,10 +54,7 @@ class OrderSeeder extends Seeder
         $order->recv_name = $address->receiver;
         $order->recv_tel = $address->telephone;
         $order->shipment_type = 'DHL';
-<<<<<<< HEAD
-=======
         // $order->payment_type = 'Transfering';
->>>>>>> 455e7f5485fba5c139452aeac1c3a9e0d078d320
 
         $order->save();
     }
