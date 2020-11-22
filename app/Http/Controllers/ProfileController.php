@@ -32,7 +32,6 @@ class ProfileController extends Controller
     public function editProfile(Request $request) {
         $request->validate([
             'new_name' => ['required', 'max:30', 'string'],
-            'new_tel' => ['required', 'max:10', new TelNumber]
         ]);
 
         $user = User::findOrFail(Auth::user()->id);
@@ -46,7 +45,6 @@ class ProfileController extends Controller
         }
 
         $user->name = $request->input('new_name');
-        $user->telephone = $request->input('new_tel');
         $user->save();
 
         return redirect()->route('profile');

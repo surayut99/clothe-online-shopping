@@ -3,7 +3,7 @@
 <div style="padding: 90px;">
     <div class="container" style="margin-top: 100px; font-family: 'Bai Jamjuree', sans-serif; ">
         <div>
-            <form action="{{route('products.update',['product'=>$product->product_id])}}" METHOD="POST">
+            <form enctype="multipart/form-data" action="{{route('products.update',['product'=>$product->product_id])}}" METHOD="POST">
                 @method('PUT')
                 @csrf
                 <div>

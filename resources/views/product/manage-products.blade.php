@@ -2,12 +2,12 @@
 
 
 @section( 'content')
-<div class='container'>
+<div class='container' style="padding-top:100px">
     <h1>การจัดการสินค้า</h1>
     <div id="between-content" class="d-flex d-inline-flex p-1 bd-highlight sp-flex space-bottom">
         @foreach($products as $product)
         <div style="background-color: #f9f7cf; border-radius:10px; width:25vw" class="p-3 text-center">
-            <img src="{{asset($product->product_img_path)}}" height="200px">
+            <img src="{{asset($product->product_img_path)}}" style="object-fit: cover;width:200px;height:200px">
             <div style="padding-top: 20px;" class="shrink-text">
                 <h4 class="rounded" style="color:black;">{{$product->product_name}}</h4>
             </div>
