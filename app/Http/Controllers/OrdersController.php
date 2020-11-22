@@ -12,17 +12,19 @@ use Illuminate\Support\Facades\Auth;
 
 class OrdersController extends Controller
 {
-    public function checkout(){
+    public function checkout()
+    {
 
     }
 
-    public function placeOrder(Request $request) {
+    public function placeOrder(Request $request)
+    {
         $dt = Carbon::now();
         $products = Cart::where('user_id', '=', Auth::user()->id)
-                    ->join('products', 'products.product_id', '=', 'carts.product_id');
+            ->join('products', 'products.product_id', '=', 'carts.product_id');
         $orderDetails = $products->select('carts.product_id', 'store_id', 'carts.qty', 'price')
-                    ->orderby('store_id')
-                    ->get();
+            ->orderby('store_id')
+            ->get();
         $stores = $products->select('store_id')->groupBy('store_id')->get();
 
         // add dato to orders table
@@ -62,5 +64,6 @@ class OrdersController extends Controller
 
         return redirect()->route('pages.home');
     }
+}
 
 
