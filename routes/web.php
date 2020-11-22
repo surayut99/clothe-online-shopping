@@ -36,7 +36,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 // Pages
 Route::get('/', [PagesController::class, 'index'])->name('pages.home');
 
-// Porfile
+// Profile
 Route::get('/profile', [ProfileController::class,'index'])->name('profile');
 Route::get('/profile/edit', [ProfileController::class, 'showEditProfile'])->name('edit-profile');
 Route::post('/profile/edit', [ProfileController::class,'editProfile'])->name('update-profile');
@@ -49,6 +49,7 @@ Route::put('/address/change_default/{address}', [AddressController::class, 'chan
 Route::get('/user_product/{opt}', [UserProductController::class, 'showUserProduct']);
 
 // Cart
+Route::delete('/cart/{id}/delete',[CartController::class,'destroy'])->name('cart.destroy');
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::post('add_product/{id}',  [CartController::class, 'store'])->name('addcart');
 
@@ -56,7 +57,12 @@ Route::post('add_product/{id}',  [CartController::class, 'store'])->name('addcar
 Route::resource('products', ProductsController::class);
 Route::get('product_types/{products}', [ProductsController::class, 'getSecondary']);
 Route::get('product_qty/{product}', [ProductsController::class, 'getMaxQty']);
+
 Route::get('product/{id}/detail', [ProductsController::class, 'show'])->name('product.detail');
+
+Route::get('product_management/{store}', [ProductsController::class, 'productsinStore'])->name('product_management');
+
+Route::get('product/show_all', [ProductsController::class, 'showAll'])->name('product.show_all');
 
 
 // Stores

@@ -10,17 +10,19 @@
         <a id="home" class="navbar-brand logo-font1" href="/" style="font-size:15px; line-height: 1em">fabulous & gorgeous</a>
 
       </div>
-    </div>
-    {{-- Search Tool --}}
 
-    {{-- <div class="d-flex">
-      <ul class="navbar-nav">
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="ค้นหา" aria-label="Search" style="width: 30vw;">
-          <button class="btn btn-warning my-2 my-sm-0" type="submit" style="border:2px solid white; font-weight: bold">ค้นหา</button>
-        </form>
-      </ul>
-    </div> --}}
+    </div>
+      <a id="home" class="navbar text-white" href="{{route('product.show_all')}}">ดูสินค้าทั้งหมด</a>
+
+
+{{--     <div class="d-flex">--}}
+{{--      <ul class="navbar-nav">--}}
+{{--        <form class="form-inline my-2 my-lg-0">--}}
+{{--          <input class="form-control mr-sm-2" type="search" placeholder="ค้นหา" aria-label="Search" style="width: 30vw;">--}}
+{{--          <button class="btn btn-warning my-2 my-sm-0" type="submit" style="border:2px solid white; font-weight: bold">ค้นหา</button>--}}
+{{--        </form>--}}
+{{--      </ul>--}}
+{{--    </div>--}}
 
     {{-- Acccount Tool --}}
     <div class="d-flex" id="account-content">
