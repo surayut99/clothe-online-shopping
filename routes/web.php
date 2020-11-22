@@ -53,6 +53,7 @@ Route::get('/user_product/{opt}', [UserProductController::class, 'showUserProduc
 Route::delete('/cart/{id}/delete',[CartController::class,'destroy'])->name('cart.destroy');
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::post('add_product/{id}',  [CartController::class, 'store'])->name('addcart');
+Route::get('/cart/checkout',[CartController::class,'checkout'])->name('checkout');
 
 // Product
 Route::resource('products', ProductsController::class);
@@ -78,9 +79,6 @@ Route::get('auth/register', function () {
 Route::get('auth/login', function () {
     return view('pages.auth.login');
 })->name('pages.auth.login');
-Route::get('/cart/checkout', function () {
-    return view('pages.checkout');
-})->name('checkout');
 Route::get('/profile/open-shop', function () {
     return view('auth.seller_register');
 })->name('seller_register');
