@@ -60,6 +60,21 @@ class StoresController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            "storeName" => "required",
+            "storeDes" => "required",
+            "bankId" => "required",
+            "bankName" => "required",
+            "storeTel" => new TelNumber()
+        ],
+        [
+            "storeName.required" => "กรุณากรอกชื่อร้านค้า",
+            "storeDes.required" => "กรุณากรอกรายละเอียดร้านค้า",
+            "bankId.required" => "กรุณากรอกเลขบัญชีธนาคาร",
+            "bankName.required" => "กรุณากรอกชื่อธนาคาร"
+        ]
+    );
+
         $store = new Store;
         $store->store_name = $request->input('storeName');
         $store->store_description = $request->input('storeDes');
@@ -75,15 +90,9 @@ class StoresController extends Controller
             $img->move($path, $filename);
         }
 
-        // $owner = new Owner;
-        // $owner->user_id = Auth::user()->id;
-        // $owner->save;
+        $store_id = DB::table('stores')->where('user_id', '=', Auth::id())->first()->store_id;
 
-        $owner = new Owner;
-        $owner->user_id = Auth::user()->id;
-        $owner->save();
-
-        return redirect()->route('profile');
+        return redirect()->route('stores.show', ['store' => $store_id]);
     }
 
     /**

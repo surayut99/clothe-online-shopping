@@ -25,22 +25,41 @@
         </div>
         <input id="storeName" type="text" class="form-control @error('storeName') is-invalid @enderror" name="storeName">
         @error('storeName')
-        <strong>{{$message}}</strong>
+        <strong class="text-danger">{{$message}}</strong>
+        @enderror
+      </div>
+
+      <div class="form-group">
+        <div class="form-inline">
+          <label for="name">ธนาคาร &nbsp</label>
+          <small class="form-text text-warning">***</small>
+        </div>
+        <input id="bankName" type="text" class="form-control @error('bankName') is-invalid @enderror" name="bankName">
+        @error('bankName')
+        <strong class="text-danger">{{$message}}</strong>
         @enderror
       </div>
 
       <div class="form-group">
         <div class="form-inline">
           <label for="name">เลขบัญชีธนาคาร &nbsp</label>
+          <small class="form-text text-warning">***</small>
         </div>
         <input id="bankId" type="text" class="form-control @error('bankId') is-invalid @enderror" name="bankId">
+        @error('bankId')
+        <strong class="text-danger">{{$message}}</strong>
+        @enderror
       </div>
 
       <div class="form-group">
         <div class="form-inline">
           <label for="name">เบอร์โทรศัพท์ &nbsp</label>
+          <small class="form-text text-warning">***</small>
         </div>
         <input id="storeTel" type="text" class="form-control @error('storeTel') is-invalid @enderror" name="storeTel">
+        @error('storeTel')
+        <strong class="text-danger">{{$message}}</strong>
+        @enderror
       </div>
 
       <div class="form-group">
@@ -49,6 +68,9 @@
           <small class="form-text text-warning">***</small>
         </div>
         <textarea id="storeDes" type="text" class="form-control @error('storeDes') is-invalid @enderror" name="storeDes">{{old('storeDes')}}</textarea>
+        @error('storeDes')
+        <strong class="text-danger">{{$message}}</strong>
+        @enderror
       </div>
 
       <div style="text-align: right">
