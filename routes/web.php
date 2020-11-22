@@ -3,6 +3,7 @@
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StoresController;
@@ -53,20 +54,19 @@ Route::delete('/cart/{id}/delete',[CartController::class,'destroy'])->name('cart
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::post('add_product/{id}',  [CartController::class, 'store'])->name('addcart');
 
-// Products
+// Product
 Route::resource('products', ProductsController::class);
 Route::get('product_types/{products}', [ProductsController::class, 'getSecondary']);
 Route::get('product_qty/{product}', [ProductsController::class, 'getMaxQty']);
-
-<<<<<<< HEAD
-Route::get('orders', [\App\Http\Controllers\OrdersController::class, 'saveOrder'])->name('save_order');
-=======
 Route::get('product_detail/{id}', [ProductsController::class, 'show'])->name('product.detail');
-
 Route::get('product_management/{store}', [ProductsController::class, 'productsinStore'])->name('product_management');
 Route::get('product/search', [ProductsController::class, 'searchByName'])->name('product.searchByName');
 Route::get('product/show/{type}', [ProductsController::class, 'showByPrimaryType'])->name('products.showByPrimaryType');
->>>>>>> 0797a837e8a7910791da43c769ba30fd2218bd3f
+
+//Order
+Route::resource("orders", OrdersController::class);
+Route::get('orders/{order}/inform_payment', [OrdersController::class, 'informPayment'])->name("orders.inform");
+Route::post("orders/{order}/infrom_payment", [OrdersController::class, "storePayment"])->name("orders.store_payment");
 
 // Stores
 Route::resource('stores',StoresController::class);

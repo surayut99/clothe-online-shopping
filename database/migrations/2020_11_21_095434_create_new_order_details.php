@@ -15,9 +15,9 @@ class CreateNewOrderDetails extends Migration
     public function up()
     {
         Schema::create('order_details', function (Blueprint $table) {
-            $table->unsignedBigInteger('order_id')->nullable(false);
-            $table->unsignedBigInteger('product_id')->nullable(false);
-            $table->unsignedBigInteger('product_name')->nullable(false);
+            $table->unsignedBigInteger('order_id');
+            $table->unsignedBigInteger('product_id');
+            $table->string('product_name');
             $table->bigInteger('qty');
             $table->double('price');
             $table->timestamps();
