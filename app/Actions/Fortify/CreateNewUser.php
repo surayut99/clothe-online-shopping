@@ -22,14 +22,20 @@ class CreateNewUser implements CreatesNewUsers
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'telephone' => ['required', 'string', 'max:10'],
             'password' => $this->passwordRules(),
+        ],
+        [
+            'name.required' => "กรุณากรอก display name",
+            "email.required" => "กรุรากรออีเมล์",
+            "email.email" => "กรุรากรอกข้อมูลในรูปแบบของอีเมล์",
+            "email.unique" => "อีเมล์นี้ถูกลงทะเบียนไว้แล้ว",
+            "password.requied" => "กรุณากรอกรหัสผ่าน",
+            "password.min" => "กรุรากรอกรหัสผ่านอย่างน้อย 8 ตัวอักษร"
         ])->validate();
 
         return User::create([
             'name' => $input['name'],
             'email' => $input['email'],
-            'telephone' => $input['telephone'],
             'password' => Hash::make($input['password']),
         ]);
     }

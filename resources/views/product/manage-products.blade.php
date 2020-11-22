@@ -18,9 +18,17 @@
                 <label>สี{{$product->color}} ไซซ์ {{$product->size}}</label> <br>
                 <label class="shrink-text">{{$product->product_description}}</label>
             </div>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+            <div class="text-right">
+                <a href="{{route('products.edit',['product'=>$product->product_id])}}" class="btn btn-outline-info">แก้ไข</a>
+=======
+>>>>>>> inform-payment
             <div class="text-right d-flex justify-content-end space-left">
                 <a href="{{route('products.edit',['product'=>$product->product_id])}}" class="btn btn-outline-info">แก้ไข</a>
                 {{-- <a href="{{route('products.destroy',['product'=>$product->product_id])}}" class="btn btn-outline-danger">ลบ</a> --}}
+<<<<<<< HEAD
 
                 <form action="{{route('products.destroy',['product'=>$product->product_id])}}" method="post">
                     @method('delete')
@@ -29,6 +37,9 @@
                         <button type="submit" class="btn btn-outline-danger">ลบสินค้านี้</button>
                     </div>
                 </form>
+=======
+>>>>>>> Product-feature
+>>>>>>> inform-payment
             </div>
         </div>
         @endforeach

@@ -13,6 +13,7 @@
     <div>
         <h4>รายการสินค้าทั้งหมด</h4>
         <div id="between-content" class="d-flex d-inline-flex p-1 bd-highlight">
+            @if($products->first()!=NULL)
             @foreach($products as $product)
             <div style="background-color: white;" class="p-3">
                 <a href="{{ route('products.show',['product'=>$product->product_id]) }}">
@@ -23,6 +24,8 @@
                 </a>
             </div>
             @endforeach
+            @else ไม่มีรายการสินค้า
+            @endif
         </div>
     </div>
 </div>

@@ -4,6 +4,7 @@ div#main {
 
 div#main>div {
     padding-top: 90px;
+    min-height: 100vh;
 }
 
 div#between-content>* {
@@ -140,8 +141,17 @@ td {
     overflow-x: auto;
 }
 
-.overflow-h .item {
+.overflow-h .item-h {
     min-width: 300px;
+}
+
+.overflow-v {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.overflow-v .item-v {
+    min-height: 300px;
 }
 
 .space-left>* {

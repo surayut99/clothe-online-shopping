@@ -8,47 +8,47 @@
 
   @foreach($orders as $order)
 
-  @continue($opt == "deliveried" && $order->completed_at != NULL)
+  @continue($order->status != $status)
 
   <div class="my-2">
     <div class="d-flex">
       <div class="mr-auto d-flex">
-        <img class="mr-1" src="" alt="" style="width: 75px; height: 75px">
-        <h3>{{$order->store}}</h3>
+        <img class="mr-1" src="{{asset($order->store_img_path)}}" alt="" style="width: 75px; height: 75px">
+        <h3>{{$order->store_name}}</h3>
       </div>
       <div class="ml-auto">
 
-        @if($opt == "purchasing")
+        @if($status == "purchasing")
         <div class="text-right">
-          <a href="" class="text-right pt-2 btn btn-primary">แจ้งผลชำระเงิน</a>
+          <a href="{{route('orders.inform', ['order' => $order->order_id])}}" class="text-right pt-2 btn btn-primary">แจ้งผลชำระเงิน</a>
         </div>
-        @elseif($opt == "deliveried")
+        @elseif($status == "deliveried")
         <div class="text-right">
-          <a href="" class="text-right pt-2 btn btn-primary">ยินยันการรับสินค้า</a>
+          <a href="" class="text-right pt-2 btn btn-primary">ยืนยันการรับสินค้า</a>
         </div>
         @endif
 
         <div class="text-right">
-          <p class="mr-1 mb-0">สั่งซื้อเมื่อ {{ $order->order->ordered_at }}</p>
-
-          @if($opt == "purchasing")
-          <p class="mr-1 mb-0">หมดอายุเมื่อ {{ $order->order->expired_at }}</p>
-          @elseif($opt == "verifying")
-          <p class="mr-1 mb-0">ชำระเงินเมื่อ {{ $order->order->purchased_at }}</p>
-          @elseif($opt == "verified")
-          <p class="mr-1 mb-0">ตรวจสอบแล้วเมื่อ {{ $order->order->verified_at }}</p>
-          @elseif($opt == "deliveried")
-          <p class="mr-1 mb-0">จัดส่งเมื่อ {{ $order->order->delieveried_at }}</p>
-          <h4 class="mr-1 mb-0">เลขพัสดุ {{$order->order->track_id}}</h4>
-          @elseif($opt == "cancelled")
-          <p class="mr-1 mb-0">จัดส่งเมื่อ {{ $order->order->cancelled_at }}</p>
+          <p class="mr-1 mb-0">สั่งซื้อเมื่อ {{ $order->created_at }}</p>
+          @if($status == "purchasing")
+          <p class="mr-1 mb-0">หมดอายุเมื่อ {{ $order->expired_at }}</p>
+          @elseif($status == "verifying")
+          <p class="mr-1 mb-0">ชำระเงินเมื่อ {{ $order->updated_at }}</p>
+          @elseif($status == "verified")
+          <p class="mr-1 mb-0">ตรวจสอบแล้วเมื่อ {{ $order->updated_at }}</p>
+          @elseif($status == "deliveried")
+          <p class="mr-1 mb-0">จัดส่งเมื่อ {{ $order->updated_at }}</p>
+          <h4 class="mr-1 mb-0">เลขพัสดุ {{$order->track_id}}</h4>
+          @elseif($status == "cancelled")
+          <p class="mr-1 mb-0">จัดส่งเมื่อ {{ $order->updated_at }}</p>
           @endif
         </div>
       </div>
     </div>
 
     <table class="my-2 table table-striped">
-      @foreach($order->detail as $item)
+      @foreach($orders as $item)
+      @continue($item->order_id != $order->order_id)
       <tr>
         <td>
           <img style="width: 75px; height: 75px" src="" alt="">
@@ -62,7 +62,7 @@
         <td class="text-right">
           {{ $item->price}} บาท
         </td>
-        @if($opt == "cancelled" || $opt == "history")
+        @if($status == "cancelled" || $status == "history")
         <td class="text-center">
           <a class="btn btn-primary">สั่งซื้ออีกครั้ง</a>
         </td>
@@ -72,7 +72,7 @@
     </table>
 
     <div class="d-flex">
-      <h5 class="ml-auto">ราคาทั้งหมด {{$order->order->total_cost}} บาท</h5>
+      <h5 class="ml-auto">ราคาทั้งหมด {{$order->total_cost}} บาท</h5>
     </div>
 
     <hr>

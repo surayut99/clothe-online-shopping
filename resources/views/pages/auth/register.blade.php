@@ -41,11 +41,12 @@
           <input required id="password_confirmation" type="password" class="form-control" name="password_confirmation">
         </div>
 
+
               <div style="text-align: center">
                   <button type="submit" class="btn" style="background-color: cornflowerblue;">ลงทะเบียน</button>
               </div>
 
-          </form>
-      </div>
+      </form>
+    </div>
   </div>
   @endsection

@@ -16,9 +16,9 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->unsignedBigInteger('order_id')->nullable(false);
-            $table->unsignedBigInteger('user_id')->nullable(false);
-            $table->unsignedBigInteger('store_id')->nullable(false);
+            $table->id('order_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('store_id');
 
             $table->dateTime('ordered_at')->nullable(false);
             $table->dateTime('expired_at')->nullable(false);
@@ -40,7 +40,6 @@ class CreateOrdersTable extends Migration
 
             $table->foreign('store_id')->references('store_id')->on('stores');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->primary(['order_id', 'store_id']);
 
             $table->timestamps();
         });

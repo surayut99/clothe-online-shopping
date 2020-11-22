@@ -1,6 +1,5 @@
 <div class="sp-nav-font">
-    <nav class="navbar navbar-expand-lg navbar-light shoppool-nav d-flex justify-content-between" style="min-height: 90px">
-
+    <nav class="navbar navbar-expand-lg navbar-light shoppool-nav d-flex justify-content-between" style="min-height: 70px">
         {{-- Home LOGO --}}
         <div class="d-flex" style="max-width:14vw">
             <img src="{{asset('storage/pictures/icon/logo.png')}}" style="height: 50px; filter: drop-shadow(2px 2px 2px RGB(47,49,54));">
@@ -8,36 +7,26 @@
                 <a id="home" class="navbar-brand logo-font p-2" href="/" style="font-size:25px;">SHOPPOOL</a>
                 <br>
                 <a id="home" class="navbar-brand logo-font1" href="/" style="font-size:15px; line-height: 1em">fabulous & gorgeous</a>
-
-
             </div>
-
         </div>
 
         {{--ค้นหาสินค้า--}}
-        <div class="row">
-            <div class="col"></div>
-            <div>
-                <div class="d-inline  ml-3">
-                    <form action="{{ route("product.searchByName") }}" method="GET">
-                        <div class="row">
-                            <div style="margin-right: 10px;">
-                                <input required class="form-control" type="text" placeholder="พิมพ์ชื่อสินค้า..." name="product_name" aria-label="Search">
+        <div class="pl-2">
+            <form action="{{ route("product.searchByName") }}" method="GET">
+                <div class="row">
+                    <div style="margin-right: 10px;">
+                        <input required class="form-control" type="text" placeholder="พิมพ์ชื่อสินค้า..." name="product_name" aria-label="Search">
 
-                            </div>
-                            <div>
-                                <div style="text-align: right">
-                                    <button type="submit" class="btn btn-outline-light">ค้นหา</button>
-                                </div>
-                            </div>
+                    </div>
+                    <div>
+                        <div style="text-align: right">
+                            <button type="submit" class="btn btn-outline-light">ค้นหา</button>
                         </div>
-                    </form>
-
+                    </div>
                 </div>
-            </div>
-
-            <div class="col"></div>
+            </form>
         </div>
+
 
 
         {{-- Acccount Tool --}}

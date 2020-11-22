@@ -26,7 +26,6 @@ class OrderSeeder extends Seeder
         $order->order_id = Order::where('store_id', '=', 1)->count() + 1;
         $order->user_id = 1;
         $order->store_id = 1;
-        $order->ordered_at = $dt;
         $order->expired_at = $dt->addDay(2);
 
         $order->total_cost = 5000.50;
@@ -34,7 +33,7 @@ class OrderSeeder extends Seeder
         $order->recv_name = $address->receiver;
         $order->recv_tel = $address->telephone;
         $order->shipment_type = 'Kerry';
-        // $order->payment_type = 'COD';
+        $order->payment_type = 'COD';
 
         $order->save();
 
@@ -46,7 +45,6 @@ class OrderSeeder extends Seeder
         $order->order_id = Order::where('store_id', '=', 1)->count() + 1;
         $order->user_id = 1;
         $order->store_id = 1;
-        $order->ordered_at = $dt;
         $order->expired_at = $dt->addDay(2);
 
         $order->total_cost = 5000.50;
@@ -54,7 +52,7 @@ class OrderSeeder extends Seeder
         $order->recv_name = $address->receiver;
         $order->recv_tel = $address->telephone;
         $order->shipment_type = 'DHL';
-        // $order->payment_type = 'Transfering';
+        $order->payment_type = 'Transfering';
 
         $order->save();
     }

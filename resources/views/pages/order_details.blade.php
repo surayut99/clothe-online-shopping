@@ -1,19 +1,21 @@
 @extends('layouts.main')
 
 @section('content')
-    <div style="margin-top: 100px">
+    <div style="margin-top: 30px">
         <h2 style="text-align: center">รายละเอียดการสั่งซื้อ</h2>
 
         <div class="container" style="padding-left:100px; padding-right:100px">
-            <h5>รายการ</h5>
+            <h5>รายการสินค้า</h5>
 
+            @foreach($order_details as $order_detail)
             <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
-                <img src="{{asset('storage/pictures/korea_shoe.jpg')}}" style="height: 100px;" class="mr-3">
+                <img src="{{asset($order_detail->product_img_path)}}" style="height: 100px;" class="mr-3">
                 <div>
-                    <p>ชื่อสินค้า</p>
+                    <p></p>
                     <p>ราคาสินค้า</p>
                 </div>
             </div>
+            @endforeach
 
             <h5>สั่งซื้อเมื่อ</h5>
             <p>30 ตุลาคม 17:01</p>
