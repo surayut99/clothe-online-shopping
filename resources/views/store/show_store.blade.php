@@ -1,7 +1,7 @@
 @extends ('layouts.main')
 
 @section('content')
-<div class="container" style="margin-top: 100px">
+<div class="container mt-5">
     <div class="media">
         <img src="{{asset('storage/pictures/icon/default_store.png')}}" class="mr-3" width="150px">
         <div class="media-body mt-5">

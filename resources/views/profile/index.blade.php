@@ -3,13 +3,13 @@
 @section('content')
 <div>
 
-  <div class="container mt-5 d-flex justify-content-between">
+  <div class="container pt-5 d-flex justify-content-between">
     <div class="d-flex">
       @if(!$store)
       <a href="{{ route('stores.create') }}" class="btn" style="background-color:RGB(242,137,108)">เปิดร้านค้า!</a>
       @else
       <h5 class="mr-3 mt-2">ร้านค้าของคุณ: </h5>
-      <a href="{{ route('stores.index') }}" class="btn" style="background-color:RGB(242,137,108)">{{ $store->store_name }}</a>
+      <a href="{{ route('stores.show',['store'=>$store->store_id]) }}" class="btn" style="background-color:RGB(242,137,108)">{{ $store->store_name }}</a>
       @endif
     </div>
   </div>
@@ -84,8 +84,9 @@
       <a id="cancelled" class="btn btn-primary">รายการที่ถูกยกเลิก</a>
     </div>
 
-    <div id="products" class="border border-warning rounded p-2 my-2" style="max-height:500px; overflow-y: auto">
+    <div id="products" class="border border-warning rounded p-2 my-2" style="min-height: 500px; max-height:500px; overflow-y: auto">
     </div>
+
 
   </div>
 </div>
