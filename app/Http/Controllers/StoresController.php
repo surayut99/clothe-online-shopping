@@ -28,17 +28,6 @@ class StoresController extends Controller
         return view('store.index',[
             'stores' => $stores,
         ]);
-        // $store = Store::where('store_id', "=", Auth::user()->id)->get();
-        // $primary_type = DB::table('product_types')->select('product_primary_type')->distinct()->get();
-        // $secondary_type = ProductType::all();
-        // $products = Product::where('store_id', "=", $store[0]->store_id)->get();
-
-        // return view('store.index',[
-        //     'products' => $products,
-        //     'stores' => $store[0],
-        //     'product_type' => $primary_type,
-        //     'secondary_types' => $secondary_type
-        // ]);
     }
 
 
@@ -104,7 +93,6 @@ class StoresController extends Controller
         $store = DB::table('stores')->where('store_id','=',$id)->first();
         $store1 = DB::table('stores')->select('store_id')->where('user_id','=',Auth::user()->id)->first();
         if($store->user_id!=Auth::user()->id){
-            // return 'pipe2';
             return $this->show($store1->store_id);
         }
         return view('store.edit',[

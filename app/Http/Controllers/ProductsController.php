@@ -213,6 +213,10 @@ class ProductsController extends Controller
     }
 
     public function productsInStore($id){
+        $store = DB::table('stores')->where('store_id','=',$id)->first();
+        if($store->user_id!=Auth::user()->id){
+            return redirect()->route('stores.show',['store'=>$store->store_id]);
+        }
         $products = DB::table('products')->where('store_id','=',$id)->get();
         return view("product.manage-products",[
             'products' => $products
