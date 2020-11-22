@@ -26,7 +26,7 @@ class CreateNewUser implements CreatesNewUsers
         ],
         [
             'name.required' => "กรุณากรอก display name",
-            "email.required" => "กรุรากรออีเมล์",
+            "email.required" => "กรุรากรอกอีเมล์",
             "email.email" => "กรุรากรอกข้อมูลในรูปแบบของอีเมล์",
             "email.unique" => "อีเมล์นี้ถูกลงทะเบียนไว้แล้ว",
             "password.requied" => "กรุณากรอกรหัสผ่าน",

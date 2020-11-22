@@ -38,7 +38,7 @@ class StoresController extends Controller
      */
     public function create()
     {
-        return view('pages.create-store');
+        return view('store.create');
     }
 
     /**
