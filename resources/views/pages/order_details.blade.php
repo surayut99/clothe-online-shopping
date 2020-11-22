@@ -7,9 +7,9 @@
         <div class="container" style="padding-left:100px; padding-right:100px">
             <h5>รายการสินค้า</h5>
 
-            @foreach($order_details as $order_detail)
+            @foreach($order as $order)
             <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
-                <img src="{{asset($order_detail->product_img_path)}}" style="height: 100px;" class="mr-3">
+                <img src="" style="height: 100px;" class="mr-3">
                 <div>
                     <p></p>
                     <p>ราคาสินค้า</p>
