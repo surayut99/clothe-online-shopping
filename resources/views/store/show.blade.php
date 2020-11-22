@@ -1,7 +1,7 @@
 @extends ('layouts.main')
 
 @section('content')
-<div class="container">
+<div class="container mt-5">
     <div class="media">
         <img src="{{asset($store->store_img_path)}}" class="mr-3" width="150px">
         <div class="media-body mt-5">

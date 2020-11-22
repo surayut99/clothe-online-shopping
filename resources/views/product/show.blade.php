@@ -9,28 +9,31 @@
             </div>
 
             <div class="bg-light mr-md-3 pt-3 px-3 py-md-5 px-md-5">
-                <h4 class="display-5">ชื่อสินค้า: {{ $product->product_name}}</h4>
+                <h3 class="display-5" style="font-weight:bold">{{ $product->product_name}}</h3>
                 <h5 class="display-5">สี: {{ $product->color}}</h5>
                 <h5 class="display-5">ไซซ์: {{ $product->size}}</h5>
-                <h5 class="display-5">คงเหลือ: <span id="max">{{ $product->qty}}</span> ชิ้น</h5>
+                <h5 class="display-5" style="color:red">คงเหลือ: <span id="max">{{ $product->qty}}</span> ชิ้น</h5>
                 <h5 class="display-5">ราคาต่อชิ้น: {{$product->price}} บาท</h5>
 
                 <form action="{{route('addcart', ['id'=>$product->product_id])}}" method="post">
                     @csrf
-
                     <div class="input-group number-spinner mt-2">
                         <span class="input-group-btn">
                             <button style="font-size: 10px;" class="btn btn-default btn-outline-success" data-dir="dwn">-<span class="glyphicon glyphicon-minus"></span></button>
                         </span>
-                        <input name='qty' id='qty' style="font-size: 20px; width:50%; height:30px" type="text" class="form-control text-center" value="1">
-                        <span class="input-group-btn">
-                            <button style="font-size: 10px;" class="btn btn-default btn-outline-success" data-dir="up">+<span class="glyphicon glyphicon-plus"></span></button>
-                        </span>
-
+                        <div class="d-flex">
+                            <input name='qty' id='qty' style="font-size: 20px; width:30%; height:30px" type="text" class="form-control text-center" value="1">
+                            <span class="input-group-btn">
+                                <button style="font-size: 10px;" class="btn btn-default btn-outline-success" data-dir="up">+<span class="glyphicon glyphicon-plus"></span></button>
+                            </span>
+                            <br>
+                        </div>
                     </div>
-                    <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn btn-success mt-2">หยิบใส่รถเข็น</button></div>
+                    <div>
+                        <button type="submit" class="btn btn-success mt-2 ml-3">หยิบใส่รถเข็น</button>
+                    </div>
                 </form>
+
             </div>
         </div>
     </div>

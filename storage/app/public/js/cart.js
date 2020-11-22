@@ -4,6 +4,15 @@ function onClickPlus(event, max) {
     if (curr + 1 <= max) {
         $('input#' + id).val(curr + 1)
         increaseTotal(id)
+        var token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url: "cart/update/"+id,
+            type: "put",
+            data : {'_token': token, 'amount':$('input#' + id).val()},
+            success: function (data) {
+                console.log(data)
+            }
+        })
     }
 
 }
@@ -14,12 +23,30 @@ function onClickMinus(event) {
     if (curr - 1 >= 1) {
         $('input#' + id).val(curr - 1)
         decreaseTotal(id)
-    } else $('input#' + id).val(1)
+        var token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url: "cart/update/"+id,
+            type: "put",
+            data : {'_token': token, 'amount':$('input#' + id).val()},
+            success: function (data) {
+                console.log(data)
+            }
+        })
+    } else {
+        $('input#' + id).val(1)
+        $.ajax({
+            url: "cart/update/"+id,
+            type: "put",
+            data : {'_token': token, 'amount':$('input#' + id).val()},
+            success: function (data) {
+                console.log(data)
+            }
+        })
+    }
 
 }
 
-function onKeyUp(event, max) {
-    var id = event.target.name
+function onKeyUp(event, max, id) {
     var curr = parseInt($('input#' + id).val())
     if (curr > max) {
         $('input#' + id).val(max)
@@ -27,17 +54,18 @@ function onKeyUp(event, max) {
     else if(curr<1) {
         $('input#' + id).val(1)
     }
+
+
+
 }
 
 function increaseTotal(id){
-    var curr = parseInt($('input#' + id).val())
     var price = parseInt($('#price'+id).text().substring(1))
     var currT = parseInt($('h4#total').text())
     currT+=price
     $('h4#total').text(currT)
 }
 function decreaseTotal(id){
-    var curr = parseInt($('input#' + id).val())
     var price = parseInt($('#price'+id).text().substring(1))
     var currT = parseInt($('h4#total').text())
     if(currT>0){
@@ -45,9 +73,7 @@ function decreaseTotal(id){
         $('h4#total').text(currT)}
 }
 
-// function sumTotal(this){
-//     var prev = $(this).data('val');
-//     var current = $(this).val();
-//     console.log("Prev value " + prev);
-//     console.log("New value " + current);
-// }
+
+function collapseDelOpt() {
+    // $("#deleteOpt").attr("hidden", !$("#deleteOpt").attr("hidden"))
+}

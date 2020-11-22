@@ -17,7 +17,7 @@
                 <label>{{$product->product_description}}</label>
             </div>
             <div class="text-right">
-                <a href="{{route('products.edit',['products'=>$product->product_id])}}" class="btn btn-outline-info">แก้ไข</a>
+                <a href="{{route('products.edit',['product'=>$product->product_id])}}" class="btn btn-outline-info">แก้ไข</a>
             </div>
         </div>
         @endforeach
