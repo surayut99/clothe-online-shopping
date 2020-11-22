@@ -25,6 +25,7 @@ class ProfileController extends Controller
         ]);
     }
 
+
     public function showEditProfile() {
         return view('profile.edit_profile');
     }

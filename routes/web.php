@@ -69,6 +69,8 @@ Route::resource("orders", OrdersController::class);
 Route::get('orders/{order}/inform_payment', [OrdersController::class, 'informPayment'])->name("orders.inform");
 Route::post("orders/{order}/infrom_payment", [OrdersController::class, "storePayment"])->name("orders.store_payment");
 Route::get("store/orders/{store}", [OrdersController::class, "ordersStore"])->name("store_orders");
+Route::post("orders/{order}/inform_payment", [OrdersController::class, "storePayment"])->name("orders.store_payment");
+Route::get('/order/success', [OrdersController::class, 'success'])->name('order.success');
 
 // Stores
 Route::resource('stores',StoresController::class);
@@ -83,7 +85,5 @@ Route::get('auth/login', function () {
 Route::get('/profile/open-shop', function () {
     return view('auth.seller_register');
 })->name('seller_register');
-Route::get('/order-details/1', function () {
-    return view('pages.order_details');
-})->name('order_details');
+
 

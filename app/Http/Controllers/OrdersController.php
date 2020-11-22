@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Payment;
+use App\Models\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -101,9 +102,32 @@ class OrdersController extends Controller
             $current_store = $products[$i]->store_id;
         }
 
-        return redirect()->route('profile');
+        return redirect()->route('order.success');
     }
 
+    public function success()
+    {
+        $dt = Order::where('user_id','=',1)->select(DB::raw("max(created_at) as last"))->first()->last;
+        $orders = Order::where('orders.user_id', '=', Auth::id())->where('created_at', '=', $dt)
+            ->join('stores', 'stores.store_id', '=', 'orders.store_id')
+            ->select('orders.*', 'stores.store_name')
+            ->get();
+        $order_list = [];
+        foreach ($orders as $order){
+            $products = OrderDetail::where('order_id', '=', $order->order_id)
+                ->join('products','products.product_id', '=', 'order_details.product_id')
+                ->select('order_details.*', 'products.product_img_path', 'products.price')
+                ->get();
+            $ord = ['order' => $order, 'products' => $products];
+            array_push($order_list, $ord);
+        }
+
+//        return $order_list[0]['order'];
+        return view('orders.success', [
+            'order_list' => $order_list,
+            'orders' => $orders
+        ]);
+    }
     /**
      * Display the specified resource.
      *
@@ -112,16 +136,19 @@ class OrdersController extends Controller
      */
     public function show($id)
     {
-        // $order = DB::table('orders')->where('order_id', '=', $id)->first();
-        // $payment = DB::table('payments')->where('order_id', '=', $id)->first();
-        // $products = DB::table('order_detail')->where('order_id', '=', $id)
-        //         ->join('products', 'prodructs.product_id', '=', 'order_details.product_id')
-        //         ->select('order_details.*', 'product.product_img_path')
-        //         ->get();
-        // return view('orders.show', [
-        //     'order' => $order,
-        //     'payment' =>
-        // ])
+        $order = DB::table('orders')->where('order_id', '=', $id)->first();
+        $payment = DB::table('payments')->where('order_id', '=', $id)->first();
+        $products = DB::table('order_details')->where('order_id', '=', $id)
+                ->join('products', 'products.product_id', '=', 'order_details.product_id')
+                ->join('stores', 'stores.store_id', '=', 'products.store_id')
+                ->select('order_details.*', 'products.product_img_path', "productS.store_id")
+                ->get();
+
+        return view('orders.show', [
+            'order' => $order,
+            'payment' => $payment,
+            '$products' => $products
+        ]);
     }
 
     /**

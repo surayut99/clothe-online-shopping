@@ -46,32 +46,29 @@
           @endforeach
         </tbody>
       </table>
-      <p class="text-right">ยอดสั่งซื้อทั้งหมด:</p>
+      <p class="text-right">ยอดสั่งซื้อทั้งหมด: {{$sum}}</p>
     </div>
-    </table>
-    <p class="text-right">ยอดสั่งซื้อทั้งหมด: {{$sum}}</p>
   </div>
 
-  {{-- <div class="bg-light py-md-3 px-md-5 mb-3">--}}
-  {{-- <h5>วิธีการชำระเงิน</h5>--}}
-  {{-- <div class="accordion" id="accordionExample">--}}
-  {{-- <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#banks" aria-expanded="true" aria-controls="banks">ชำระผ่านบัญชีธนาคาร</button>--}}
-  {{-- <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#destination" aria-expanded="false" aria-controls="destination">ชำระเงินปลายทาง</button>--}}
-  {{-- <div class="collapse" id="banks" data-parent="#accordionExample">--}}
-  {{-- <br>--}}
-  {{-- <p>ชำระผ่านบัญชีธนาคาร</p>--}}
-  {{-- <p>ไทยพาณิชย์ : 111-221100-2</p>--}}
-  {{-- <p>กสิกรไทย : 333-220100-4</p>--}}
-  {{-- <p>กรุงไทย : 431-000456-1</p>--}}
-  {{-- <p>เมื่อชำระเงินแล้วกรุณาแนบหลักฐานการโอน</p>--}}
-  {{-- </div>--}}
-  {{-- <div class="collapse" id="destination" data-parent="#accordionExample">--}}
-  {{-- <br>--}}
-  {{-- <p>ชำระเงินปลายทาง</p>--}}
-  {{-- </div>--}}
-  {{-- </div>--}}
-
-  {{-- </div>--}}
+  <div class="bg-light py-md-3 px-md-5 mb-3">
+    <h5>วิธีการชำระเงิน</h5>
+    <div class="accordion" id="accordionExample">
+      <button class="btn btn-info" type="button" data-target="#banks" aria-expanded="true" aria-controls="banks">ชำระผ่านบัญชีธนาคาร</button>
+      <button class="btn btn-info" type="button" data-target="#destination" aria-expanded="false" aria-controls="destination">ชำระเงินปลายทาง</button>
+      <div class="" id="banks" data-parent="#accordionExample">
+        <br>
+        <p>ชำระผ่านบัญชีธนาคาร</p>
+        <p>ไทยพาณิชย์ : 111-221100-2</p>
+        <p>กสิกรไทย : 333-220100-4</p>
+        <p>กรุงไทย : 431-000456-1</p>
+        <p>เมื่อชำระเงินแล้วกรุณาแนบหลักฐานการโอน</p>
+      </div>
+      <div class="" id="destination" data-parent="#accordionExample">
+        <br>
+        <p>ชำระเงินปลายทาง</p>
+      </div>
+    </div>
+  </div>
 
   <div>
     <div class="form-row">
@@ -110,7 +107,7 @@
     {{-- <p>รวมการจัดส่ง: </p>--}}
     {{-- <p>การชำระเงินทั้งหมด: </p>--}}
   </div>
-  <form action="{{ route('orders.store') }}" method="POST">
+  <form class="text-right" action="{{ route('order.store') }}" method="POST">
     @csrf
     <button type="submit" class="btn btn-success">ยืนยันการสั่งซื้อสินค้า</button>
   </form>
