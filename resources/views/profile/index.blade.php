@@ -38,7 +38,6 @@
         <div class="my-2 d-flex">
             @foreach($addrs as $addr)
             <div class="card mr-3 my-1 p-2 bordered-rounded" style="width: 20vw; background-color: whitesmoke">
-
                 <p class="text-bold"><span>ชื่อ: </span> {{$addr->receiver}} </p>
                 <p><span>เบอร์โทร: </span>{{$addr->telephone}}</p>
                 <p><span>ที่อยู่: </span>{{$addr->address}}</p>
