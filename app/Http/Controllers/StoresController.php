@@ -49,7 +49,7 @@ class StoresController extends Controller
      */
     public function create()
     {
-        return view('pages.create-store');
+        return view('store.create');
     }
 
     /**
@@ -66,7 +66,7 @@ class StoresController extends Controller
         $store->user_id = Auth::user()->id;
 
         $store->save();
-        
+
         if ($request->file('inpImg')) {
             $img = $request->file('inpImg');
             $store = DB::table('stores')->where("user_id", "=", Auth::user()->id)->first();

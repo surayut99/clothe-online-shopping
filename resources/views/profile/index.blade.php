@@ -9,7 +9,7 @@
       <a href="{{ route('stores.create') }}" class="btn" style="background-color:RGB(242,137,108)">เปิดร้านค้า!</a>
       @else
       <h5 class="mr-3 mt-2">ร้านค้าของคุณ: </h5>
-      <a href="{{ route('stores.show',['store'=>$store->store_id]) }}" class="btn" style="background-color:RGB(242,137,108)">{{ $store->store_name }}</a>
+      <a href="{{ route('stores.show',['store'=>$store->store_id]) }}" class="btn btn-info" style="">{{ $store->store_name }}</a>
       @endif
     </div>
   </div>
@@ -69,17 +69,17 @@
     @if(sizeof($addrs) != 3)
     <a href="{{ route('address.create') }}" class="btn btn-primary">เพิ่มที่อยู่สำหรับจัดส่ง</a>
     @else
-    <h6>คุณสามารเพิ่มที่อยู่สำหรับจัดส่งได้เพียง 3 ที่อยู่เท่านั้น</h6>
+    <h6>คุณสามารเพิ่มที่อยู่สำหรับจัดส่งได้สูงสุดเพียง 3 ที่อยู่เท่านั้น</h6>
     @endif
     <hr>
 
     <div class="d-flex" id="between-content">
       <a id="purchasing" class="btn btn-primary">รายการที่ต้องชำระ</a>
-      <a id="verifying" class="btn btn-primary">รายการรอการตรวจสอบ</a>
-      <a id="verified" class="btn btn-primary">รายการรอจัดส่ง</a>
-      <a id="deliveried" class="btn btn-primary">รายการที่ต้องได้รับ</a>
-      <a id="completed" class="btn btn-primary">รายการที่ได้รับสำเร็จ</a>
-      <a id="cancelled" class="btn btn-primary">รายการที่ถูกยกเลิก</a>
+      <a id="verifying" class="btn btn-info">รายการรอการตรวจสอบ</a>
+      <a id="verified" class="btn btn-info">รายการรอจัดส่ง</a>
+      <a id="deliveried" class="btn btn-info">รายการที่ต้องได้รับ</a>
+      <a id="completed" class="btn btn-success">รายการที่ได้รับสำเร็จ</a>
+      <a id="cancelled" class="btn btn-danger">รายการที่ถูกยกเลิก</a>
     </div>
 
     <div id="products" class="border border-warning rounded p-2 my-2" style="min-height: 500px; max-height:500px; overflow-y: auto">

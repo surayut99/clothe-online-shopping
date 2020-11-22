@@ -18,13 +18,16 @@
         </div>
         <div class="form-group">
           <label>ธนาคาร: </label>
-          <input value="{{old('bank_name')}}" type="text" name="bank_name" id="bank_name" class="form-control @error('bank_name') is-invalid @enderror">
+          <input value="{{old('bank_name')}}" type="text" name="bank_name" id="bank_name" class="form-control @error('bank_name') is-invalid @enderror @if(Session::has('oldImgpath')) is-invalid @endif">
           @error('bank_name')
           <strong class="text-danger">{{$message}}</strong>
           @enderror
+          @if(Session::has('oldImgpath'))
+          <strong class="text-danger">กรุณากรอกชื่อธนาคารที่ใช้ในการชำระเงิน</strong>
+          @endif
         </div>
         <div class="form-group">
-          <img id="preImg" style="max-height: 300px" alt="">
+          <img src="@if(Session::has('oldImgpath')) {{request()->getSchemeAndHttpHost()}}/{{Session::get('oldImgpath')}} @endif" id="preImg" style="max-height: 300px" alt="">
         </div>
 
         @php
