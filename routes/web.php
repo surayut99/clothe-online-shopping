@@ -3,6 +3,7 @@
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StoresController;
@@ -52,10 +53,14 @@ Route::get('/user_product/{opt}', [UserProductController::class, 'showUserProduc
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::post('add_product/{id}',  [CartController::class, 'store'])->name('addcart');
 
-// Products
+// Product
 Route::resource('products', ProductsController::class);
 Route::get('product_types/{products}', [ProductsController::class, 'getSecondary']);
 Route::get('product_qty/{product}', [ProductsController::class, 'getMaxQty']);
+
+//Order
+Route::resource("orders", OrdersController::class);
+Route::get('orders/{order}/inform_payment', [OrdersController::class, 'informPayment'])->name("orders.inform");
 
 
 
