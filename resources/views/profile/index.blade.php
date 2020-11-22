@@ -21,91 +21,75 @@
 
     <div class="d-flex bd-highlight">
       <div class="p-2 bd-highlight mx-3">
-        <img src="{{ asset('storage/pictures/avatars/'.Auth::user()->id.'.jpg') }}" width="100" height="100">
+        <img src="{{ asset('storage/pictures/avatars/'.Auth::user()->id.'.jpg') }}" width="100px">
       </div>
       <div class="p-2 bd-highlight mx-3">
         <h4>ชื่อ: {{Auth::user()->name}}</h4>
         <h4>อีเมล: {{Auth::user()->email}}</h4>
-        <h4>เบอร์โทร: {{Auth::user()->telephone}}</h4>
       </div>
     </div>
 
-    <hr class="container">
+    <a href="{{route('edit-profile')}}" class="btn btn-warning" type="button">แก้ไขข้อมูลส่วนตัว</a>
 
-    <div class="container">
-      <h1 style="border: 2px ">ข้อมูลส่วนตัว</h1>
+    <hr>
 
-      <div class="d-flex bd-highlight">
-        <div class="p-2 bd-highlight mx-3">
-          <img src="{{ asset('storage/pictures/avatars/'.Auth::user()->id.'.jpg') }}" width="100px">
+    <h1 style="border: 2px ">ที่อยู่</h1>
+
+    <div class="my-2 d-flex">
+      @foreach($addrs as $addr)
+      <div class="card mr-3 my-1 p-2 bordered-rounded" style="width: 20vw; background-color: whitesmoke">
+        <p class="text-bold"><span>ชื่อ: </span> {{$addr->receiver}} </p>
+        <p><span>เบอร์โทร: </span>{{$addr->telephone}}</p>
+        <p><span>ที่อยู่: </span>{{$addr->address}}</p>
+        <div class="d-flex">
+
+
+          @if(!$addr->default)
+          <form action="{{route('changeDefaultAddress', ['address' => $addr->no])}}" method="post">
+            @method('put')
+            @csrf
+            <button style="width: 135px" class="btn btn-success">ตั้งเป็นที่อยู่หลัก</button>
+          </form>
+          @else
+          <button style="width: 135px" disabled class="btn btn-outline-primary">ที่อยู่ปัจจุบัน</button>
+          @endif
+
+
+          <form class="ml-1" action="{{ route('address.update', ['address'=> $addr->no])}}" method="post">
+            @method('put')
+            @csrf
+            <a href="{{ route('address.edit', ['address' => $addr->no]) }}" class="btn btn-warning">แก้ไขที่อยู่</a>
+          </form>
         </div>
-        <div class="p-2 bd-highlight mx-3">
-          <h4>ชื่อ: {{Auth::user()->name}}</h4>
-          <h4>อีเมล: {{Auth::user()->email}}</h4>
-        </div>
       </div>
-
-      <a href="{{route('edit-profile')}}" class="btn btn-warning" type="button">แก้ไขข้อมูลส่วนตัว</a>
-
-      <hr>
-
-      <h1 style="border: 2px ">ที่อยู่</h1>
-
-      <div class="my-2 d-flex">
-        @foreach($addrs as $addr)
-        <div class="card mr-3 my-1 p-2 bordered-rounded" style="width: 20vw; background-color: whitesmoke">
-          <p class="text-bold"><span>ชื่อ: </span> {{$addr->receiver}} </p>
-          <p><span>เบอร์โทร: </span>{{$addr->telephone}}</p>
-          <p><span>ที่อยู่: </span>{{$addr->address}}</p>
-          <div class="d-flex">
-
-
-            @if(!$addr->default)
-            <form action="{{route('changeDefaultAddress', ['address' => $addr->no])}}" method="post">
-              @method('put')
-              @csrf
-              <button style="width: 135px" class="btn btn-success">ตั้งเป็นที่อยู่หลัก</button>
-            </form>
-            @else
-            <button style="width: 135px" disabled class="btn btn-outline-primary">ที่อยู่ปัจจุบัน</button>
-            @endif
-
-
-            <form class="ml-1" action="{{ route('address.update', ['address'=> $addr->no])}}" method="post">
-              @method('put')
-              @csrf
-              <a href="{{ route('address.edit', ['address' => $addr->no]) }}" class="btn btn-warning">แก้ไขที่อยู่</a>
-            </form>
-          </div>
-        </div>
-        @endforeach
-      </div>
-
-
-      @if(sizeof($addrs) != 3)
-      <a href="{{ route('address.create') }}" class="btn btn-primary">เพิ่มที่อยู่สำหรับจัดส่ง</a>
-      @else
-      <h6>คุณสามารเพิ่มที่อยู่สำหรับจัดส่งได้เพียง 3 ที่อยู่เท่านั้น</h6>
-      @endif
-      <hr>
-
-      <div class="d-flex" id="between-content">
-        <a id="purchasing" class="btn btn-primary">รายการที่ต้องชำระ</a>
-        <a id="verifying" class="btn btn-primary">รายการรอการตรวจสอบ</a>
-        <a id="verified" class="btn btn-primary">รายการรอจัดส่ง</a>
-        <a id="deliveried" class="btn btn-primary">รายการที่ต้องได้รับ</a>
-        <a id="completed" class="btn btn-primary">รายการที่ได้รับสำเร็จ</a>
-        <a id="cancelled" class="btn btn-primary">รายการที่ถูกยกเลิก</a>
-      </div>
-
-      <div id="products" class="border border-warning rounded p-2 my-2" style="min-height: 500px; max-height:500px; overflow-y: auto">
-      </div>
-
-
+      @endforeach
     </div>
+
+
+    @if(sizeof($addrs) != 3)
+    <a href="{{ route('address.create') }}" class="btn btn-primary">เพิ่มที่อยู่สำหรับจัดส่ง</a>
+    @else
+    <h6>คุณสามารเพิ่มที่อยู่สำหรับจัดส่งได้เพียง 3 ที่อยู่เท่านั้น</h6>
+    @endif
+    <hr>
+
+    <div class="d-flex" id="between-content">
+      <a id="purchasing" class="btn btn-primary">รายการที่ต้องชำระ</a>
+      <a id="verifying" class="btn btn-primary">รายการรอการตรวจสอบ</a>
+      <a id="verified" class="btn btn-primary">รายการรอจัดส่ง</a>
+      <a id="deliveried" class="btn btn-primary">รายการที่ต้องได้รับ</a>
+      <a id="completed" class="btn btn-primary">รายการที่ได้รับสำเร็จ</a>
+      <a id="cancelled" class="btn btn-primary">รายการที่ถูกยกเลิก</a>
+    </div>
+
+    <div id="products" class="border border-warning rounded p-2 my-2" style="min-height: 500px; max-height:500px; overflow-y: auto">
+    </div>
+
+
   </div>
-  @endsection
+</div>
+@endsection
 
-  @section('script')
-  <script src=" {{ asset('storage/js/user_product.js') }} "></script>
-  @endsection
+@section('script')
+<script src=" {{ asset('storage/js/user_product.js') }} "></script>
+@endsection

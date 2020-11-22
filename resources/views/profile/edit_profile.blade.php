@@ -26,7 +26,7 @@
           <input value="{{Auth::user()->name}}" name="new_name" class="form-control" id="changeName">
         </div>
 
-        <button type="submit" class="btn btn-primary my-3" href="">บันทึก</button>
+        <button type="submit" class="btn btn-success my-3" href="">บันทึก</button>
       </form>
     </div>
   </div>
