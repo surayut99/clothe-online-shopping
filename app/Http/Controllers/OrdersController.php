@@ -60,11 +60,14 @@ class OrdersController extends Controller
         $addresses = Address::where("user_id", "=", Auth::user()->id)->orderBy("default", "desc")->first();
         $products = Cart::where('user_id','=',Auth::user()->id)->join('products','products.product_id','=','carts.product_id')
             ->select('products.product_id','products.product_name','products.price','carts.qty','products.store_id')->orderBy('products.store_id')->get();
-        $current_store = $products[0]->store_id;
+        $current_store = null;
         $order = null;
         $dateTime = Carbon::now();
+        $order_id = null;
+        $total = null;
         for($i = 0; $i < $products->count();$i++){
             if($products[$i]->store_id != $current_store){
+                $current_store = $products[$i]->store_id;
                 $order = new Order();
                 $order->user_id = Auth::user()->id;
                 $order->store_id = $current_store;
@@ -73,24 +76,29 @@ class OrdersController extends Controller
                 $order->recv_address = $addresses->address;
                 $order->recv_name = $addresses->receiver;
                 $order->recv_tel = $addresses->telephone;
-                $order->shipment_type = $request->get('shipment_type');
-                $order->payment_type = $request->get('payment_type');
+                $order->shipment_type = 2;
+                $order->payment_type = 1;
+
 
                 $order->save();
+
+                $order_id = DB::table('orders')->max('order_id');
+                $total = 0;
             }
-            $order_id = DB::table('orders')->max('order_id')+1;
-            $total = 0;
-            while ($products[$i]->store_id == $current_store){
-                $order_detail = new OrderDetail();
-                $order_detail->order_id = $order_id;
-                $order_detail->product_id = $products[$i]-> product_id;
-                $order_detail->product_name = $products[$i]->product_name;
-                $order_detail->qty = $products[$i]->qty;
-                $order_detail->price = $products[$i]->price;
-                $total = $order_detail->qty * $order_detail->price;
-                $order_detail->save();
-            }
+
+
+            $order_detail = new OrderDetail();
+            $order_detail->order_id = $order_id;
+            $order_detail->product_id = $products[$i]-> product_id;
+            $order_detail->product_name = $products[$i]->product_name;
+            $order_detail->qty = $products[$i]->qty;
+            $order_detail->price = $products[$i]->price;
+            $total = $order_detail->qty * $order_detail->price;
+            $order_detail->save();
+
+
             DB::table('orders')->where('order_id','=', $order_id)->update(['total_cost'=>$total]);
+            $current_store = $products[$i]->store_id;
         }
 
         return redirect()->route('profile');
