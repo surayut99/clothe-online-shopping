@@ -120,7 +120,16 @@ class OrdersController extends Controller
      */
     public function show($id)
     {
-        //
+        // $order = DB::table('orders')->where('order_id', '=', $id)->first();
+        // $payment = DB::table('payments')->where('order_id', '=', $id)->first();
+        // $products = DB::table('order_detail')->where('order_id', '=', $id)
+        //         ->join('products', 'prodructs.product_id', '=', 'order_details.product_id')
+        //         ->select('order_details.*', 'product.product_img_path')
+        //         ->get();
+        // return view('orders.show', [
+        //     'order' => $order,
+        //     'payment' =>
+        // ])
     }
 
     /**
@@ -159,6 +168,13 @@ class OrdersController extends Controller
 
     public function informPayment($id) {
         $order = DB::table('orders')->where("order_id", "=", $id)->first();
+
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        } else if (Auth::id() != $order->user_id || $order->status != "purchasing") {
+            return redirect()->route('profile');
+        }
+
         $products = DB::table('order_details')->where("order_id", "=", $order->order_id)
                 ->join("products", "products.product_id", "=", "order_details.product_id")
                 ->select("order_details.*", "products.product_img_path")
@@ -191,31 +207,28 @@ class OrdersController extends Controller
                 Payment::where("order_id", '=', $id)->update(['bank_name' => "null", 'img_path' => $path.$filename]);
             } else {
                 $pending_payment = new Payment();
+                $pending_payment->order_id = $id;
+                $pending_payment->bank_name = "";
+                $pending_payment->img_path = $path.$filename;
+                $pending_payment->save();
             }
-
-
-
-            $pending_payment->img_path = $path.$filename;
-            $pending_payment->save();
-        } else {
+        } else if (!$pending_payment) {
             $validation->validate();
+        } else{
+            if ($request->bank_name == null) {
+                return redirect()->back()->with(["oldImgpath" => $pending_payment->img_path]);
+            }
         }
+        DB::table('payments')->where("order_id", '=', $id)
+                ->update([
+                    'bank_name' => $request->bank_name
+                ]);
+        DB::table('orders')->where("order_id", '=', $id)
+                ->update([
+                    "status" => "verifying"
+                ]);
 
-        if ($validation->errors()) {
-            return redirect()->back()->with(["oldImgpath" => $pending_payment->img_path])->withInput();
-        }
-
-        // $request->validate([
-        //     "inpImg" => "required",
-        //     "bank_name" => "required"
-        // ],
-        // [
-        //     "inpImg.required" => "กรุณาอัพโหลดหลักฐานการชำระเงิน",
-        //     "bank_name.required" => "กรุณากรอกชื่อธนาคารที่ใช้ในการชำระเงิน"
-        // ]
-        // );
-
-        return "Hello";
+        return redirect()->route("profile");
     }
 }
 
