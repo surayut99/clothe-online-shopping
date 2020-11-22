@@ -18,29 +18,27 @@
       </div>
       <div class="ml-auto">
 
-        @if($status == "purchasing")
         <div class="text-right">
-          <a href="{{route('orders.inform', ['order' => $order->order_id])}}" class="text-right pt-2 btn btn-primary">แจ้งผลชำระเงิน</a>
+          @if($status == "purchasing")
+          <a href="{{route('orders.inform', ['order' => $order->order_id])}}" class="text-right pt-2 btn btn-warning">แจ้งผลชำระเงิน</a>
+          @else
+          <a href="{{route('orders.show', ['order' => $order->order_id])}}" class="text-right pt-2 btn btn-info">แสดงรายละเอียด</a>
+          @endif
         </div>
-        @elseif($status == "deliveried")
-        <div class="text-right">
-          <a href="" class="text-right pt-2 btn btn-primary">ยืนยันการรับสินค้า</a>
-        </div>
-        @endif
 
         <div class="text-right">
           <p class="mr-1 mb-0">สั่งซื้อเมื่อ {{ $order->created_at }}</p>
           @if($status == "purchasing")
-          <p class="mr-1 mb-0">หมดอายุเมื่อ {{ $order->expired_at }}</p>
+          <strong class="mr-1 mb-0">หมดอายุเมื่อ {{ $order->expired_at }}</strong>
           @elseif($status == "verifying")
-          <p class="mr-1 mb-0">ชำระเงินเมื่อ {{ $order->updated_at }}</p>
+          <strong class="mr-1 mb-0">ชำระเงินเมื่อ {{ $order->updated_at }}</strong>
           @elseif($status == "verified")
-          <p class="mr-1 mb-0">ตรวจสอบแล้วเมื่อ {{ $order->updated_at }}</p>
+          <strong class="mr-1 mb-0">ตรวจสอบแล้วเมื่อ {{ $order->updated_at }}</strong>
           @elseif($status == "deliveried")
           <p class="mr-1 mb-0">จัดส่งเมื่อ {{ $order->updated_at }}</p>
           <h4 class="mr-1 mb-0">เลขพัสดุ {{$order->track_id}}</h4>
           @elseif($status == "cancelled")
-          <p class="mr-1 mb-0">จัดส่งเมื่อ {{ $order->updated_at }}</p>
+          <p class="mr-1 mb-0">ยกเลิกเมื่อ {{ $order->updated_at }}</p>
           @endif
         </div>
       </div>
