@@ -73,8 +73,8 @@
                         <p style="font-weight: bold;color:blue;" class="mb-0">ที่อยู่:
                             <p class="mb-1">{{$address->address}}</p>
                             <a class="mb-1" href="{{ route('address.edit', ['address' => $address->no]) }}">แก้ไขที่อยู่ปัจจุบัน</a>
-                        </p>
-                    </p>
+
+
                 </p>
                 @else <a class="mb-1" href="{{ route('profile') }}">เพิ่มที่อยู่จัดส่ง</a>
                 @endif

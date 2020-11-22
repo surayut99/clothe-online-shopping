@@ -95,6 +95,13 @@ class ProductsController extends Controller
         return redirect()->route('stores.show',['store'=>$store->store_id]);
     }
 
+    public function showByPrimaryType($type)
+    {
+        $products = Product::where('product_primary_type', '=', $type)->get();
+        return view('product.index', [ 'products' => $products]);
+
+    }
+
     /**
      * Display the specified resource.
      *
@@ -106,10 +113,24 @@ class ProductsController extends Controller
         $product = Product::where('product_id','=',$id)->first();
         $store = Store::where('store_id', '=', $product->store_id)->first();
 
-        return view('product.show',[
+        return view('product.product_detail',[
             'product' => $product,
             'store' => $store,
         ]);
+    }
+    public function searchByName(Request $request)
+    {
+        $request->validate([
+            'product_name' => 'required|min:1'
+        ]);
+
+        $product_name = $request->input('product_name');
+        $products = DB::table('products')->orderBy('updated_at','desc')
+            ->where('product_name','LIKE', '%'.$product_name.'%')
+            ->get();
+
+        return view("product.index")->with('products' , $products);
+
     }
 
     /**
@@ -158,7 +179,6 @@ class ProductsController extends Controller
             'price.required' => 'กรุณาระบุราคาสินค้า'
         ]);
         $product = DB::table('products')->where('product_id','=',$id)->first();
-        print_r($product);
         $img = $request->file('inpImg');
         if($img){
             $filename = $product->product_id . "." . $img->getClientOriginalExtension();
@@ -167,7 +187,6 @@ class ProductsController extends Controller
                 DB::table('products')->where('product_id','=', $product->product_id)->update([
                     'product_img_path' => $path . "/" . $filename,
                 ]);
-
         }
         Product::where('product_id','=',$id)->update([
             'product_name' => $request->input('productName'),
@@ -179,7 +198,7 @@ class ProductsController extends Controller
             'qty' => $request->get('qty'),
             'price' => $request->get('price'),
         ]);
-        return redirect()->route('stores.show',$product->store_id);
+        return redirect()->route('products.index');
     }
 
     /**
