@@ -112,16 +112,19 @@ class OrdersController extends Controller
      */
     public function show($id)
     {
-        // $order = DB::table('orders')->where('order_id', '=', $id)->first();
-        // $payment = DB::table('payments')->where('order_id', '=', $id)->first();
-        // $products = DB::table('order_detail')->where('order_id', '=', $id)
-        //         ->join('products', 'prodructs.product_id', '=', 'order_details.product_id')
-        //         ->select('order_details.*', 'product.product_img_path')
-        //         ->get();
-        // return view('orders.show', [
-        //     'order' => $order,
-        //     'payment' =>
-        // ])
+        $order = DB::table('orders')->where('order_id', '=', $id)->first();
+        $payment = DB::table('payments')->where('order_id', '=', $id)->first();
+        $products = DB::table('order_details')->where('order_id', '=', $id)
+                ->join('products', 'products.product_id', '=', 'order_details.product_id')
+                ->join('stores', 'stores.store_id', '=', 'products.store_id')
+                ->select('order_details.*', 'products.product_img_path', "productS.store_id")
+                ->get();
+
+        return view('orders.show', [
+            'order' => $order,
+            'payment' => $payment,
+            '$products' => $products
+        ]);
     }
 
     /**
