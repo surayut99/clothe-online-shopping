@@ -20,6 +20,7 @@
     <div>
         <h4>รายการสินค้าในร้านค้า</h4>
         <div id="between-content" class="d-flex d-inline-flex p-1 bd-highlight sp-flex space-bottom">
+            @if($products->first()!=NULL)
             @foreach($products as $product)
             <div style="background-color: whitesmoke; border-radius:10px; width:25vw" class="p-3 text-center">
                 <a href="{{ route('products.show',['product'=>$product->product_id]) }}" style="color:maroon">
@@ -35,6 +36,8 @@
                 </div>
             </div>
             @endforeach
+            @else ไม่มีรายการสินค้า
+            @endif
         </div>
     </div>
 </div>
