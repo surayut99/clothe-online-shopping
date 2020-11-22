@@ -2,14 +2,16 @@
 
 @section('content')
 <div class="bg-light">
-    <div class=" container">
+    <div class="container pt-4">
         <h1 style="border: 2px ">แก้ไขข้อมูลส่วนตัว</h1>
 
         <div class="bd-highlight">
             <div class="py-2 bd-highlight">
-                <div class="my-1">
-                    <img id="preImg" name="preImg" src="{{ asset('storage/pictures/avatars/'.Auth::user()->id.'.jpg') }}" width="150" height="150">
-                </div>
+                <form enctype="multipart/form-data" style="width: 15vw" id="profile-form" action="{{ route('update-profile') }}" method=POST>
+                    @csrf
+                    <div class="my-1">
+                        <img id="preImg" name="preImg" src="{{ asset('storage/pictures/avatars/'.Auth::user()->id.'.jpg') }}" width="150" height="150">
+                    </div>
             </div>
 
             <div class="my-1">
@@ -27,6 +29,8 @@
             </form>
         </div>
     </div>
+
+</div>
 </div>
 @endsection
 

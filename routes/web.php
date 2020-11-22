@@ -52,16 +52,17 @@ Route::get('/user_product/{opt}', [UserProductController::class, 'showUserProduc
 Route::delete('/cart/{id}/delete',[CartController::class,'destroy'])->name('cart.destroy');
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::post('add_product/{id}',  [CartController::class, 'store'])->name('addcart');
-Route::get('/cart/checkout', [CartController::class, 'checkout'])->name('checkout');
-Route::put('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
 
 // Products
 Route::resource('products', ProductsController::class);
 Route::get('product_types/{products}', [ProductsController::class, 'getSecondary']);
 Route::get('product_qty/{product}', [ProductsController::class, 'getMaxQty']);
+
+Route::get('product/{id}/detail', [ProductsController::class, 'show'])->name('product.detail');
+
 Route::get('product_management/{store}', [ProductsController::class, 'productsinStore'])->name('product_management');
-
-
+Route::get('product/search', [ProductsController::class, 'searchByName'])->name('product.searchByName');
+Route::get('product/show/{type}', [ProductsController::class, 'showByPrimaryType'])->name('products.showByPrimaryType');
 
 // Stores
 Route::resource('stores',StoresController::class);
@@ -73,6 +74,9 @@ Route::get('auth/register', function () {
 Route::get('auth/login', function () {
     return view('pages.auth.login');
 })->name('pages.auth.login');
+Route::get('/cart/checkout', function () {
+    return view('pages.checkout');
+})->name('checkout');
 Route::get('/profile/open-shop', function () {
     return view('auth.seller_register');
 })->name('seller_register');

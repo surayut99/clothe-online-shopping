@@ -3,7 +3,21 @@
 
 
 @section('content')
+<<<<<<< HEAD
+<<<<<<< HEAD
+<div class="pt-5 container">
+  <div>
+    <div class="media">
+      <img src="{{asset("storage/pictures/brand/" . $stores->store_id . ".jpg")}}" class="mr-3" width="150px">
+      <div class="media-body mt-5">
+        <h5 class="mt-0">{{ $stores->store_name }}</h5>
+        <h6>{{ $stores->store_description }}</h6>
+      </div>
+=======
+<div class="container">
+=======
 <div class="container mt-5 ">
+>>>>>>> 455e7f5485fba5c139452aeac1c3a9e0d078d320
     <h1>ร้านค้าทั้งหมด</h1>
     <div class="d-flex overflow-h">
         @foreach($stores as $store)
@@ -18,6 +32,7 @@
             </a>
         </div>
         @endforeach
+>>>>>>> 94829b730b23028367b2cdea12efa33034894838
     </div>
 </div>
 
