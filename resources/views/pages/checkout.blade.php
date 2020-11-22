@@ -20,14 +20,12 @@
                     </tr>
                     </thead>
                     <tbody style="background-color: #D1F2EB">
-                    @foreach()
-                    @endforeach
                     <tr>
                         <th scope="row">1</th>
                         <td>Mark</td>
                         <td>Otto</td>
                         <td>@mdo</td>
-                    </tr>                    
+                    </tr>
                     </tbody>
                 </table>
                 <p class="text-right">ยอดสั่งซื้อทั้งหมด:</p>
