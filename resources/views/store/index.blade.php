@@ -3,7 +3,7 @@
 
 
 @section('content')
-<div class="container">
+<div class="container mt-5 ">
     <h1>ร้านค้าทั้งหมด</h1>
     <div class="d-flex overflow-h">
         @foreach($stores as $store)
