@@ -23,7 +23,7 @@
             @foreach($products as $product)
             <div style="background-color: whitesmoke; border-radius:10px; width:25vw" class="p-3 text-center">
                 <a href="{{ route('products.show',['product'=>$product->product_id]) }}" style="color:maroon">
-                    <img src="{{asset($product->product_img_path)}}" height="200px">
+                    <img src="{{asset($product->product_img_path)}}" style="object-fit: cover;width:200px;height:200px">
                 </a>
                 <div style="padding-top: 20px;" class="shrink-text">
                     <h4 class="rounded" style="color:black;">{{$product->product_name}}</h4>

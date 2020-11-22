@@ -34,21 +34,36 @@
                         <th scope="col">ราคาต่อหน่วย</th>
                         <th scope="col">จำนวน</th>
                     </tr>
+<<<<<<< HEAD
+                    </thead>
+                    <tbody style="background-color: #D1F2EB">
+=======
                 </thead>
                 @foreach($carts as $cart)
                 <tbody style="background-color: #D1F2EB">
+<<<<<<< HEAD
 
+=======
+>>>>>>> 455e7f5485fba5c139452aeac1c3a9e0d078d320
+>>>>>>> 0797a837e8a7910791da43c769ba30fd2218bd3f
                     <tr>
                         <th ><img style="width:80px;" src="{{asset($cart->product_img_path)}}"></th>
                         <td>{{$cart->product_name}}</td>
                         <td>{{$cart->price}}</td>
                         <td>{{$cart->amount}}</td>
                     </tr>
+<<<<<<< HEAD
+                    </tbody>
+                </table>
+                <p class="text-right">ยอดสั่งซื้อทั้งหมด:</p>
+            </div>
+=======
                 </tbody>
                 @endforeach
             </table>
             <p class="text-right">ยอดสั่งซื้อทั้งหมด:   {{$sum}}</p>
         </div>
+>>>>>>> 455e7f5485fba5c139452aeac1c3a9e0d078d320
 
 
 
