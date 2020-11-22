@@ -65,6 +65,7 @@ Route::get('product_management/{store}', [ProductsController::class, 'productsin
 //Order
 Route::resource("orders", OrdersController::class);
 Route::get('orders/{order}/inform_payment', [OrdersController::class, 'informPayment'])->name("orders.inform");
+Route::post("orders/{order}/infrom_payment", [OrdersController::class, "storePayment"])->name("orders.store_payment");
 
 
 

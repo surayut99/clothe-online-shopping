@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class OrdersController extends Controller
 {
@@ -91,8 +93,57 @@ class OrdersController extends Controller
                 ->get();
         return view("orders.inform", [
             "order" => $order,
-            "products" => $products
+            "products" => $products,
+            "total" => 0
         ]);
+    }
+
+    public function storePayment(Request $request, $id) {
+        $validation = Validator::make($request->all(), [
+            "inpImg" => "required",
+            "bank_name" => "required"
+        ],
+        [
+            "inpImg.required" => "กรุณาอัพโหลดหลักฐานการชำระเงิน",
+            "bank_name.required" => "กรุณากรอกชื่อธนาคารที่ใช้ในการชำระเงิน"
+        ]);
+
+        $pending_payment = Payment::where("order_id", '=', $id)->first();
+        $img = $request->file('inpImg');
+        if ($img) {
+            $path = "storage/pictures/payments/";
+            $filename =  $id . "." . $img->getClientOriginalExtension();
+            $img->move($path, $filename);
+
+            if ($pending_payment) {
+                Payment::where("order_id", '=', $id)->update(['bank_name' => "null", 'img_path' => $path.$filename]);
+            } else {
+                $pending_payment = new Payment();
+            }
+
+
+
+            $pending_payment->img_path = $path.$filename;
+            $pending_payment->save();
+        } else {
+            $validation->validate();
+        }
+
+        if ($validation->errors()) {
+            return redirect()->back()->with(["oldImgpath" => $pending_payment->img_path])->withInput();
+        }
+
+        // $request->validate([
+        //     "inpImg" => "required",
+        //     "bank_name" => "required"
+        // ],
+        // [
+        //     "inpImg.required" => "กรุณาอัพโหลดหลักฐานการชำระเงิน",
+        //     "bank_name.required" => "กรุณากรอกชื่อธนาคารที่ใช้ในการชำระเงิน"
+        // ]
+        // );
+
+        return "Hello";
     }
 
     // public function checkout(){

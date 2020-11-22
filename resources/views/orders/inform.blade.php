@@ -2,15 +2,44 @@
 
 @section('content')
 <div class="mt-5 container">
+  <h1>ยืนยันการชำระเงิน</h1>
   <div class="card py-3" style="background-color: pink">
     <div class="d-flex justify-content-around">
-      <div class="py-1">
-        <label class="btn btn-outline-info" for="inpimg">อัพโหลดหลักฐานการชำระเงิน</label>
-        <input type="file" accept="image/png, image/jpeg" name="inpImg" id="inpImg" hidden>
-        <input type="text" id="bank_name" class="form-control">
-      </div>
+      <form action="{{route('orders.store_payment', ["order" => $order->order_id])}}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="form-group mb-0" style="width: 300px">
+          <label class="btn btn-info" for="inpImg">อัพโหลดหลักฐานการชำระเงิน</label>
+          <input onchange="previewAvatar()" type="file" accept="image/png, image/jpeg" name="inpImg" id="inpImg" hidden>
+          <div>
+            @error('inpImg')
+            <strong class="text-danger">{{$message}}</strong>
+            @enderror
+          </div>
+        </div>
+        <div class="form-group">
+          <label>ธนาคาร: </label>
+          <input value="{{old('bank_name')}}" type="text" name="bank_name" id="bank_name" class="form-control @error('bank_name') is-invalid @enderror">
+          @error('bank_name')
+          <strong class="text-danger">{{$message}}</strong>
+          @enderror
+        </div>
+        <div class="form-group">
+          <img id="preImg" style="max-height: 300px" alt="">
+        </div>
+
+        @php
+        $oldImgPath = null
+        @endphp
+
+        @if($oldImgPath)
+        <h1>HELLO</h1>
+        @endif
+
+        <button type="submit" class="btn btn-success">อัพโหลด</button>
+      </form>
 
       <div class="py-1">
+
         <table>
           <tbody>
             <tr>
@@ -27,32 +56,36 @@
             </tr>
           </tbody>
         </table>
+
         <hr>
-        <table style="min-width: 500px">
-          <tbody>
-            @foreach($products as $product)
-            <tr>
-              <td>
-                <img src="{{asset('storage/pictures/icon/default_products.png')}}" style="height: 80px" alt="">
-              </td>
-              <td>
-                <strong>{{$product->product_name}}</strong>
-              </td>
-              <td>
-                <strong>{{$product->qty}} ชิ้น</strong>
-              </td>
-              <td>
-                <strong> {{$product->qty}} บาท/ชื้น</strong>
-              </td>
-              <td>
-                <strong> รวม {{$product->qty}} บาท</strong>
-              </td>
-            </tr>
-            @endforeach
-          </tbody>
-        </table>
+
+        <div class="space-bottom overflow-v">
+          @foreach($products as $product)
+          <div class="d-flex space-right" style="height: 100px">
+            <img src="{{asset('storage/pictures/icon/default_products.png')}}" alt="" style="width: 100px">
+            <div class="space-left">
+              <h6 class="shrink-text">{{$product->product_name}}</h6>
+              <h6>จำนวน {{$product->qty}} ชิ้น</h6>
+              <h6>ราคาต่อหน่วย {{$product->price}} บาท</h6>
+              <h6>รวม {{$product->price * $product->qty}} บาท</h6>
+
+              @php
+              $total += $product->price * $product->qty
+              @endphp
+
+            </div>
+
+          </div>
+          @endforeach
+        </div>
+        <hr>
+        <h3>รวมทั้งหมด {{$total}} บาท</h3>
       </div>
     </div>
   </div>
 </div>
+@endsection
+
+@section('script')
+<script src="{{asset('storage/js/previewInpImg.js')}}"></script>
 @endsection

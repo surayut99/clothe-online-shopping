@@ -16,9 +16,9 @@
         @csrf
 
         <div class="my-1">
-          <label>เลือกรูปโปรไฟล์</label>
+          <label class="btn btn-info" for="inpImg">เลือกรูปโปรไฟล์</label>
           <br>
-          <input type="file" id="inpImg" name="inpImg" accept="image/png, image/jpeg" onchange="previewAvatar()">
+          <input hidden type="file" id="inpImg" name="inpImg" accept="image/png, image/jpeg" onchange="previewAvatar()">
         </div>
 
         <div class="my-1">
@@ -31,7 +31,7 @@
           <input value="{{Auth::user()->telephone}}" name="new_tel" class="form-control" id="changeTel" type='string' onkeyup="validateTelNumber(this)">
         </div>
 
-        <button type="submit" class="btn btn-primary my-3" href="">บันทึก</button>
+        <button type="submit" class="btn btn-success my-3" href="">บันทึก</button>
       </form>
     </div>
   </div>
