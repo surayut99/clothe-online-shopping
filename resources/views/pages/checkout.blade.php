@@ -9,18 +9,17 @@
 
         <div class="bg-light py-md-3 px-md-5 mb-3">
             <h5 style="font-weight: bold">ที่อยู่การจัดส่ง</h5>
-            <div >
+            <div>
                 <div class="form-row">
-                    <p  style="font-weight: bold">ชื่อ : </p>
+                    <p style="font-weight: bold">ชื่อ : </p>
                     <p class="form-group col-md-4">{{$address->receiver}}</p>
-                    <p  style="font-weight: bold">เบอร์โทร : </p>
+                    <p style="font-weight: bold">เบอร์โทร : </p>
                     <p class="form-group col-md-3">{{$address->telephone}}</p>
                 </div>
                 <div class="form-row">
                     <p style="font-weight: bold">ที่อยู่ : </p>
                     <p class="form-group col-md-4">{{$address->address}}</p>
                 </div>
-
             </div>
         </div>
 
@@ -34,63 +33,48 @@
                         <th scope="col">ราคาต่อหน่วย</th>
                         <th scope="col">จำนวน</th>
                     </tr>
-<<<<<<< HEAD
-                    </thead>
-                    <tbody style="background-color: #D1F2EB">
-=======
                 </thead>
                 @foreach($carts as $cart)
                 <tbody style="background-color: #D1F2EB">
-<<<<<<< HEAD
 
-=======
->>>>>>> 455e7f5485fba5c139452aeac1c3a9e0d078d320
->>>>>>> 0797a837e8a7910791da43c769ba30fd2218bd3f
                     <tr>
-                        <th ><img style="width:80px;" src="{{asset($cart->product_img_path)}}"></th>
+                        <th><img style="width:80px;" src="{{asset($cart->product_img_path)}}"></th>
                         <td>{{$cart->product_name}}</td>
                         <td>{{$cart->price}}</td>
                         <td>{{$cart->amount}}</td>
                     </tr>
-<<<<<<< HEAD
-                    </tbody>
-                </table>
-                <p class="text-right">ยอดสั่งซื้อทั้งหมด:</p>
-            </div>
-=======
                 </tbody>
                 @endforeach
             </table>
-            <p class="text-right">ยอดสั่งซื้อทั้งหมด:   {{$sum}}</p>
+            <p class="text-right">ยอดสั่งซื้อทั้งหมด: {{$sum}}</p>
         </div>
->>>>>>> 455e7f5485fba5c139452aeac1c3a9e0d078d320
 
 
 
-{{--        <div class="bg-light py-md-3 px-md-5 mb-3">--}}
-{{--            <h5>วิธีการชำระเงิน</h5>--}}
-{{--            <div class="accordion" id="accordionExample">--}}
-{{--                <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#banks" aria-expanded="true" aria-controls="banks">ชำระผ่านบัญชีธนาคาร</button>--}}
-{{--                <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#destination" aria-expanded="false" aria-controls="destination">ชำระเงินปลายทาง</button>--}}
-{{--                <div class="collapse" id="banks" data-parent="#accordionExample">--}}
-{{--                    <br>--}}
-{{--                    <p>ชำระผ่านบัญชีธนาคาร</p>--}}
-{{--                    <p>ไทยพาณิชย์ : 111-221100-2</p>--}}
-{{--                    <p>กสิกรไทย : 333-220100-4</p>--}}
-{{--                    <p>กรุงไทย : 431-000456-1</p>--}}
-{{--                    <p>เมื่อชำระเงินแล้วกรุณาแนบหลักฐานการโอน</p>--}}
-{{--                </div>--}}
-{{--                <div class="collapse" id="destination" data-parent="#accordionExample">--}}
-{{--                    <br>--}}
-{{--                    <p>ชำระเงินปลายทาง</p>--}}
-{{--                </div>--}}
-{{--            </div>--}}
+        {{-- <div class="bg-light py-md-3 px-md-5 mb-3">--}}
+        {{-- <h5>วิธีการชำระเงิน</h5>--}}
+        {{-- <div class="accordion" id="accordionExample">--}}
+        {{-- <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#banks" aria-expanded="true" aria-controls="banks">ชำระผ่านบัญชีธนาคาร</button>--}}
+        {{-- <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#destination" aria-expanded="false" aria-controls="destination">ชำระเงินปลายทาง</button>--}}
+        {{-- <div class="collapse" id="banks" data-parent="#accordionExample">--}}
+        {{-- <br>--}}
+        {{-- <p>ชำระผ่านบัญชีธนาคาร</p>--}}
+        {{-- <p>ไทยพาณิชย์ : 111-221100-2</p>--}}
+        {{-- <p>กสิกรไทย : 333-220100-4</p>--}}
+        {{-- <p>กรุงไทย : 431-000456-1</p>--}}
+        {{-- <p>เมื่อชำระเงินแล้วกรุณาแนบหลักฐานการโอน</p>--}}
+        {{-- </div>--}}
+        {{-- <div class="collapse" id="destination" data-parent="#accordionExample">--}}
+        {{-- <br>--}}
+        {{-- <p>ชำระเงินปลายทาง</p>--}}
+        {{-- </div>--}}
+        {{-- </div>--}}
 
-{{--        </div>--}}
+        {{-- </div>--}}
 
-        <div >
+        <div>
             <div class="form-row">
-                <div class="form-group col-md-6 bg-light py-md-3 px-md-5 mb-3" >
+                <div class="form-group col-md-6 bg-light py-md-3 px-md-5 mb-3">
                     <div>
                         วิธีการชำระเงินที่ต้องการ
                     </div>
@@ -98,7 +82,7 @@
                     <div>
                         <select name="payment_type" id="" class="form-control">
                             @foreach($payment_types as $payment_type)
-                                <option value="{{$payment_type}}">{{$payment_type}}</option>
+                            <option value="{{$payment_type}}">{{$payment_type}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -111,7 +95,7 @@
                     <div>
                         <select name="shipment_type" id="" class="form-control">
                             @foreach($shipment_types as $shipment_type)
-                                <option value="{{$shipment_type}}">{{$shipment_type}}</option>
+                            <option value="{{$shipment_type}}">{{$shipment_type}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -119,16 +103,10 @@
 
             </div>
         </div>
-
-
-
-
-
-
         <div class="bg-light py-md-3 px-md-5 mb-3 text-right mb-5">
-            <p>ยอดรวมสินค้า:   {{$sum}}</p>
-{{--            <p>รวมการจัดส่ง: </p>--}}
-{{--            <p>การชำระเงินทั้งหมด: </p>--}}
+            <p>ยอดรวมสินค้า: {{$sum}}</p>
+            {{-- <p>รวมการจัดส่ง: </p>--}}
+            {{-- <p>การชำระเงินทั้งหมด: </p>--}}
         </div>
         <a class="btn btn-primary float-right" href="{{ route('save_order') }}">ยืนยันการชำระเงิน</a>
     </div>
