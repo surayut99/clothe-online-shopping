@@ -3,6 +3,7 @@
 @section('content')
 <div>
 
+<<<<<<< HEAD
   <div class="container pt-5 d-flex justify-content-between">
     <div class="d-flex">
       @if(!$store)
@@ -28,6 +29,17 @@
         <h4>อีเมล: {{Auth::user()->email}}</h4>
         <h4>เบอร์โทร: {{Auth::user()->telephone}}</h4>
       </div>
+=======
+    <div class="container pt-5 d-flex justify-content-between">
+        <div class="d-flex">
+            @if(!$store)
+            <a href="{{ route('stores.create') }}" class="btn" style="background-color:RGB(242,137,108)">เปิดร้านค้า!</a>
+            @else
+            <h5 class="mr-3 mt-2">ร้านค้าของคุณ: </h5>
+            <a href="{{ route('stores.show',['store'=>$store->store_id]) }}" class="btn" style="background-color:#120078; color:whitesmoke">{{ $store->store_name }}</a>
+            @endif
+        </div>
+>>>>>>> Product-feature
     </div>
 
     <a href="{{route('edit-profile')}}" class="btn btn-warning" type="button">แก้ไขข้อมูลส่วนตัว</a>

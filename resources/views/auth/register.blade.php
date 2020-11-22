@@ -41,6 +41,17 @@
                     <input required id="password_confirmation" type="password" class="form-control" name="password_confirmation">
                 </div>
 
+<<<<<<< HEAD
+=======
+                <div class="form-group" style="margin-top: 20px">
+                    <div class="form-inline">
+                        <label for="telephone">เบอร์โทรศัพท์ &nbsp;</label>
+                        <small class="form-text text-warning">***</small>
+                    </div>
+                    <input required id="telephone" type="text" class="form-control" name="telephone">
+                </div>
+
+>>>>>>> Product-feature
                 <div style="text-align: center">
                     <button type="submit" class="btn" style="background-color: cornflowerblue;">ลงทะเบียน</button>
                 </div>
