@@ -3,7 +3,7 @@
 @section('content')
 <div>
 
-    <div class="container pt-4 d-flex justify-content-between">
+    <div class="container pt-5 d-flex justify-content-between">
         <div class="d-flex">
             @if(!$store)
             <a href="{{ route('stores.create') }}" class="btn" style="background-color:RGB(242,137,108)">เปิดร้านค้า!</a>
