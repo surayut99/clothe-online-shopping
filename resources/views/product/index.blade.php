@@ -6,7 +6,7 @@
     <div id="between-content" class="d-flex d-inline-flex p-1 bd-highlight sp-flex space-bottom">
 
         @foreach($products as $product)
-        <div style="background-color: #f9f7cf; border-radius:10px; width:25vw" class="p-3 text-center">
+        <div style="background-color: whitesmoke; border-radius:10px; width:25vw" class="p-3 text-center">
             <a href="{{ route('products.show',['product'=>$product->product_id]) }}" style="color:maroon">
                 <img src="{{asset($product->product_img_path)}}" style="object-fit: cover;width:200px;height:200px">
             </a>

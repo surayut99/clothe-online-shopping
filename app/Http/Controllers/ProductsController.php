@@ -198,7 +198,7 @@ class ProductsController extends Controller
             'qty' => $request->get('qty'),
             'price' => $request->get('price'),
         ]);
-        return redirect()->route('products.index');
+        return redirect()->route('stores.show',['store'=>$product->store_id]);
     }
 
     /**
