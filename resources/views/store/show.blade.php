@@ -7,7 +7,8 @@
         <div class="media-body mt-5">
             <h3 class="mt-0">{{$store->store_name}}</h3>
             <h5>{{ $store->store_description }}</h5>
-            @if($store->user_id==Auth::user()->id)
+            <h6>{{$store->store_tel}}</h6>
+            @if(Auth::check() && $store->user_id==Auth::user()->id)
             <div class="d-flex justify-content-end">
                 <a href="{{route('stores.edit',['store'=>$store->store_id])}}" class="btn btn-warning mr-2">แก้ไขร้านค้า</a>
                 <a href="{{route('products.create')}}" class="btn btn-primary mr-2" id="addProduct">เพิ่มรายการสินค้า</a>

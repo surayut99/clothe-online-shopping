@@ -85,6 +85,9 @@ class OrdersController extends Controller
 
                 $order_id = DB::table('orders')->max('order_id');
                 $total = 0;
+                if($order->user_id==Auth::user()->id){
+                    $cart = DB::table('carts')->join('products','carts.product_id','=','products.product_id')->where('carts.product_id','=',$products[$i]->product_id)->delete();
+                }
             }
 
 
@@ -101,7 +104,6 @@ class OrdersController extends Controller
             DB::table('orders')->where('order_id','=', $order_id)->update(['total_cost'=>$total]);
             $current_store = $products[$i]->store_id;
         }
-
         return redirect()->route('order.success');
     }
 
@@ -112,7 +114,8 @@ class OrdersController extends Controller
             ->join('stores', 'stores.store_id', '=', 'orders.store_id')
             ->select('orders.*', 'stores.store_name')
             ->get();
-        $order_list = [];
+        $addresses = Address::where("user_id", "=", Auth::user()->id)->orderBy("default", "desc")->first();
+            $order_list = [];
         foreach ($orders as $order){
             $products = OrderDetail::where('order_id', '=', $order->order_id)
                 ->join('products','products.product_id', '=', 'order_details.product_id')
@@ -122,10 +125,12 @@ class OrdersController extends Controller
             array_push($order_list, $ord);
         }
 
+
 //        return $order_list[0]['order'];
         return view('orders.success', [
             'order_list' => $order_list,
-            'orders' => $orders
+            'orders' => $orders,
+            'address' => $addresses,
         ]);
     }
     /**
@@ -143,11 +148,13 @@ class OrdersController extends Controller
                 ->join('stores', 'stores.store_id', '=', 'products.store_id')
                 ->select('order_details.*', 'products.product_img_path', "productS.store_id")
                 ->get();
+        $owner = DB::table('stores')->where('store_id','=',$order->store_id)->first();
 
         return view('orders.show', [
             'order' => $order,
             'payment' => $payment,
-            '$products' => $products
+            'products' => $products,
+            'owner' => $owner
         ]);
     }
 
@@ -171,7 +178,31 @@ class OrdersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        DB::table('orders')->where('order_id','=',$id)->update([
+            'status' => 'cancelled',
+            'store_comment' => $request->input('store_comment'),
+        ]);
+        return redirect()->route('orders.show',['order'=>$id]);
+    }
+    public function accept($id)
+    {
+        DB::table('orders')->where('order_id','=',$id)->update([
+            'status' => 'verified',
+        ]);
+        return redirect()->route('orders.show',['order'=>$id]);
+    }
+    public function orderTrackId(Request $request, $id){
+        $request->validate([
+            'track_id' => 'required',
+        ],[
+            'track_id.required' => 'กรุณาระบุเลขพัสดุ'
+        ]);
+
+        DB::table('orders')->where('order_id','=',$id)->update([
+            'status' => 'deliveried',
+            'track_id' => $request->track_id,
+        ]);
+        return redirect()->route('orders.show',['order'=>$id]);
     }
 
     /**
@@ -251,11 +282,13 @@ class OrdersController extends Controller
     }
     public function ordersStore($id){
         $store = DB::table('stores')->where('store_id','=',$id)->first();
-        $orders = DB::table('orders')->join('order_details','orders.order_id','=','order_details.order_id')->join('products','order_details.product_id','=','products.product_id')->select('orders.*','order_details.*','products.*')->get();
-        foreach($orders as $order){
-            $product = DB::table('products')->where('product_id','=',$order->product_id)->get();
+        // $orders = DB::table('orders')->join('order_details','orders.order_id','=','order_details.order_id')->join('products','order_details.product_id','=','products.product_id')->select('orders.*','order_details.*','products.*')->get();
+        $orders = DB::table('orders')->where('store_id','=',$id)->get();
+        // foreach($orders as $order){
+        //     $product = DB::table('products')->where('product_id','=',$order->product_id)->get();
             // return $product;
-        }
+        // }
+        $product = DB::table('products')->get();
         return view('store.show_orders',[
             'orders' => $orders,
             'store' => $store,

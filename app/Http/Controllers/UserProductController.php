@@ -24,7 +24,7 @@ class UserProductController extends Controller
                 ->select("orders.order_id", "orders.created_at", "orders.expired_at", "orders.total_cost", "orders.updated_at", "orders.status",
                         "stores.store_id","stores.store_name", "stores.store_img_path",
                         "products.product_img_path", "order_details.product_name",
-                        "order_details.qty", "order_details.price")
+                        "order_details.qty", "order_details.price",'track_id')
                 ->get();
         return $orders;
         // $orders = DB::table('orders')->where('orders.user_id', '=', 1)->where('status', '=', "purchasing")->join("order_details", "order_details.order_id", '=', 'orders.order_id')->join("products", 'products.product_id', '=', 'order_details.product_id')->join("stores", "stores.store_id", '=', "products.store_id")->select("orders.order_id", "orders.created_at", "orders.expired_at", "orders.total_cost", "orders.updated_at", "orders.status", "stores.store_id","stores.store_name", "stores.store_img_path", "products.product_img_path", "products.product_name", "order_details.qty", "order_details.price")->get();
@@ -48,7 +48,7 @@ class UserProductController extends Controller
 
     public function showUserProduct($opt) {
         $status = ["purchasing", "verifying", "verified", "deliveried", "completed", "cancelled"];
-
+// return $this->findOrder($opt);
         return in_array($opt, $status) ?
             view('profile.user_product.orders', ["orders" => $this->findOrder($opt), "status" => $opt]) :
             redirect()->route('profile');

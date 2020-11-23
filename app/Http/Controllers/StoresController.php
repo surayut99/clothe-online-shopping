@@ -38,7 +38,10 @@ class StoresController extends Controller
      */
     public function create()
     {
-        return view('store.create');
+        $banks = ['ธนาคารกรุงไทย','ธนาคารกรุงเทพ','ธนาคารกรุงศรีอยุธยา','ธนาคารกสิกรไทย','ธนาคารไทยพาณิชย์'];
+        return view('store.create',[
+            'banks' => $banks,
+        ]);
     }
 
     /**
@@ -53,14 +56,12 @@ class StoresController extends Controller
             "storeName" => "required",
             "storeDes" => "required",
             "bankId" => "required",
-            "bankName" => "required",
             "storeTel" => new TelNumber()
         ],
         [
             "storeName.required" => "กรุณากรอกชื่อร้านค้า",
             "storeDes.required" => "กรุณากรอกรายละเอียดร้านค้า",
             "bankId.required" => "กรุณากรอกเลขบัญชีธนาคาร",
-            "bankName.required" => "กรุณากรอกชื่อธนาคาร"
         ]
     );
 
@@ -68,6 +69,8 @@ class StoresController extends Controller
         $store->store_name = $request->input('storeName');
         $store->store_description = $request->input('storeDes');
         $store->user_id = Auth::user()->id;
+        $store->store_bank_name = $request->input('store_bank_name');
+        $store->store_bank_number = $request->input('bankId');
 
         $store->save();
 
@@ -92,9 +95,9 @@ class StoresController extends Controller
      */
     public function show($id)
     {
-        if(!Auth::check()){
-            return view('auth.login');
-        }
+        // if(!Auth::check()){
+        //     return view('auth.login');
+        // }
         $store = Store::where('store_id', '=', $id)->first();
         $products = DB::table('products')->where('store_id','=', $id)->orderByDesc('updated_at')->get();
 
@@ -112,11 +115,11 @@ class StoresController extends Controller
      */
     public function edit($id)
     {
-        $banks = ['ธนาคารกรุงไทย','ธนาคารกรุงไทย','ธนาคารกรุงศรีอยุธยา','ธนาคารกสิกรไทย','ธนาคารไทยพาณิชย์'];
+        $banks = ['ธนาคารกรุงไทย','ธนาคารกรุงเทพ','ธนาคารกรุงศรีอยุธยา','ธนาคารกสิกรไทย','ธนาคารไทยพาณิชย์'];
         $store = DB::table('stores')->where('store_id','=',$id)->first();
         $store1 = DB::table('stores')->select('store_id')->where('user_id','=',Auth::user()->id)->first();
-        if($store->user_id!=Auth::user()->id){
-            return $this->show($store1->store_id);
+        if(!Auth::check() || Auth::user()->id!=$store->user_id){
+            return redirect()->route('stores.show',['store'=>$store->store_id]);
         }
         return view('store.edit',[
             'store' => $store,

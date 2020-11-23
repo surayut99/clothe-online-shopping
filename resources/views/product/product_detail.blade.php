@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
+
 <div class="bg-lr" style="padding: 90px;">
     <div class="container">
         <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
@@ -14,7 +15,7 @@
                 <h5 class="display-5">ไซซ์: {{ $product->size}}</h5>
                 <h5 class="display-5" style="color:red">คงเหลือ: <span id="max">{{ $product->qty}}</span> ชิ้น</h5>
                 <h5 class="display-5">ราคาต่อชิ้น: {{$product->price}} บาท</h5>
-
+                @if(Auth::check())
                 <form action="{{route('addcart', ['id'=>$product->product_id])}}" method="post">
                     @csrf
                     <div class="input-group number-spinner mt-2">
@@ -25,15 +26,21 @@
                             <input name='qty' id='qty' style="font-size: 20px; width:30%; height:30px" type="text" class="form-control text-center" value="1">
                             <span class="input-group-btn">
                                 <button style="font-size: 10px;" class="btn btn-default btn-outline-success" data-dir="up">+<span class="glyphicon glyphicon-plus"></span></button>
+
                             </span>
                             <br>
+
                         </div>
+
                     </div>
+                    @error('qty')
+                    <label for="" style="color:red">{{$message}}</label>
+                    @enderror
                     <div>
                         <button type="submit" class="btn btn-success mt-2 ml-3">หยิบใส่รถเข็น</button>
                     </div>
                 </form>
-
+                @endif
             </div>
         </div>
     </div>

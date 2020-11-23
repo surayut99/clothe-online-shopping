@@ -6,8 +6,6 @@
             <form enctype="multipart/form-data" action="{{route('products.update',['product'=>$product->product_id])}}" METHOD="POST">
                 @method('PUT')
                 @csrf
-                <div>
-                </div>
                 <div class="col-md-2 m-4 text-center">
                     <img id="preImg" name="preImg" src="{{ asset($product->product_img_path) }}" width="150" height="150">
                     <hr>
@@ -60,7 +58,7 @@
                         <label for="inputCity">หมวดหมวดหมู่สินค้า</label>
                         <select id="primeProdType" name="primeProdType" class="form-control">
                             <option id="select" name="select">
-                                @foreach($product_type as $type){
+                                @foreach($product_type as $type)
                                 @if($type->product_primary_type != $product->product_primary_type)
                             <option value="{{$type->product_primary_type}}">{{ $type->product_primary_type }}</option>
                             @else
@@ -102,4 +100,5 @@
 @section('script')
 <script src="{{ asset('storage/js/editProfile.js') }}"></script>
 <script src="{{ asset('storage/js/previewInpImg.js') }}"></script>
+<script src="{{ asset('storage/js/selectproducttype.js') }}"></script>
 @endsection

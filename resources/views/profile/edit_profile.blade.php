@@ -16,9 +16,9 @@
                 @csrf
 
                 <div class="my-1">
-                    <label>เลือกรูปโปรไฟล์</label>
+                    <label for="inpImg" class="btn btn-outline-info mt-1 ml-2">เลือกไฟล์รูปภาพ</label>
                     <br>
-                    <input type="file" id="inpImg" name="inpImg" accept="image/png, image/jpeg" onchange="previewAvatar()">
+                    <input hidden type="file" id="inpImg" name="inpImg" accept="image/png, image/jpeg" onchange="previewAvatar()">
                 </div>
 
                 <div class="my-1">

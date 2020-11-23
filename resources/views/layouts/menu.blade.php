@@ -11,7 +11,7 @@
         </div>
 
         {{--ค้นหาสินค้า--}}
-        <div class="pl-2">
+        <div class="pl-2" id="main">
             <form action="{{ route("product.searchByName") }}" method="GET">
                 <div class="row">
                     <div style="margin-right: 10px;">
@@ -51,7 +51,7 @@
                         {{ Auth::user()->name }}
                     </a>
 
-                    <div class="sp-nav-dropdown-menu dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" style="background-color: #501719;">
+                    <div class="sp-nav-dropdown-menu dropdown-menu dropdown-menu-right sp-nav-font" aria-labelledby="navbarDropdown" style="background-color: #501719;">
                         <a href="{{ route('profile') }}" style="color: yellow;" class="dropdown-item">โปรไฟล์</a>
 
                         <div style="background-color: white; height: 1px"></div>

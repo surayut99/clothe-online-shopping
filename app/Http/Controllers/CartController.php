@@ -27,6 +27,13 @@ class CartController extends Controller
     }
 
     public function store(Request $request,$id){
+        $request->validate([
+            'qty' => ['required', 'numeric', 'integer']
+        ],[
+            'qty.required' => 'กรุณากรอกจำนวน',
+            'qty.numeric' => 'กรุณากรอกตัวเลข',
+            'qty.integer' => 'กรุณากรอกจำนวนเต็ม',
+        ]);
         $cart = Cart::where('user_id', '=', Auth::user()->id)->where('product_id', '=', $id);
         if ($cart->count()==1){
             $count = $cart->get()[0]->qty + $request->input('qty');

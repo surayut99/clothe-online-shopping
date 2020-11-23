@@ -15,12 +15,12 @@
             <hr>
             @if($carts->first()!=NULL)
             @foreach($carts as $cart)
-            <div class="d-flex" style="height:80px;top: 50%;">
+            <div class="d-flex" style="height:120px;top: 50%;">
                 <div style="width:80px;">
                     <img class="btn" src="{{$cart->product_img_path}}" style="width:80px;">
                 </div>
                 <div style="width:300px;">
-                    <h4 style="font-weight: bold;white-space: nowrap;width: 250px;overflow: hidden;text-overflow: ellipsis;padding-top:5px;" class="ml-3 mb-1">
+                    <h4 style="font-weight: bold;white-space: nowrap;width: 300px;overflow: hidden;text-overflow: ellipsis;padding-top:5px;" class="ml-3 pb-2">
                         {{$cart->product_name}}
                     </h4>
                     <p class="ml-3 mb-1" style="font-size:16px;color:blue;font-weight: bold;">
@@ -76,7 +76,7 @@
 
 
                         </p>
-                        @else <a class="mb-1" href="{{ route('profile') }}">เพิ่มที่อยู่จัดส่ง</a>
+                        @else <a style="color:red" class="mb-1" href="{{ route('profile') }}">กรุณาเพิ่มที่อยู่จัดส่ง</a>
                         @endif
                         <div class="d-flex">
                             <h4 class="pr-1">ราคารวม:
@@ -85,12 +85,12 @@
                             </h4>
                         </div>
                         @if($carts->first()!=NULL && $address!=NULL)
-                        <div style="padding-left:180px">
-                            <a href="{{route('orders.create')}}" class="btn btn-primary" style="height:40px">Check out</a>
+                        <div style="padding-left:150px">
+                            <a href="{{route('orders.create')}}" class="btn btn-primary" style="width:120px">ยืนยันคำสั่งซื้อ</a>
                         </div>
                         @else
-                        <div style="padding-left:180px">
-                            <a class="disabled btn btn-secondary" style="height:40px">Check out</a>
+                        <div style="padding-left:150px">
+                            <a class="disabled btn btn-secondary" style="width:120px">ยืนยันคำสั่งซื้อ</a>
                         </div>
                         @endif
             </div>
