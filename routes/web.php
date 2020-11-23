@@ -6,6 +6,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StoreOrderController;
 use App\Http\Controllers\StoresController;
 use App\Http\Controllers\UserProductController;
 use Illuminate\Support\Facades\Route;
@@ -68,13 +69,16 @@ Route::get('product/show/{type}', [ProductsController::class, 'showByPrimaryType
 Route::resource("orders", OrdersController::class);
 Route::get('orders/{order}/inform_payment', [OrdersController::class, 'informPayment'])->name("orders.inform");
 Route::post("orders/{order}/infrom_payment", [OrdersController::class, "storePayment"])->name("orders.store_payment");
-Route::get("store/orders/{store}", [OrdersController::class, "orderList"])->name("store_orders");
 Route::post("orders/{order}/inform_payment", [OrdersController::class, "storePayment"])->name("orders.store_payment");
 Route::put('/order/confirm/{order}', [OrdersController::class, 'accept'])->name('orders.accept');
 Route::put('/order/trackId/{order}', [OrdersController::class, 'orderTrackId'])->name('orders.trackId');
+Route::put('/orders/{order}/make_complete', [OrdersController::class, 'makeComplete'])->name('orders.complete');
 
 // Stores
 Route::resource('stores',StoresController::class);
+
+// StoreOrder
+Route::get('order_list/{status}', [StoreOrderController::class, 'orderByStatus']);
 
 // No Controller
 Route::get('auth/register', function () {

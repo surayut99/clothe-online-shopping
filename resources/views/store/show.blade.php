@@ -13,7 +13,7 @@
         <a href="{{route('stores.edit',['store'=>$store->store_id])}}" class="btn btn-warning mr-2">แก้ไขร้านค้า</a>
         <a href="{{route('products.create')}}" class="btn btn-primary mr-2" id="addProduct">เพิ่มรายการสินค้า</a>
         <a href="{{route('product_management',['store'=>$store->store_id])}}" class="btn btn-primary mr-2" id="addProduct">การจัดการสินค้า</a>
-        <a href="{{route('store_orders',['store'=>$store->store_id])}}" class="btn btn-info mr-2">รายการสั่งซื้อ</a>
+        <a href="{{route('orders.index')}}" class="btn btn-info mr-2">รายการสั่งซื้อ</a>
       </div>
       @endif
     </div>
@@ -36,7 +36,7 @@
         </div>
         <hr class="my-0">
         <div style="color:black">
-          <label class="shrink-text">{{$product->product_description}}</label>
+          <label class="text-wrap overflow-hidden">{{$product->product_description}}</label>
         </div>
       </div>
       @endforeach

@@ -1,31 +1,30 @@
 @extends('layouts.main')
 @section('content')
 <div class="container">
-    <h1 class="pt-3">แสดงรายการสินค้า</h1>
-    @if(count($products) > 0)
-    <div id="between-content" class="d-flex d-inline-flex p-1 bd-highlight sp-flex space-bottom">
+  <h1 class="pt-3">แสดงรายการสินค้า</h1>
+  @if(count($products) > 0)
+  <div id="between-content" class="d-flex p-1 bd-highlight sp-flex space-bottom">
 
-        @foreach($products as $product)
-        <div style="background-color: whitesmoke; border-radius:10px; width:25vw" class="p-3 text-center">
-            <a href="{{ route('products.show',['product'=>$product->product_id]) }}" style="color:maroon">
-                <img src="{{asset($product->product_img_path)}}" style="object-fit: cover;width:200px;height:200px">
-            </a>
-            <div style="padding-top: 20px;" class="shrink-text">
-                <h4 class="rounded" style="color:black;">{{$product->product_name}}</h4>
-            </div>
-            <hr>
-            <div style="color:black">
-                <h6 style="color:blue">ราคา {{$product->price}} บาท </h6>
-                <label class="shrink-text">{{$product->product_description}}</label>
-            </div>
-            <div class="text-center">
-                <a href="{{route('product.detail', ['id'=>$product->product_id])}}" class="btn btn-outline-info">ดูรายละเอียดสินค้า</a>
-            </div>
-        </div>
-        @endforeach
+    @foreach($products as $product)
+    <div style="background-color: whitesmoke; border-radius:10px; width:15vw; height: 50vh" class="p-3">
+      <div class="text-center">
+        <a href="{{ route('products.show',['product'=>$product->product_id]) }}" style="color:maroon">
+          <img src="{{asset($product->product_img_path)}}" style="object-fit: cover;width:200px;height:200px">
+        </a>
+      </div>
+      <div class="mt-3" style="color:black">
+        <h4 class="shrink-text" style="color:black;">{{$product->product_name}}</h4>
+        <label>ราคา {{$product->price}} บาท </label>
+      </div>
+      <hr class="my-0">
+      <div style="color:black">
+        <p class="text-wrap overflow-hidden">{{$product->product_description}}</p>
+      </div>
     </div>
-    @else
-    <h3 style="text-align: center">ขออภัย ไม่พบรายการสินค้าที่คุณต้องการ</h3>
-    @endif
+    @endforeach
+  </div>
+  @else
+  <h3 style="text-align: center">ขออภัย ไม่พบรายการสินค้าที่คุณต้องการ</h3>
+  @endif
 </div>
 @endsection

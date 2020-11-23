@@ -23,7 +23,16 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        //
+        $id = DB::table('stores')->where('user_id', '=', Auth::id())->first()->store_id;
+
+        $status = ['purchasing'=>'รอจ่าย', 'verifying'=> 'รอการยืนยัน', 'verified'=>'ยืนยันแล้ว', 'deliveried'=>'จัดส่งแล้ว','cancelled'=>'ยกเลิก', "completed" => "ได้รับแล้ว"];
+        $store = DB::table('stores')->where('store_id','=',$id)->first();
+        $orders = DB::table('orders')->where('store_id','=',$id)->get();
+        return view('store.show_orders',[
+            'orders' => $orders,
+            'store' => $store,
+            "status" => $status
+        ]);
     }
 
     /**
@@ -79,7 +88,8 @@ class OrdersController extends Controller
                 $order->recv_name = $addresses->receiver;
                 $order->recv_tel = $addresses->telephone;
                 $order->shipment_type = $request->get($current_store . 'shipment_type');
-                $order->payment_type = $request->get($current_store . 'payment_type');;
+                $order->payment_type = $request->get($current_store . 'payment_type');
+                $order->status = $order->payment_type == "COD"? "verified" : "purchasing";
                 $order->save();
 
                 $order_id = DB::table('orders')->max('order_id');
@@ -170,6 +180,11 @@ class OrdersController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            "store_comment" => "required"
+        ],[
+            "store_comment.required" => "กรุณากรอกเหตุผลในการปฎิเสธการแจ้งชำระเงินนี้"
+        ]);
         DB::table('orders')->where('order_id','=',$id)->update([
             'status' => 'cancelled',
             'store_comment' => $request->input('store_comment'),
@@ -256,11 +271,12 @@ class OrdersController extends Controller
             }
         } else if (!$pending_payment) {
             $validation->validate();
-        } else{
-            if ($request->bank_name == null) {
-                return redirect()->back()->with(["oldImgpath" => $pending_payment->img_path]);
-            }
         }
+
+        if ($request->bank_name == null) {
+            return redirect()->back()->with(["oldImgpath" => $pending_payment->img_path]);
+        }
+
         DB::table('payments')->where("order_id", '=', $id)
                 ->update([
                     'bank_name' => $request->bank_name
@@ -273,15 +289,16 @@ class OrdersController extends Controller
         return redirect()->route("profile");
     }
 
-    // $id = store_id
-    public function orderList($id){
-        $store = DB::table('stores')->where('store_id','=',$id)->first();
-        $orders = DB::table('orders')->where('store_id','=',$id)->get();
-        return view('store.show_orders',[
-            'orders' => $orders,
-            'store' => $store,
+    public function makeComplete($id) {
+        DB::table('orders')->where('orer_id', '=', $id)->update(
+            [
+                "status" => "completed",
+                "updated_at" => Carbon::now()
+            ]
+            );
+        return redirect()->route('orders.show', [
+            'order' => $id
         ]);
     }
-
 }
 

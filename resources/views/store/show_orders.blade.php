@@ -1,37 +1,25 @@
 @extends('layouts.main')
 @section('content')
 <div class="container">
-    @if($store->user_id==Auth::user()->id)
-    <h1>รายการสั่งซื้อสินค้า</h1>
-    <hr>
-    <div>
-        @foreach($orders as $order)
-        <div class="d-flex" style="height:150px;top: 50%;">
-            {{-- <div style="width:80px;">
-                <img class="btn" src="{{asset($order->product_img_path)}}" style="width:80px;">
-        </div> --}}
-        <div style="width:800px;">
-            <h4 style="font-weight: bold;white-space: nowrap;padding-top:5px;" class="ml-3 mb-1">
-                {{$order->recv_name}}
-            </h4>
-            <p>{{$order->created_at}}</p>
-            <p>{{$order->status}}</p>
-            <a class="btn btn-info" href="{{route('orders.show',['order'=>$order->order_id])}}">แสดงรายละเอียด</a>
-            {{-- <p>{{$order->created_at}}</p> --}}
-            {{-- <p class="ml-3 mb-1" style="font-size:14px;color:red;font-weight: bold;">
-                    ราคาทั้งหมด: {{$order->total_cost}} บาท
-            </p>
-            <p class="ml-3 mb-1" style="font-size:14px;color:blue;">
-                {{$order->recv_name}} {{$order->recv_address}} {{$order->recv_tel}}
-            </p>
-            <p class="ml-3 mb-1" style="font-size:14px;color:violet;">
-                จำนวนสั่งซื้อ: {{$order->qty}} ราคาทั้งหมด: {{$order->total_cost}} บาท จัดส่งแบบ {{$order->shipment_type}} ชำระเงิน {{$order->payment_type}}
-            </p> --}}
-        </div>
-    </div>
-    <hr>
-    @endforeach
+  @if($store->user_id==Auth::user()->id)
+  <h1>รายการสั่งซื้อสินค้า</h1>
+  <hr>
+  <div class="d-flex" id="between-content">
+    <a id="verifying" class="btn btn-primary">รายการรอการตรวจสอบ</a>
+    <a id="verified" class="btn btn-warning">รายการที่รอการอัพเดทข้อมูลการจัดส่ง</a>
+    <a id="cancelled" class="btn btn-danger">รายการที่สิ้นสุดการชำระเงิน</a>
+    <a id="total" class="btn btn-success">รายการสั่งซื้อทั้งหมด</a>
+  </div>
+
+  <div id="orders" class="border border-warning rounded p-2 my-2" style="min-height: 500px; max-height:60vh; overflow-y: auto">
+
+  </div>
+
 </div>
 @endif
 </div>
+@endsection
+
+@section('script')
+<script src="{{asset('storage/js/store_order_get_html.js')}}"></script>
 @endsection

@@ -27,28 +27,20 @@ class UserProductController extends Controller
                         "order_details.qty", "order_details.price",'track_id')
                 ->get();
         return $orders;
-        // $orders = DB::table('orders')->where('orders.user_id', '=', 1)->where('status', '=', "purchasing")->join("order_details", "order_details.order_id", '=', 'orders.order_id')->join("products", 'products.product_id', '=', 'order_details.product_id')->join("stores", "stores.store_id", '=', "products.store_id")->select("orders.order_id", "orders.created_at", "orders.expired_at", "orders.total_cost", "orders.updated_at", "orders.status", "stores.store_id","stores.store_name", "stores.store_img_path", "products.product_img_path", "products.product_name", "order_details.qty", "order_details.price")->get();
+    }
 
-        // foreach($orders as $order) {
-        //     $order_detail = DB::table('order_details')
-        //                     ->where('order_id', '=', $order->order_id)
-        //                     ->join('products', 'products.product_id', '=', 'order_details.product_id')
-        //                     ->select('order_details.*', 'product_name')
-        //                     ->get()
-        //                     ->all();
-
-        //     $store = DB::table('stores')->where("store_id", '=', $order->store_id)->first();
-        //     $odr = (object) array("order" => $order, "store" => $store->store_name, "detail" => $order_detail);
-
-        //     array_push($order_list, $odr);
-        // }
-
-        // return $order_list;
+    private function findAndSetCancelled() {
+        DB::table('orders')
+        ->where('user_id', '=', Auth::id())
+        ->where("expired_at", "<", Carbon::now())
+        ->update([
+            'status' => 'cancelled'
+        ]);
     }
 
     public function showUserProduct($opt) {
+        $this->findAndSetCancelled();
         $status = ["purchasing", "verifying", "verified", "deliveried", "completed", "cancelled"];
-// return $this->findOrder($opt);
         return in_array($opt, $status) ?
             view('profile.user_product.orders', ["orders" => $this->findOrder($opt), "status" => $opt]) :
             redirect()->route('profile');
