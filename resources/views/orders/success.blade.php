@@ -1,57 +1,60 @@
 @extends('layouts.main')
 
 @section('content')
-<div style="margin-top: 30px">
-    <h2 style="text-align: center">รายละเอียดการสั่งซื้อ</h2>
+<div class="container mt-5">
+  <div class="bg-light py-md-3 px-md-5 mb-3">
+    <h1 class="text-success font-weight-bold">บันทึกรายการสั่งซื้อสำเร็จ</h1>
+  </div>
 
-    <div class="container" style="padding-left:100px; padding-right:100px">
-        <h5>รายการสินค้า</h5>
+  @php
+  $store_id = -1;
+  $eachOrder = 0;
+  $total = 0;
+  @endphp
 
-        @foreach($order_list as $ord)
+  <div class="bg-light py-md-3 px-md-5 mb-3">
+    <h3 class="font-weight-bold">รานการสินค้า</h3>
+    @foreach($orders as $order)
 
-        <h3>{{$ord['order']->store_name}}</h3>
-        <div class="row">
-            @foreach($ord['products'] as $product)
-            <img src="{{asset($product->product_img_path)}}" alt="">
-            <h4>{{$product->product_name}}</h4>
-            <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
-                <img src="" style="height: 100px;" class="mr-3">
-                <div>
-                    <p>{{$product->price}} บาท</p>
-                </div>
-            </div>
-            @endforeach
-        </div>
-        <h5>สั่งซื้อเมื่อ</h5>
-        <p>{{$ord['order']->created_at}}</p>
-        <h5>ชำระด้วย</h5>
-        <p>{{$ord['order']->payment_type}}</p>
-        @endforeach
+    @if($store_id != $order->store_id)
+    @if($eachOrder)
+    <br>
+    <h5>ราคารวมทั้งหมด: {{$eachOrder}} บาท</h5>
 
+    @php
+    $eachOrder = 0;
+    @endphp
+    @endif
+    <hr>
+    <h5>{{$order->store_name}}</h5>
 
+    @php
+    $store_id = $order->store_id;
+    @endphp
 
-
-        <h5>จัดส่งไปที่</h5>
-        <p>ชื่อ {{$address->receiver}}</p>
-        <p>ที่อยู่ {{$address->address}}</p>
-        <p>เบอร์โทรศัพท์ {{$address->telephone}}</p>
-        <h5>สรุป</h5>
-        <div class="d-md-flex justify-content-between">
-            <h5>ยอดรวม</h5>
-            <p>1000 baht</p>
-        </div>
-        <div class="d-md-flex justify-content-between">
-            <h5>ค่าจัดส่ง</h5>
-            <p>50 baht</p>
-        </div>
-        <div class="d-md-flex justify-content-between">
-            <h5>รวม</h5>
-            <p>1050 baht</p>
-        </div>
-        <h4>หมายเลขคำสั่งซื้อ:</h4>
-
+    @endif
+    <div class="form row col space-checkout space-right">
+      <h6 class="shrink-text">{{$order->product_name}}</h6>
+      <h6>ราคาต่อชิ้น: {{$order->price}} บาท</h6>
+      <h6>จำนวน: {{$order->qty}} ชิ้น</h6>
+      <h6>รวม: {{$order->qty * $order->price}} บาท</h6>
+      @php
+      $eachOrder += $order->qty * $order->price;
+      $total += $eachOrder;
+      $prev = $order
+      @endphp
     </div>
+    @endforeach
+    <br>
+    <h5>ราคารวมทั้งหมด: {{$eachOrder}} บาท</h5>
+  </div>
 
-
+  <div class="text-right bg-light py-md-3 px-md-5 mb-3">
+    <h5>ราคารวมทุกออร์เดอร์: {{$total}} บาท</h5>
+  </div>
+  <div class="text-center">
+    <a class="btn btn-success" href="{{route('profile')}}">ดูรายการสั่งซื้อของฉัน</a>
+  </div>
 </div>
+
 @endsection

@@ -68,9 +68,8 @@ Route::get('product/show/{type}', [ProductsController::class, 'showByPrimaryType
 Route::resource("orders", OrdersController::class);
 Route::get('orders/{order}/inform_payment', [OrdersController::class, 'informPayment'])->name("orders.inform");
 Route::post("orders/{order}/infrom_payment", [OrdersController::class, "storePayment"])->name("orders.store_payment");
-Route::get("store/orders/{store}", [OrdersController::class, "ordersStore"])->name("store_orders");
+Route::get("store/orders/{store}", [OrdersController::class, "orderList"])->name("store_orders");
 Route::post("orders/{order}/inform_payment", [OrdersController::class, "storePayment"])->name("orders.store_payment");
-Route::get('/order/success', [OrdersController::class, 'success'])->name('order.success');
 Route::put('/order/confirm/{order}', [OrdersController::class, 'accept'])->name('orders.accept');
 Route::put('/order/trackId/{order}', [OrdersController::class, 'orderTrackId'])->name('orders.trackId');
 

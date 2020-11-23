@@ -163,7 +163,7 @@ td {
 }
 
 .shrink-text {
-    width: 300px;
+    max-width: fit-content;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -176,4 +176,16 @@ td {
 
 .space-bottom>* {
     margin-bottom: 15px;
+}
+
+.space-checkout>* {
+    width: 15vw;
+}
+
+.product-item {
+    transition: .25s;
+}
+
+.produt-item:hover {
+    filter: brightness(50%);
 }

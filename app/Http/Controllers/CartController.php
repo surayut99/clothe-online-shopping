@@ -17,11 +17,11 @@ class CartController extends Controller
 
         $sum = Cart::where('user_id','=',Auth::user()->id)->join('products','products.product_id','=','carts.product_id')->select(DB::raw('products.price*carts.qty as total'))->pluck('total')->sum();
         $cart = Cart::where('user_id','=',Auth::user()->id)->join('products','products.product_id','=','carts.product_id')->select('carts.product_id','price','products.*',DB::raw('carts.qty as amount'))->get();
-        $addresses = Address::where("user_id", "=", Auth::user()->id)->orderBy("default", "desc")->first();
-        // print_r($addresses->receiver);
+        $address = Address::where("user_id", "=", Auth::user()->id)->orderBy("default", "desc")->first();
+
         return view('pages.cart',[
             'carts' => $cart,
-            'address' => $addresses,
+            'address' => $address,
             'sum' => $sum
         ]);
     }

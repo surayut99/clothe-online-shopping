@@ -33,18 +33,19 @@ class OrdersController extends Controller
      */
     public function create()
     {
-        $sum = Cart::where('user_id','=',Auth::user()->id)->join('products','products.product_id','=','carts.product_id')->select(DB::raw('products.price*carts.qty as total'))->pluck('total')->sum();
-        $cart = Cart::where('user_id','=',Auth::user()->id)->join('products','products.product_id','=','carts.product_id')->select('carts.product_id','price','products.*',DB::raw('carts.qty as amount'))->get();
-        $addresses = Address::where("user_id", "=", Auth::user()->id)->orderBy("default", "desc")->first();
+        $products = Cart::where('carts.user_id','=',Auth::user()->id)
+                ->join('products','products.product_id','=','carts.product_id')
+                ->join('stores', 'stores.store_id', '=', 'products.store_id')
+                ->orderBy("products.store_id")
+                ->select('products.*','stores.store_name', 'stores.store_bank_name', 'stores.store_bank_number' ,DB::raw('carts.qty as amount'))
+                ->get();
+        $address = Address::where("user_id", "=", Auth::user()->id)->orderBy("default", "desc")->first();
         $shipment_type = ['Kerry', 'EMS', 'DHL', 'Flash', 'Standard Express'];
         $payment_type = ['COD', 'Transfering'];
 
-//        $shipment_type = DB::table('orders')->select('shipment_type')->get();
-
         return view("orders.create", [
-            'carts' => $cart,
-            'address' => $addresses,
-            'sum' => $sum,
+            'products' => $products,
+            'address' => $address,
             'shipment_types' => $shipment_type,
             'payment_types' => $payment_type,
         ]);
@@ -61,9 +62,9 @@ class OrdersController extends Controller
         $addresses = Address::where("user_id", "=", Auth::user()->id)->orderBy("default", "desc")->first();
         $products = Cart::where('user_id','=',Auth::user()->id)->join('products','products.product_id','=','carts.product_id')
             ->select('products.product_id','products.product_name','products.price','carts.qty','products.store_id')->orderBy('products.store_id')->get();
+        $dateTime = Carbon::now();
         $current_store = null;
         $order = null;
-        $dateTime = Carbon::now();
         $order_id = null;
         $total = null;
         for($i = 0; $i < $products->count();$i++){
@@ -72,65 +73,56 @@ class OrdersController extends Controller
                 $order = new Order();
                 $order->user_id = Auth::user()->id;
                 $order->store_id = $current_store;
-                $order->expired_at = $dateTime->addDays(2);
+                $order->expired_at = $dateTime->copy()->addDays(2);
                 $order->total_cost = 0;
                 $order->recv_address = $addresses->address;
                 $order->recv_name = $addresses->receiver;
                 $order->recv_tel = $addresses->telephone;
-                $order->shipment_type = 2;
-                $order->payment_type = 1;
-
-
+                $order->shipment_type = $request->get($current_store . 'shipment_type');
+                $order->payment_type = $request->get($current_store . 'payment_type');;
                 $order->save();
 
                 $order_id = DB::table('orders')->max('order_id');
                 $total = 0;
-                if($order->user_id==Auth::user()->id){
-                    $cart = DB::table('carts')->join('products','carts.product_id','=','products.product_id')->where('carts.product_id','=',$products[$i]->product_id)->delete();
-                }
             }
 
 
             $order_detail = new OrderDetail();
             $order_detail->order_id = $order_id;
-            $order_detail->product_id = $products[$i]-> product_id;
+            $order_detail->product_id = $products[$i]->product_id;
             $order_detail->product_name = $products[$i]->product_name;
             $order_detail->qty = $products[$i]->qty;
             $order_detail->price = $products[$i]->price;
             $total = $order_detail->qty * $order_detail->price;
             $order_detail->save();
 
-
+            $qty = DB::table('products')->where('product_id', '=', $products[$i]->product_id)->first()->qty;
             DB::table('orders')->where('order_id','=', $order_id)->update(['total_cost'=>$total]);
-            $current_store = $products[$i]->store_id;
+            DB::table('products')->where('product_id', '=', $products[$i]->product_id)->update([
+                'qty' => $qty - $products[$i]->qty
+            ]);
         }
-        return redirect()->route('order.success');
+
+        DB::table('carts')->where('user_id', '=', Auth::id())->delete();
+
+        return $this->success();
     }
 
     public function success()
     {
         $dt = Order::where('user_id','=',1)->select(DB::raw("max(created_at) as last"))->first()->last;
-        $orders = Order::where('orders.user_id', '=', Auth::id())->where('created_at', '=', $dt)
+        $orders = Order::where('orders.user_id', '=', Auth::id())->where('orders.created_at', '=', $dt)
+            ->join("order_details", 'order_details.order_id', '=', 'orders.order_id')
             ->join('stores', 'stores.store_id', '=', 'orders.store_id')
-            ->select('orders.*', 'stores.store_name')
+            ->select('orders.*', 'stores.store_name', 'order_details.product_name', 'order_details.price', 'order_details.qty')
+            ->orderBy('store_id')
             ->get();
-        $addresses = Address::where("user_id", "=", Auth::user()->id)->orderBy("default", "desc")->first();
-            $order_list = [];
-        foreach ($orders as $order){
-            $products = OrderDetail::where('order_id', '=', $order->order_id)
-                ->join('products','products.product_id', '=', 'order_details.product_id')
-                ->select('order_details.*', 'products.product_img_path', 'products.price')
-                ->get();
-            $ord = ['order' => $order, 'products' => $products];
-            array_push($order_list, $ord);
-        }
+        $address = Address::where("user_id", "=", Auth::user()->id)->orderBy("default", "desc")->first();
 
-
-//        return $order_list[0]['order'];
         return view('orders.success', [
-            'order_list' => $order_list,
+            'order_list' => $orders,
             'orders' => $orders,
-            'address' => $addresses,
+            'address' => $address,
         ]);
     }
     /**
@@ -280,15 +272,11 @@ class OrdersController extends Controller
 
         return redirect()->route("profile");
     }
-    public function ordersStore($id){
+
+    // $id = store_id
+    public function orderList($id){
         $store = DB::table('stores')->where('store_id','=',$id)->first();
-        // $orders = DB::table('orders')->join('order_details','orders.order_id','=','order_details.order_id')->join('products','order_details.product_id','=','products.product_id')->select('orders.*','order_details.*','products.*')->get();
         $orders = DB::table('orders')->where('store_id','=',$id)->get();
-        // foreach($orders as $order){
-        //     $product = DB::table('products')->where('product_id','=',$order->product_id)->get();
-            // return $product;
-        // }
-        $product = DB::table('products')->get();
         return view('store.show_orders',[
             'orders' => $orders,
             'store' => $store,

@@ -1,117 +1,135 @@
 @extends('layouts.main')
 @section('content')
-<div class="container">
-    <h2 class="text-center text-light">ทำการสั่งซื้อ</h2>
-    <div class="container">
-        <div class="bg-light py-md-3 px-md-5 mb-3">
-            <h3 style="font-weight: bold">ยืนยันการสั่งซื้อสินค้า</h3>
-        </div>
-
-        <div class="bg-light py-md-3 px-md-5 mb-3">
-            <h5 style="font-weight: bold">ที่อยู่การจัดส่ง</h5>
-            <div>
-                <div class="form-row">
-                    <p style="font-weight: bold">ชื่อ : </p>
-                    <p class="form-group col-md-4">{{$address->receiver}}</p>
-                    <p style="font-weight: bold">เบอร์โทร : </p>
-                    <p class="form-group col-md-3">{{$address->telephone}}</p>
-                </div>
-                <div class="form-row">
-                    <p style="font-weight: bold">ที่อยู่ : </p>
-                    <p class="form-group col-md-4">{{$address->address}}</p>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="bg-light py-md-3 px-md-5 mb-3">
-            <h5>สินค้าที่สั่งซื้อ</h5>
-            <table class="table">
-                <thead>
-                    <tr style="background-color: #AED6F1">
-                        <th scope="col"></th>
-                        <th scope="col">ชื่อสินค้า</th>
-                        <th scope="col">ราคาต่อหน่วย</th>
-                        <th scope="col">จำนวน</th>
-                    </tr>
-                </thead>
-                <tbody style="background-color: #D1F2EB">
-                    @foreach($carts as $cart)
-                    <tr>
-                        <th><img style="width:80px;" src="{{asset($cart->product_img_path)}}"></th>
-                        <td>{{$cart->product_name}}</td>
-                        <td>{{$cart->price}}</td>
-                        <td>{{$cart->amount}}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            <p class="text-right">ยอดสั่งซื้อทั้งหมด: {{$sum}}</p>
-        </div>
+<div class="container mt-5">
+  <div class="container">
+    <div class="bg-light py-md-3 px-md-5 mb-3">
+      <h1 class="font-weight-bold">ยืนยันการสั่งซื้อสินค้า</h1>
     </div>
 
     <div class="bg-light py-md-3 px-md-5 mb-3">
-        <h5>วิธีการชำระเงิน</h5>
-        <div class="accordion" id="accordionExample">
-            <button class="btn btn-info" type="button" data-target="#banks" aria-expanded="true" aria-controls="banks">ชำระผ่านบัญชีธนาคาร</button>
-            <button class="btn btn-info" type="button" data-target="#destination" aria-expanded="false" aria-controls="destination">ชำระเงินปลายทาง</button>
-            <div class="" id="banks" data-parent="#accordionExample">
-                <br>
-                <p>ชำระผ่านบัญชีธนาคาร</p>
-                <p>ไทยพาณิชย์ : 111-221100-2</p>
-                <p>กสิกรไทย : 333-220100-4</p>
-                <p>กรุงไทย : 431-000456-1</p>
-                <p>เมื่อชำระเงินแล้วกรุณาแนบหลักฐานการโอน</p>
-            </div>
-            <div class="" id="destination" data-parent="#accordionExample">
-                <br>
-                <p>ชำระเงินปลายทาง</p>
-            </div>
+      <h3 class="font-weight-bold">ที่อยู่การจัดส่ง</h3>
+      <div>
+        <div>
+          <label class="font-weight-bold">ชื่อ: <span class="font-weight-light"> {{$address->receiver}}</span></label>
         </div>
-    </div>
-
-    <div>
-        <div class="form-row">
-            <div class="form-group col-md-6 bg-light py-md-3 px-md-5 mb-3">
-                <div>
-                    วิธีการชำระเงินที่ต้องการ
-                </div>
-                <br>
-                <div>
-                    <select name="payment_type" id="" class="form-control">
-                        @foreach($payment_types as $payment_type)
-                        <option value="{{$payment_type}}">{{$payment_type}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            <div class="form-group col-md-6 bg-light py-md-3 px-md-5 mb-3">
-                <div>
-                    วิธีการจัดส่งสินค้าที่ต้องการ
-                </div>
-                <br>
-                <div>
-                    <select name="shipment_type" id="" class="form-control">
-                        @foreach($shipment_types as $shipment_type)
-                        <option value="{{$shipment_type}}">{{$shipment_type}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-
+        <div>
+          <label class="font-weight-bold">เบอร์โทร: <span class="font-weight-light"> {{$address->telephone}}</span></label>
         </div>
+        <div>
+          <label class="font-weight-bold">ที่อยู่: <span class="font-weight-light"> {{$address->address}}</span></label>
+        </div>
+      </div>
     </div>
 
-    <div class="bg-light py-md-3 px-md-5 mb-3 text-right mb-5">
-        <p>ยอดรวมสินค้า: {{$sum}}</p>
-        {{-- <p>รวมการจัดส่ง: </p>--}}
-        {{-- <p>การชำระเงินทั้งหมด: </p>--}}
-    </div>
-    <form class="text-right" action="{{ route('orders.store') }}" method="POST">
-        @csrf
+    @php
+    $store_id = -1;
+    $total = 0;
+    $eachOrder = 0;
+    $prev = null;
+    $end = end($products);
+    @endphp
+
+    <form action="{{route('orders.store')}}" method="POST">
+      @csrf
+
+      <div class="bg-light py-md-3 px-md-5 mb-3">
+        <h3 class="font-weight-bold">รานการสินค้า</h3>
+        @foreach($products as $product)
+
+        @if($store_id != $product->store_id)
+        @if($eachOrder)
+        <br>
+        <h5>ราคารวมทั้งหมด: {{$eachOrder}} บาท</h5>
+
+        <div class="d-flex space-right">
+          <div>
+            วิธีการชำระเงินที่ต้องการ
+            <div>
+              <select name="{{$prev->store_id}}payment_type" id="payment_type" class="form-control">
+                @foreach($payment_types as $payment_type)
+                <option name="{{$prev->store_id}}payment_type" value="{{$payment_type}}">{{$payment_type}}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+
+          <div>
+            วิธีการจัดส่งสินค้าที่ต้องการ
+            <div>
+              <select name="{{$prev->store_id}}shipment_type" id="shipment_type" class="form-control">
+                @foreach($shipment_types as $shipment_type)
+                <option name="{{$prev->store_id}}shipment_type" value="{{$shipment_type}}">{{$shipment_type}}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+        </div>
+        <strong class="text-info">ธนาคาร: {{$prev->store_bank_name}}</strong>
+        <br>
+        <strong class="text-warning">เลขบัญชี: {{$prev->store_bank_number}}</strong>
+
+        @php
+        $eachOrder = 0;
+        @endphp
+        @endif
+        <hr>
+        <h5>{{$product->store_name}}</h5>
+
+        @php
+        $store_id = $product->store_id;
+        @endphp
+
+        @endif
+        <div class="form row col space-checkout space-right">
+          <h6 class="shrink-text">{{$product->product_name}}</h6>
+          <h6>ราคาต่อชิ้น: {{$product->price}} บาท</h6>
+          <h6>จำนวน: {{$product->amount}} ชิ้น</h6>
+          <h6>รวม: {{$product->amount * $product->price}} บาท</h6>
+          @php
+          $eachOrder += $product->amount * $product->price;
+          $total += $eachOrder;
+          $prev = $product
+          @endphp
+        </div>
+        @endforeach
+        <br>
+        <h5>ราคารวมทั้งหมด: {{$eachOrder}} บาท</h5>
+        <div class="d-flex space-right">
+          <div>
+            วิธีการชำระเงินที่ต้องการ
+            <div>
+              <select name="{{$product->store_id}}payment_type" id="payment_type" class="form-control">
+                @foreach($payment_types as $payment_type)
+                <option name="{{$product->store_id}}payment_type" value="{{$payment_type}}">{{$payment_type}}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+
+          <div>
+            วิธีการจัดส่งสินค้าที่ต้องการ
+            <div>
+              <select name="{{$product->store_id}}shipment_type" id="shipment_type" class="form-control">
+                @foreach($shipment_types as $shipment_type)
+                <option name="{{$product->store_id}}shipment_type" value="{{$shipment_type}}">{{$shipment_type}}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+        </div>
+        <strong class="text-info">ธนาคาร: {{$product->store_bank_name}}</strong>
+        <br>
+        <strong class="text-warning">เลขบัญชี: {{$product->store_bank_number}}</strong>
+      </div>
+
+      <div class="text-right bg-light py-md-3 px-md-5 mb-3">
+        <h5>ราคารวมทุกออร์เดอร์: {{$total}} บาท</h5>
+      </div>
+      <div class="text-right">
         <button type="submit" class="btn btn-success mb-3">ยืนยันการสั่งซื้อสินค้า</button>
+      </div>
     </form>
-</div>
+  </div>
 </div>
 
 @endsection
