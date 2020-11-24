@@ -37,10 +37,12 @@ DB_USERNAME=<db username>l
 DB_PASSWORD=<db password>``` ใน .env ตามความเหมาะสม
 - จำเป็นต้อง generate key สำหรับไฟล์ .env หลังจากสร้างขึ้นมา โดยรันคำสั่ง ```php artisan key:generate```
 - รันคำสั่ง ```php artisan migrate``` เพื่อ migrate ตารางลง schema ที่ตั้งค่าไว้ใน .env ก่อนหน้านี้
+- รันคำสั่ง ```php artisan serve``` เพื่อรันเซิร์ฟขึ้นมา
 
 ### สร้าง Shortcut เพื่อใช้งาน .css .js และไฟล์เพิ่มเติม
 - รันคำสั่ง ```php artisan storage:link``` เพื่อสร้าง shortcut ให้สามารถเข้าถึงไฟล์อื่น ๆ ได้ เช่น .css .js .jpg เป็นต้น
 ---
 ## เงื่อนไขอื่นที่ผู้ร่วมพัฒนาหรือผู้ติดตั้งระบบจำเป็นต้องทราบ
-- ต้องใช้โปรแกรมในการัน database ภายในเครื่องอาจใช้ laragon, XAMPP ได้ตามสะดวก
+- ต้องใช้โปรแกรมในการรัน database ภายในเครื่องอาจใช้ laragon, XAMPP ได้ตามสะดวก
+- ต้องมี schema ตามที่ระบุในไฟล์ .env ในฐานข้อมูลก่อนจึงจะสามารถ migrate ตารางได้
 
