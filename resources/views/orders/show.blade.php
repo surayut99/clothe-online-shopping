@@ -8,10 +8,10 @@
         <h3 class="font-weight-bold">หมายเลขสั่งซื้อที่: {{$order->order_id}}</h3>
         <div>
             <div>
-                <label class="font-weight-bold">สั่งซื้อเมื่อ: <span class="font-weight-light"> {{$order->created_at}}</span></label>
+                <label class="font-weight-bold">สั่งซื้อเมื่อ: <span class="font-weight-light"> {{\Carbon\Carbon::parse($order->created_at)->timezone('Asia/Bangkok')}}</span></label>
             </div>
             <div>
-                <label class="font-weight-bold">หมดอายุเมื่อ: <span class="font-weight-light"> {{$order->expired_at}}</span></label>
+                <label class="font-weight-bold">หมดอายุเมื่อ: <span class="font-weight-light"> {{\Carbon\Carbon::parse($order->expired_at)->timezone('Asia/Bangkok')}}</span></label>
             </div>
         </div>
     </div>

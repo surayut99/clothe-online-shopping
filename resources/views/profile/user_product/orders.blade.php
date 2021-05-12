@@ -34,10 +34,10 @@
                     @elseif($status == "verified")
                     <strong class="mr-1 mb-0">ตรวจสอบแล้วเมื่อ {{ \Carbon\Carbon::parse($order->updated_at)->timezone('Asia/Bangkok') }}</strong>
                     @elseif($status == "deliveried")
-                    <p class="mr-1 mb-0">จัดส่งเมื่อ {{ $order->updated_at }}</p>
+                    <p class="mr-1 mb-0">จัดส่งเมื่อ {{ \Carbon\Carbon::parse($order->updated_at)->timezone('Asia/Bangkok') }}</p>
                     <h4 class="mr-1 mb-0">เลขพัสดุ {{$order->track_id}}</h4>
                     @elseif($status == "cancelled")
-                    <p class="mr-1 mb-0">ยกเลิกเมื่อ {{ $order->updated_at }}</p>
+                    <p class="mr-1 mb-0">ยกเลิกเมื่อ {{ \Carbon\Carbon::parse($order->updated_at)->timezone('Asia/Bangkok') }}</p>
                     @endif
                 </div>
             </div>
