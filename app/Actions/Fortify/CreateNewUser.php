@@ -29,8 +29,8 @@ class CreateNewUser implements CreatesNewUsers
             "email.required" => "กรุรากรอกอีเมล์",
             "email.email" => "กรุรากรอกข้อมูลในรูปแบบของอีเมล์",
             "email.unique" => "อีเมล์นี้ถูกลงทะเบียนไว้แล้ว",
-            "password.requied" => "กรุณากรอกรหัสผ่าน",
-            "password.min" => "กรุรากรอกรหัสผ่านอย่างน้อย 8 ตัวอักษร"
+            "password.required" => "กรุณากรอกรหัสผ่าน",
+            "password.min" => "กรุณากรอกรหัสผ่านอย่างน้อย 8 ตัวอักษร"
         ])->validate();
 
         return User::create([

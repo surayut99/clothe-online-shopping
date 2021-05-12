@@ -55,6 +55,7 @@ Route::delete('/cart/{id}/delete',[CartController::class,'destroy'])->name('cart
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::post('add_product/{id}',  [CartController::class, 'store'])->name('addcart');
 Route::get('/cart/checkout',[CartController::class,'checkout'])->name('checkout');
+Route::put('/cart/update/{product_id}/{amount}',[CartController::class,'update']);
 
 // Product
 Route::resource('products', ProductsController::class);
@@ -69,7 +70,6 @@ Route::get('product/show/{type}', [ProductsController::class, 'showByPrimaryType
 Route::resource("orders", OrdersController::class);
 Route::get('orders/{order}/inform_payment', [OrdersController::class, 'informPayment'])->name("orders.inform");
 Route::post("orders/{order}/infrom_payment", [OrdersController::class, "storePayment"])->name("orders.store_payment");
-Route::post("orders/{order}/inform_payment", [OrdersController::class, "storePayment"])->name("orders.store_payment");
 Route::put('/order/confirm/{order}', [OrdersController::class, 'accept'])->name('orders.accept');
 Route::put('/order/trackId/{order}', [OrdersController::class, 'orderTrackId'])->name('orders.trackId');
 Route::put('/orders/{order}/make_complete', [OrdersController::class, 'makeComplete'])->name('orders.complete');
@@ -78,7 +78,7 @@ Route::put('/orders/{order}/make_complete', [OrdersController::class, 'makeCompl
 Route::resource('stores',StoresController::class);
 
 // StoreOrder
-Route::get('order_list/{status}', [StoreOrderController::class, 'orderByStatus']);
+Route::get('order_list/{opt}', [StoreOrderController::class, 'orderByStatus']);
 
 // No Controller
 Route::get('auth/register', function () {

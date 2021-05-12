@@ -20,10 +20,9 @@ class StoresController extends Controller
      */
     public function index()
     {
-        if(!Auth::check()){
-            return view('auth.login');
-        }
-
+//        if(!Auth::check()){
+//            return view('auth.login');
+//        }
         $stores = Store::all();
         return view('store.index',[
             'stores' => $stores,
@@ -93,14 +92,14 @@ class StoresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($store)
     {
         // if(!Auth::check()){
         //     return view('auth.login');
         // }
-        $store = Store::where('store_id', '=', $id)->first();
-        $products = DB::table('products')->where('store_id','=', $id)->orderByDesc('updated_at')->get();
-
+        // return 'hello';
+        $products = DB::table('products')->where('store_id','=', $store)->orderByDesc('updated_at')->get();
+        $store = Store::where('store_id', '=', $store)->first();
         return view('store.show',[
             'store' => $store,
             'products' => $products,
@@ -113,10 +112,10 @@ class StoresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($store)
     {
         $banks = ['ธนาคารกรุงไทย','ธนาคารกรุงเทพ','ธนาคารกรุงศรีอยุธยา','ธนาคารกสิกรไทย','ธนาคารไทยพาณิชย์'];
-        $store = DB::table('stores')->where('store_id','=',$id)->first();
+        $store = DB::table('stores')->where('store_id','=',$store)->first();
         $store1 = DB::table('stores')->select('store_id')->where('user_id','=',Auth::user()->id)->first();
         if(!Auth::check() || Auth::user()->id!=$store->user_id){
             return redirect()->route('stores.show',['store'=>$store->store_id]);
@@ -134,7 +133,7 @@ class StoresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $store)
     {
         $request->validate([
             'store_name' => 'required',
@@ -151,7 +150,7 @@ class StoresController extends Controller
             'store_bank_number.min' =>  'กรุณากรอกหมายเลขบัญชีธนาคารให้ถูกต้อง',
             'store_description.required' => 'กรุณาใส่คำอธิบายร้านค้า'
         ]);
-        $store = DB::table('stores')->where('store_id','=',$id)->first();
+        $store = DB::table('stores')->where('store_id','=',$store)->first();
         $img = $request->file('inpImg');
         if($img){
             $filename = $store->store_id . "." . $img->getClientOriginalExtension();
@@ -168,7 +167,7 @@ class StoresController extends Controller
             'store_bank_name' => $request->input("store_bank_name"),
             'store_bank_number' => $request->store_bank_number,
         ]);
-        return $this->show($id);
+        return $this->show($store);
     }
 
     /**

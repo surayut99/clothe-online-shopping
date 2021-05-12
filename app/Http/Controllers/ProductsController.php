@@ -105,12 +105,12 @@ class ProductsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $product
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($product)
     {
-        $product = Product::where('product_id','=',$id)->first();
+        $product = Product::where('product_id','=',$product)->first();
         $store = Store::where('store_id', '=', $product->store_id)->first();
 
         return view('product.product_detail',[
@@ -129,21 +129,21 @@ class ProductsController extends Controller
             ->where('product_name','LIKE', '%'.$product_name.'%')
             ->get();
 
-        return view("product.index")->with('products' , $products);
+        return view("product.index")->with(['products' => $products,'keyword' => $request->product_name]);
 
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($product)
     {
 
         $store = Store::where('store_id', "=", Auth::user()->id)->get();
-        $product = Product::where('product_id','=',$id)->first();
+        $product = Product::where('product_id','=',$product)->first();
         $primary_type = DB::table('product_types')->select('product_primary_type')->distinct()->get();
         $secondary_type = ProductType::all();
         return view('product.edit-product',[
@@ -158,10 +158,10 @@ class ProductsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $product)
     {
         $request->validate([
             'productName' => 'required',
@@ -178,7 +178,7 @@ class ProductsController extends Controller
             'qty.required' =>  'กรุณาระบุจำนวนสินค้า',
             'price.required' => 'กรุณาระบุราคาสินค้า'
         ]);
-        $product = DB::table('products')->where('product_id','=',$id)->first();
+        $product = DB::table('products')->where('product_id','=',$product)->first();
         $img = $request->file('inpImg');
         if($img){
             $filename = $product->product_id . "." . $img->getClientOriginalExtension();
@@ -188,7 +188,7 @@ class ProductsController extends Controller
                     'product_img_path' => $path . "/" . $filename,
                 ]);
         }
-        Product::where('product_id','=',$id)->update([
+        Product::where('product_id','=',$product)->update([
             'product_name' => $request->input('productName'),
             'product_description' => $request->input('productDes'),
             'product_primary_type' => $request->get('primeProdType'),
@@ -204,12 +204,12 @@ class ProductsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($product)
     {
-        Product::where('product_id', '=', $id)->delete();
+        Product::where('product_id', '=', $product)->delete();
         return redirect()->back();
     }
 
@@ -227,18 +227,18 @@ class ProductsController extends Controller
         return $secondary;
     }
 
-    public function getMaxQty($id){
-        return DB::table('products')->where('product_id', "=", $id)
+    public function getMaxQty($product){
+        return DB::table('products')->where('product_id', "=", $product)
         ->select('qty')->get()
         ->pluck('qty')->toArray()[0];
     }
 
-    public function productsInStore($id){
-        $store = DB::table('stores')->where('store_id','=',$id)->first();
+    public function productsInStore($product){
+        $store = DB::table('stores')->where('store_id','=',$product)->first();
         if($store->user_id!=Auth::user()->id){
             return redirect()->route('stores.show',['store'=>$store->store_id]);
         }
-        $products = DB::table('products')->where('store_id','=',$id)->get();
+        $products = DB::table('products')->where('store_id','=',$product)->get();
         return view("product.manage-products",[
             'products' => $products
         ]);

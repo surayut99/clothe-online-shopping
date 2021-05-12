@@ -13,7 +13,7 @@
         <div style="color: black; padding-top: 20px">
           <h3 style="text-align: center">{{$store->store_name}}</h3>
           <p>{{$store->store_description}}</p>
-          {{-- <hr> --}}
+           <hr>
         </div>
       </a>
     </div>

@@ -23,11 +23,11 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $id = DB::table('stores')->where('user_id', '=', Auth::id())->first()->store_id;
+        $order = DB::table('stores')->where('user_id', '=', Auth::id())->first()->store_id;
 
         $status = ['purchasing'=>'รอจ่าย', 'verifying'=> 'รอการยืนยัน', 'verified'=>'ยืนยันแล้ว', 'deliveried'=>'จัดส่งแล้ว','cancelled'=>'ยกเลิก', "completed" => "ได้รับแล้ว"];
-        $store = DB::table('stores')->where('store_id','=',$id)->first();
-        $orders = DB::table('orders')->where('store_id','=',$id)->get();
+        $store = DB::table('stores')->where('store_id','=',$order)->first();
+        $orders = DB::table('orders')->where('store_id','=',$order)->get();
         return view('store.show_orders',[
             'orders' => $orders,
             'store' => $store,
@@ -138,18 +138,18 @@ class OrdersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $order
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($order)
     {
-        $order = DB::table('orders')->where('order_id', '=', $id)->first();
-        $payment = DB::table('payments')->where('order_id', '=', $id)->first();
-        $products = DB::table('order_details')->where('order_id', '=', $id)
-                ->join('products', 'products.product_id', '=', 'order_details.product_id')
-                ->join('stores', 'stores.store_id', '=', 'products.store_id')
-                ->select('order_details.*', 'products.product_img_path', "productS.store_id")
-                ->get();
+        $payment = DB::table('payments')->where('order_id', '=', $order)->first();
+        $products = DB::table('order_details')->where('order_id', '=', $order)
+        ->join('products', 'products.product_id', '=', 'order_details.product_id')
+        ->join('stores', 'stores.store_id', '=', 'products.store_id')
+        ->select('order_details.*', 'products.product_img_path', "productS.store_id")
+        ->get();
+        $order = DB::table('orders')->where('order_id', '=', $order)->first();
         $owner = DB::table('stores')->where('store_id','=',$order->store_id)->first();
 
         return view('orders.show', [
@@ -163,10 +163,10 @@ class OrdersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $order
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($order)
     {
         //
     }
@@ -175,56 +175,56 @@ class OrdersController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $order)
     {
         $request->validate([
             "store_comment" => "required"
         ],[
             "store_comment.required" => "กรุณากรอกเหตุผลในการปฎิเสธการแจ้งชำระเงินนี้"
         ]);
-        DB::table('orders')->where('order_id','=',$id)->update([
+        DB::table('orders')->where('order_id','=',$order)->update([
             'status' => 'cancelled',
             'store_comment' => $request->input('store_comment'),
         ]);
-        return redirect()->route('orders.show',['order'=>$id]);
+        return redirect()->route('orders.show',['order'=>$order]);
     }
-    public function accept($id)
+    public function accept($order)
     {
-        DB::table('orders')->where('order_id','=',$id)->update([
+        DB::table('orders')->where('order_id','=',$order)->update([
             'status' => 'verified',
         ]);
-        return redirect()->route('orders.show',['order'=>$id]);
+        return redirect()->route('orders.show',['order'=>$order]);
     }
-    public function orderTrackId(Request $request, $id){
+    public function orderTrackId(Request $request, $order){
         $request->validate([
             'track_id' => 'required',
         ],[
             'track_id.required' => 'กรุณาระบุเลขพัสดุ'
         ]);
 
-        DB::table('orders')->where('order_id','=',$id)->update([
+        DB::table('orders')->where('order_id','=',$order)->update([
             'status' => 'deliveried',
             'track_id' => $request->track_id,
         ]);
-        return redirect()->route('orders.show',['order'=>$id]);
+        return redirect()->route('orders.show',['order'=>$order]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($order)
     {
         //
     }
 
-    public function informPayment($id) {
-        $order = DB::table('orders')->where("order_id", "=", $id)->first();
+    public function informPayment($order) {
+        $order = DB::table('orders')->where("order_id", "=", $order)->first();
 
         if (!Auth::check()) {
             return redirect()->route('login');
@@ -243,7 +243,7 @@ class OrdersController extends Controller
         ]);
     }
 
-    public function storePayment(Request $request, $id) {
+    public function storePayment(Request $request, $order) {
         $validation = Validator::make($request->all(), [
             "inpImg" => "required",
             "bank_name" => "required"
@@ -253,18 +253,18 @@ class OrdersController extends Controller
             "bank_name.required" => "กรุณากรอกชื่อธนาคารที่ใช้ในการชำระเงิน"
         ]);
 
-        $pending_payment = Payment::where("order_id", '=', $id)->first();
+        $pending_payment = Payment::where("order_id", '=', $order)->first();
         $img = $request->file('inpImg');
         if ($img) {
             $path = "storage/pictures/payments/";
-            $filename =  $id . "." . $img->getClientOriginalExtension();
+            $filename =  $order . "." . $img->getClientOriginalExtension();
             $img->move($path, $filename);
 
             if ($pending_payment) {
-                Payment::where("order_id", '=', $id)->update(['bank_name' => "null", 'img_path' => $path.$filename]);
+                Payment::where("order_id", '=', $order)->update(['bank_name' => "null", 'img_path' => $path.$filename]);
             } else {
                 $pending_payment = new Payment();
-                $pending_payment->order_id = $id;
+                $pending_payment->order_id = $order;
                 $pending_payment->bank_name = "";
                 $pending_payment->img_path = $path.$filename;
                 $pending_payment->save();
@@ -277,11 +277,11 @@ class OrdersController extends Controller
             return redirect()->back()->with(["oldImgpath" => $pending_payment->img_path]);
         }
 
-        DB::table('payments')->where("order_id", '=', $id)
+        DB::table('payments')->where("order_id", '=', $order)
                 ->update([
                     'bank_name' => $request->bank_name
                 ]);
-        DB::table('orders')->where("order_id", '=', $id)
+        DB::table('orders')->where("order_id", '=', $order)
                 ->update([
                     "status" => "verifying"
                 ]);
@@ -289,16 +289,14 @@ class OrdersController extends Controller
         return redirect()->route("profile");
     }
 
-    public function makeComplete($id) {
-        DB::table('orders')->where('orer_id', '=', $id)->update(
+    public function makeComplete($order) {
+        DB::table('orders')->where('order_id', '=', $order)->update(
             [
                 "status" => "completed",
                 "updated_at" => Carbon::now()
             ]
             );
-        return redirect()->route('orders.show', [
-            'order' => $id
-        ]);
+        return redirect()->route('profile');
     }
 }
 

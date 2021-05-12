@@ -6,9 +6,9 @@ function onClickPlus(event, max) {
         increaseTotal(id)
         var token = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
-            url: "cart/update/"+id,
+            url: "cart/update/"+id+"/"+(curr+1),
             type: "put",
-            data : {'_token': token, 'amount':$('input#' + id).val()},
+            data : {'_token': token},
             success: function (data) {
                 console.log(data)
             }
@@ -25,9 +25,9 @@ function onClickMinus(event) {
         decreaseTotal(id)
         var token = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
-            url: "cart/update/"+id,
+            url: "cart/update/"+id+"/"+(curr-1),
             type: "put",
-            data : {'_token': token, 'amount':$('input#' + id).val()},
+            data : {'_token': token},
             success: function (data) {
                 console.log(data)
             }
@@ -35,9 +35,9 @@ function onClickMinus(event) {
     } else {
         $('input#' + id).val(1)
         $.ajax({
-            url: "cart/update/"+id,
+            url: "cart/update/"+id+"/"+(curr-1),
             type: "put",
-            data : {'_token': token, 'amount':$('input#' + id).val()},
+            data : {'_token': token},
             success: function (data) {
                 console.log(data)
             }

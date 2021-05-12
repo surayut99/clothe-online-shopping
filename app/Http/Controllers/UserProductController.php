@@ -24,7 +24,7 @@ class UserProductController extends Controller
                 ->select("orders.order_id", "orders.created_at", "orders.expired_at", "orders.total_cost", "orders.updated_at", "orders.status",
                         "stores.store_id","stores.store_name", "stores.store_img_path",
                         "products.product_img_path", "order_details.product_name",
-                        "order_details.qty", "order_details.price",'track_id')
+                        "order_details.qty", "order_details.price",'track_id','products.product_id')
                 ->get();
         return $orders;
     }

@@ -50,10 +50,10 @@ class CartController extends Controller
         return redirect()->route('cart');
     }
 
-    public function update(Request $request,$id){
-        DB::table('carts')->where('user_id', '=', Auth::user()->id)->where('product_id', '=', $id)
+    public function update($product_id,$amount){
+        DB::table('carts')->where('user_id', '=', Auth::user()->id)->where('product_id', '=', $product_id)
         ->update([
-            'qty' => $request->input('amount'),
+            'qty' => $amount,
         ]);
     }
 

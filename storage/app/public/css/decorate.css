@@ -8,7 +8,7 @@ div#main>div {
 }
 
 div#between-content>* {
-    color: white !important;
+    /* color: white !important; */
     margin-right: 10px;
 }
 
